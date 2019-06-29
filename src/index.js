@@ -7,7 +7,7 @@ import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
 import './index.css';
 import App from './containers/App';
 import BioContainer from './containers/BioContainer'
-import ContactContainer from './containers/ContactContainer'
+import LoginContainer from './containers/LoginContainer'
 import Notfound from './components/notfound'
 
 // import thunk from 'redux-thunk'
@@ -33,7 +33,7 @@ const routing = (
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/bios" component={BioContainer} />
-        <Route path="/contact" component={ContactContainer} />
+        <Route path="/contact" component={LoginContainer} />
         <Route exact path="/bios/:id" component={BioContainer} />
         <Route component={Notfound} />
       </ Switch>

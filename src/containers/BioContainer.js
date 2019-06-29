@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import { connect} from 'react-redux';
 import NavBarContainer from './NavBarContainer'
 const Person = ({ match }) => <p>{match.params.id}</p>
 
 
 class BioContainer extends Component {
+
+  getPeeps = () => {
+    fetch(`http://localhost:3000/api/v1/users`)
+      .then(res => res.json())
+      .then(people => this.props.savePeople(people))
+    }
 
   render() {
     const { url } = this.props.match
@@ -13,13 +20,38 @@ class BioContainer extends Component {
       <NavBarContainer />
       bio container here
       <p>{url.id}</p>
+      <button onClick={this.getPeeps}> Show Peeps </button>
+      <ul>
+      {this.props.people.length !== 0 ?
+        this.props.people.map((person, index) => {
+          return <li key={index}> {person.name} </li>
+        })
+      : null
+      }
+      </ul>
       </div>
     )
   }
 
 }
 
-export default BioContainer;
+const mapStateToProps = state => {
+  return {
+    people: state.people.people
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    savePeople: (people) => {
+      dispatch({type: 'SAVEPEOPLE', payload: people})
+    }
+  }
+}
+
+
+export default connect(
+  mapStateToProps, mapDispatchToProps)(BioContainer);
 
 // nested routing: https://codeburst.io/getting-started-with-react-router-5c978f70df91
 //

@@ -133,3 +133,16 @@ Trail component accepts four props items ,keys,from and to.
 items: It takes the array of items we need to animate.
 
 keys: We need to pass the unique key prop for each item in the array.
+
+
+-----------------
+if i want to do something with a state
+1. call a function somewhere
+   a. if changing:
+      - add the function to dispatch
+      - add to root reducer
+      - create a reducer
+   b. if reading: add the state I'll use to stateToProps
+      -
+
+connect wants dispatch to still be a second argument, so put null, mapDispatchToProps if you only write state

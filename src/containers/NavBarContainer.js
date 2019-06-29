@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LoginContainer from './LoginContainer.js';
+import LoginForm from './LoginForm.js';
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 import {Spring,config} from 'react-spring/renderprops'

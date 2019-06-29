@@ -1,14 +1,12 @@
 export default function userReducer(
   state = {
-    username: "",
-
+    currentUser: {}
   },
   action
 ){
     switch(action.type){
-      case 'UPDATE_FORM':
-        console.log(action.type)
-        return {...state, username: action.payload}
+      case 'LOGIN':
+        return {...state, currentUser: action.payload}
       default:
         return state;
     }
