@@ -71,3 +71,65 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 -----------------------------
 ROUTER:
 https://codeburst.io/getting-started-with-react-router-5c978f70df91
+
+ANIMATIONS:
+npm i react-spring --save
+https://www.react-spring.io/docs/props/spring
+https://www.react-spring.io/docs/hooks/basics
+There are 5 hooks in react-spring currently:
+
+useSpring a single spring, moves data from a -> b
+useSprings multiple springs, for lists, where each spring moves data from a -> b
+useTrail multiple springs with a single dataset, one spring follows or trails behind the other
+useTransition for mount/unmount transitions (lists where items are added/removed/updated)
+useChain to queue or chain multiple animations together
+
+https://reactgo.com/react-animation-tutorial-examples/
+import { Spring } from 'react-spring/renderprops'
+
+<Spring
+      from={{ opacity: 0.6, marginTop: -50 }}
+      to={{ opacity: 1, marginTop: 50 }}
+    >
+      {props => (
+        <div style={props} className="App">
+          <article className="post">
+            <h1>My first posts</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Cupiditate rerum reprehenderit consectetur porro similique
+              reiciendis ex consequuntur tempore! Similique, pariatur
+              harum.Facilis, accusantium quam labore incidunt soluta
+              suscipit ipsa omnis.
+            </p>
+          </article>
+        </div>
+      )}
+    </Spring>
+
+    Animating Array of items Example
+Sometimes we need to animate array of items for that we need to import Trail component from the ‘react-spring’ library.
+
+The Trail component animates the first item in the list of elements, the rest of elements form a natural trail and follow their previous sibling.
+function AllPosts() {
+  return (
+    <Trail
+      items={posts}
+      keys={post => post.id}
+      from={{ marginLeft: -20, opacity: 0 }}
+      to={{ marginLeft: 20, opacity: 1 }}
+    >
+      {post => props => (
+        <div style={props} className="post">
+             {post.title}
+        </div>
+      )}
+    </Trail>
+  );
+}
+
+Trail component accepts four props items ,keys,from and to.
+
+items: It takes the array of items we need to animate.
+
+keys: We need to pass the unique key prop for each item in the array.

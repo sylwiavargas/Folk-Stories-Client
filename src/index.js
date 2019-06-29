@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { Route, Link, NavLink, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import './index.css';
 import App from './containers/App';
@@ -30,17 +30,6 @@ const routing = (
   <Provider store={store}>
   <Router>
     <div>
-      <ul>
-        <li>
-          <NavLink exact activeClassName="active" to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink activeClassName="active" to="/bios">Bio</NavLink>
-        </li>
-        <li>
-          <NavLink exact activeClassName="active" to="/contact">Contact</NavLink>
-        </li>
-      </ul>
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/bios" component={BioContainer} />
