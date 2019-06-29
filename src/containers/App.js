@@ -1,5 +1,7 @@
 import React from 'react';
 import MainContainer from './MainContainer'
+import BioContainer from './BioContainer'
+
 
 function App() {
   return (
