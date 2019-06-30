@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import NavBarContainer from './NavBarContainer'
-const Person = ({ match }) => <p>{match.params.id}</p>
 
 
 class BioContainer extends Component {
 
   getPeeps = () => {
-    fetch(`http://localhost:3000/api/v1/users`)
+    fetch(`http://localhost:3000/api/v1/people`)
       .then(res => res.json())
       .then(people => this.props.savePeople(people))
     }
 
   render() {
     const { url } = this.props.match
-    console.log(this.props)
     return(
       <div>
       <NavBarContainer />
@@ -44,7 +42,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     savePeople: (people) => {
-      dispatch({type: 'SAVEPEOPLE', payload: people})
+      dispatch({type: 'SAVE_PEOPLE', payload: people})
     }
   }
 }
@@ -71,3 +69,5 @@ export default connect(
 //   </ul>
 //   <Route path="/users/:id" component={User} />
 // </div>
+
+// const Person = ({ match }) => <p>{match.params.id}</p>

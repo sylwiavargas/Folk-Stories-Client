@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import loadingReducer from './loadingReducer';
 import userReducer from './userReducer';
-import peopleReducer from './peopleReducer'
+import peopleReducer from './peopleReducer';
+import eventReducer from './eventReducer';
 
 const rootReducer = () => combineReducers({
   loading: loadingReducer,
   user: userReducer,
-  people: peopleReducer
+  people: peopleReducer,
+  events: eventReducer
 });
 
 export default rootReducer;

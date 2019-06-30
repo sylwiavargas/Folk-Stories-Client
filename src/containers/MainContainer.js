@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react';
-import NavBarContainer from './NavBarContainer'
 import { Spring,config } from 'react-spring/renderprops';
 import {useSpring,animated } from 'react-spring';
 import { Trail } from "react-spring/renderprops";
+import '../App.css'
+import EventContainer from './EventContainer'
 
 
 class MainContainer extends Component {
@@ -14,7 +15,6 @@ class MainContainer extends Component {
   }
 
   render() {
-
     const events = [
       { title: "First Event", id: 1 },
       { title: "Second Event", id: 2 },
@@ -23,19 +23,16 @@ class MainContainer extends Component {
     ];
 
     return(
-      <div>
-      <NavBarContainer />
+      <div className="main">
       <Spring config={config.wobbly}
       from={{ opacity: 0.6, marginLeft: -10 }}
       to={{ opacity: 1, marginLeft: 50 }}
     >
       {props => (
-        <div style={props} className="App">
+        <div style={props}>
           <article className="post">
-            <h1>Main container here</h1>
-            <p>
-            How lovely it bounces.
-            </p>
+            <h1>Happened today:</h1>
+            <EventContainer />
           </article>
         </div>
       )}
@@ -47,7 +44,7 @@ class MainContainer extends Component {
      to={{ marginLeft: 20, opacity: 1 }}
    >
      {event => props => (
-       <div style={props} className="post">
+       <div style={props}>
             {event.title}
        </div>
      )}

@@ -5,7 +5,7 @@ export default function peopleReducer(
   action
 ){
     switch(action.type){
-      case 'SAVEPEOPLE':
+      case 'SAVE_PEOPLE':
         return {...state, people: action.payload}
       default:
         return state;

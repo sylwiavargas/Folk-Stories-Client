@@ -11,7 +11,6 @@ class SignupForm extends React.Component {
     let name = event.target.name.value
     let email = event.target.email.value
     let user = {user: {username, password, password_confirmation, zip, name, email}}
-
     this.props.userAccess(user)
   }
 

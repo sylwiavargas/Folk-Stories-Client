@@ -7,6 +7,8 @@ export default function userReducer(
     switch(action.type){
       case 'LOGIN':
         return {...state, currentUser: action.payload}
+      case 'CLEAR_CURRENT_USER':
+        return {...state, currentUser: {}};
       default:
         return state;
     }

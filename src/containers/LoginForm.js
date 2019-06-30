@@ -1,14 +1,13 @@
-import React from 'react'
+import { connect} from 'react-redux';
+import React, { Component } from 'react';
 
-
-class LoginForm extends React.Component {
+class LoginForm extends Component {
 
   handleSubmit = (event)=> {
     event.preventDefault();
     let username = event.target.username.value
     let password = event.target.password.value
     let user = {auth: {username, password}}
-
     this.props.userAccess(user)
   }
 
@@ -27,4 +26,24 @@ class LoginForm extends React.Component {
   }
 
 }
-export default LoginForm
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (user) => {
+      dispatch({type: "LOGIN", payload: user})
+    },
+    autoLogin: (user) => {
+      dispatch({type: 'LOG_IN', payload: user})
+    }
+  }
+}
+
+
+export default connect(
+  mapStateToProps, mapDispatchToProps)(LoginForm);

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import MainContainer from './MainContainer'
-import BioContainer from './BioContainer'
-import LoginForm from './LoginForm'
-import SignUpForm from './SignUpForm'
+import NavBarContainer from './NavBarContainer'
+import Loading from '../components/Loading'
+import '../App.css'
 
 const API = "http://localhost:3000/api/v1"
 
@@ -17,14 +17,14 @@ class App extends Component {
       let path;
       userInput.user ? path = '/users' : path = "/login";
 
-    fetch(`${API}` + `${path}`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userInput)
-      })
+      fetch(API + `${path}`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userInput)
+        })
       .then(res => res.json())
       .then(response => {
         if (response.errors){
@@ -39,18 +39,41 @@ class App extends Component {
     }
 
   componentDidMount(){
-    this.props.loading();
+    const token = localStorage.getItem('token')
+
+    if (token !== null) {
+      fetch(API + '/reauth', {
+        headers: {
+          'Authorization': token
+        }
+      })
+      .then(res => res.json())
+      .then(response => {
+        if (response.errors){
+          localStorage.removeItem('token')
+          alert(response.errors)
+        } else {
+          console.log(response)
+          this.props.autoLogin(response)
+          this.props.loading()
+        }
+      })
+    } else {
+      this.props.loading()
+    }
   }
 
+
   render() {
+        console.log(this.props)
     return (
       <div className="App">
+      <NavBarContainer userAccess={this.userAccess}/>
       {this.props.loadState.loading === true ?
-      "I am loading"
+      <Loading />
       :
-      <MainContainer/>}
-      <LoginForm userAccess={this.userAccess}/>
-      <SignUpForm userAccess={this.userAccess}/>
+      <MainContainer />
+      }
     </div>
     );
   }
@@ -71,6 +94,9 @@ const mapDispatchToProps = dispatch => {
     },
     login: (user) => {
       dispatch({type: "LOGIN", payload: user})
+    },
+    autoLogin: (user) => {
+      dispatch({type: 'LOGIN', payload: user})
     }
   }
 }

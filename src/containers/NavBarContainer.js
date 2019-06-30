@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import LoginForm from './LoginForm.js';
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 import {Spring,config} from 'react-spring/renderprops'
+
 import '../App.css'
+import SignUpForm from './SignUpForm'
+import LoginForm from './LoginForm.js';
+
 
 class NavBarContainer extends Component {
 
@@ -14,20 +17,23 @@ class NavBarContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="header">
       <Spring from={{ number: 0 }} to={{ number: 100 }} config={config.slow}>
         {props => (
-         <div style={{ width: props.number + "6" }}>
+         <div style={{ width: props.number + "%" }}>
            <nav className="nav-bar">
                <NavLink exact activeClassName="active" to="/">Home</NavLink>
                <NavLink activeClassName="active" to="/bios">Bio</NavLink>
                <NavLink exact activeClassName="active" to="/contact">Contact</NavLink>
+               <br/>
            </nav>
          </div>
        )}
    </Spring>
       <div>
-        <button onclick={this.signOut}>Sign out</button>
+        <button onClick={this.signOut}>Sign out</button>
+        <LoginForm userAccess={this.props.userAccess}/>
+        <SignUpForm userAccess={this.props.userAccess}/>
       </div>
     </div>
     )
