@@ -19,7 +19,12 @@ class EventContainer extends Component {
       <ul>
       {this.props.events.length !== 0 ?
         this.props.events.events.map((event, index) => {
-          return <li key={index}> {event.title_eng} </li>
+          return <li key={index}>
+          <h2> {event.title_eng} </h2>
+          <p> {event.description_eng} </p>
+          <a href={event.read_more_eng.toString()}> Read more </a>
+          <p> <strong> Related people: </strong> {event.people.map((person) => {return person.name})} </p>
+          </li>
         })
       : null
       }
