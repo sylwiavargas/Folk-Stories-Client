@@ -3,7 +3,10 @@ import { connect} from 'react-redux';
 import MainContainer from './MainContainer'
 import NavBarContainer from './NavBarContainer'
 import Loading from '../components/Loading'
+import Footer from '../components/Footer'
+
 import '../App.css'
+
 
 const API = "http://localhost:3000/api/v1"
 
@@ -74,6 +77,7 @@ class App extends Component {
       :
       <MainContainer />
       }
+      <Footer />
     </div>
     );
   }

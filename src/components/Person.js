@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import NavBarContainer from '../containers/NavBarContainer';
 import Loading from './Loading'
-
+import Footer from './Footer'
 
 class Person extends Component {
 
@@ -30,11 +30,18 @@ class Person extends Component {
         <NavBarContainer />
         <div className="main">
           <h1> {person.name} </h1>
-          <h2> {person.quote_eng} </h2>
+          <h2> "{person.quote_eng}" </h2>
           <p> {person.bio_eng} </p>
           <p> <a href = {person.read_more_eng}> Read more about {person.name} </a> </p>
-          <img src = {person.picture} alt={person.name}/> 
+          <h2> See {person.name} events: </h2>
+          <ul>
+          {
+            person.events.map((event, index) => <li key={index}> {event.year}: {event.title_eng} </li>)
+          }
+          </ul>
+          <img src = {person.picture} alt={person.name}/>
         </div>
+        <Footer />
       </div>
     )}
 }

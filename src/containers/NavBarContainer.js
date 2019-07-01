@@ -11,7 +11,7 @@ import LoginForm from './LoginForm.js';
 class NavBarContainer extends Component {
 
   signOut = () => {
-    localStorage.removeItem('jwt')
+    localStorage.removeItem('token')
     this.props.clearCurrentUser()
   }
 
