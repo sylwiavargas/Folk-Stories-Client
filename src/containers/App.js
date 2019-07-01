@@ -16,7 +16,7 @@ class App extends Component {
       this.props.history.push('/')
     }
 
-    userAccess = (userInput) => {
+    formInput = (userInput) => {
       let path;
       userInput.user ? path = '/users' : path = "/login";
 
@@ -71,7 +71,7 @@ class App extends Component {
         console.log(this.props)
     return (
       <div className="App">
-      <NavBarContainer userAccess={this.userAccess}/>
+      <NavBarContainer formInput={this.formInput}/>
       {this.props.loadState.loading === true ?
       <Loading />
       :

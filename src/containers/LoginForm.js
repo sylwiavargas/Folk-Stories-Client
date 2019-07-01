@@ -8,7 +8,7 @@ class LoginForm extends Component {
     let username = event.target.username.value
     let password = event.target.password.value
     let user = {auth: {username, password}}
-    this.props.userAccess(user)
+    this.props.formInput(user)
   }
 
   render() {

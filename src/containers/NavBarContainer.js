@@ -25,6 +25,7 @@ class NavBarContainer extends Component {
                <NavLink exact activeClassName="active" to="/">Home</NavLink>
                <NavLink activeClassName="active" to="/bios">Bio</NavLink>
                <NavLink exact activeClassName="active" to="/contact">Contact</NavLink>
+                <NavLink exact activeClassName="active" to="/events">Events</NavLink>
                <br/>
            </nav>
          </div>
@@ -32,8 +33,8 @@ class NavBarContainer extends Component {
    </Spring>
       <div>
         <button onClick={this.signOut}>Sign out</button>
-        <LoginForm userAccess={this.props.userAccess}/>
-        <SignUpForm userAccess={this.props.userAccess}/>
+        <LoginForm formInput={this.props.formInput}/>
+        <SignUpForm formInput={this.props.formInput}/>
       </div>
     </div>
     )

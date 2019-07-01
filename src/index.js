@@ -9,6 +9,8 @@ import App from './containers/App';
 import BioContainer from './containers/BioContainer'
 import LoginForm from './containers/LoginForm'
 import Person from './components/Person'
+import Event from './components/Event'
+import EventsPage from './containers/EventsPage'
 import Notfound from './components/notfound'
 
 // import thunk from 'redux-thunk'
@@ -34,6 +36,8 @@ const routing = (
       <Switch>
         <Route exact path="/" component={App} />
         <Route exact path="/Bios" component={BioContainer} />
+        <Route exact path="/Events" component={EventsPage} />
+        <Route exact path="/Events/:id" component={Event} />
         <Route path="/Login" component={LoginForm} />
         <Route exact path="/Bios/:id" component={Person} />
         <Route component={Notfound} />

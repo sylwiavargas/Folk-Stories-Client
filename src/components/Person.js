@@ -19,7 +19,7 @@ class Person extends Component {
 
   render() {
     const person = this.props.person.person.person
-    console.log(person)
+    console.log(this.props)
     return(
       !person ?
       <div className="App">
