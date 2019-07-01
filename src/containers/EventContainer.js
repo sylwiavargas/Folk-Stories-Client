@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Trail } from "react-spring/renderprops";
@@ -7,8 +7,8 @@ import { Trail } from "react-spring/renderprops";
 class EventContainer extends Component {
 
   state = {
-    queerEvents: false,
-    womenEvents: false,
+    queer: false,
+    women: false,
     allEvents: true
   }
 
@@ -27,8 +27,8 @@ class EventContainer extends Component {
     this.getEvents()
     this.setState({
       allEvents: true,
-      queerEvents: false,
-      womenEvents: false
+      queer: false,
+      women: false
     })
     this.props.selectAll(featuredEvents)
   }
@@ -39,19 +39,18 @@ class EventContainer extends Component {
       // if event.types includes an object with id = 1
       return event.types.map(typeObj => typeObj.id).includes(1)
     })
-    if (this.state.womenEvents === false) {
-      this.props.selectCategory(womenEvents)
+    if (this.state.women === false) {
+      womenEvents.forEach((e) => this.props.selectCategory(e))
       this.setState({
-        womenEvents: true,
+        women: true,
         allEvents: false
       })
     } else {
-      debugger
     this.setState({
-      womenEvents: false
+      women: false
     })
-    let updateFeaturedEvents = this.props.featuredEvents.reduce(womenEvents)
-    this.props.selectCategory(womenEvents)
+    let newE = this.props.featuredEvents.filter((e) => !womenEvents.includes(e))
+    this.props.deleteCategory(newE)
   }}
 
   handleQueer = () => {
@@ -59,24 +58,41 @@ class EventContainer extends Component {
     queerEvents = this.props.events.filter((event) => {
       return event.types.map(typeObj => typeObj.id).includes(2)
     })
+    if (this.state.queer === false) {
+      queerEvents.forEach((e) => this.props.selectCategory(e))
+      this.setState({
+        queer: true,
+        allEvents: false
+      })
+    } else {
     this.setState({
-      queerEvents: !this.state.queerEvents,
-      allEvents: false
+      queer: false
     })
-    this.props.selectCategory(queerEvents)
-  }
+    let newE = this.props.featuredEvents.filter((e) => !queerEvents.includes(e))
+    this.props.deleteCategory(newE)
+  }}
 
   render() {
     const evs = this.props.events;
-    console.log(this.props, this.state.womenEvents)
+    const efs = this.props.featuredEvents;
+    const userTypes = this.props.user.currentUser.types.map((type) => type.name_eng);
+    console.log(this.props)
     return (
       <div>
       <button onClick={() => {this.handleAll()}}> All </button>
       <button onClick={() => {this.handleWomen()}}> Women </button>
       <button onClick={() => {this.handleQueer()}}> Queer </button>
       <ul>
-      {this.props.featuredEvents && this.props.featuredEvents.length > 0 ?
-        <p> hey </p>
+      {efs && efs.length > 0 ?
+        efs.map((event, index) =>
+          <Fragment key={index}>
+           <h2> {event.title_eng} </h2>
+           {event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
+           <p> {event.description_eng} </p>
+           <a href={event.read_more_eng.toString()}> Read more </a>
+           <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
+           </Fragment>
+         )
         : this.props.events !== undefined ?
           <Trail
            items={evs}
@@ -118,6 +134,9 @@ const mapDispatchToProps = dispatch => {
     },
     selectCategory: (events) => {
       dispatch({type: 'SELECT_CATEGORY', payload: events})
+    },
+    deleteCategory: (events) => {
+      dispatch({type: 'DELETE_CATEGORY', payload: events})
     },
     selectAll: (events) => {
       dispatch({type: 'SELECT_ALL', payload: events})

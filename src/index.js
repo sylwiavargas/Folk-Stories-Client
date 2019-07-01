@@ -8,6 +8,7 @@ import './index.css';
 import App from './containers/App';
 import BioContainer from './containers/BioContainer'
 import LoginForm from './containers/LoginForm'
+import UserProfile from './containers/UserProfile'
 import Person from './components/Person'
 import Event from './components/Event'
 import EventsPage from './containers/EventsPage'
@@ -40,6 +41,7 @@ const routing = (
         <Route exact path="/Events/:id" component={Event} />
         <Route path="/Login" component={LoginForm} />
         <Route exact path="/Bios/:id" component={Person} />
+        <Route exact path="/you" component={UserProfile} />
         <Route component={Notfound} />
       </ Switch>
     </div>

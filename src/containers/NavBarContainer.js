@@ -26,6 +26,7 @@ class NavBarContainer extends Component {
                <NavLink activeClassName="active" to="/bios">Bio</NavLink>
                <NavLink exact activeClassName="active" to="/contact">Contact</NavLink>
                 <NavLink exact activeClassName="active" to="/events">Events</NavLink>
+                <NavLink exact activeClassName="active" to="/you">You</NavLink>
                <br/>
            </nav>
          </div>
