@@ -23,12 +23,14 @@ class EventContainer extends Component {
   }
 
   handleAll = () => {
+    const featuredEvents = []
     this.getEvents()
     this.setState({
       allEvents: true,
       queerEvents: false,
       womenEvents: false
     })
+    this.props.selectAll(featuredEvents)
   }
 
   handleWomen = () => {
@@ -37,12 +39,20 @@ class EventContainer extends Component {
       // if event.types includes an object with id = 1
       return event.types.map(typeObj => typeObj.id).includes(1)
     })
+    if (this.state.womenEvents === false) {
+      this.props.selectCategory(womenEvents)
+      this.setState({
+        womenEvents: true,
+        allEvents: false
+      })
+    } else {
+      debugger
     this.setState({
-      womenEvents: !this.state.womenEvents,
-      allEvents: false
+      womenEvents: false
     })
+    let updateFeaturedEvents = this.props.featuredEvents.reduce(womenEvents)
     this.props.selectCategory(womenEvents)
-  }
+  }}
 
   handleQueer = () => {
     let queerEvents = [];
@@ -58,15 +68,16 @@ class EventContainer extends Component {
 
   render() {
     const evs = this.props.events;
-    console.log(this.props.featuredEvents)
-    debugger
+    console.log(this.props, this.state.womenEvents)
     return (
       <div>
       <button onClick={() => {this.handleAll()}}> All </button>
       <button onClick={() => {this.handleWomen()}}> Women </button>
       <button onClick={() => {this.handleQueer()}}> Queer </button>
       <ul>
-      {this.props.featuredEvents !== undefined ?
+      {this.props.featuredEvents && this.props.featuredEvents.length > 0 ?
+        <p> hey </p>
+        : this.props.events !== undefined ?
           <Trail
            items={evs}
            keys={event => event.id}
@@ -96,7 +107,7 @@ const mapStateToProps = state => {
   return {
     events: state.events.events[0],
     user: state.user,
-    featuredEvents: []
+    featuredEvents: state.events.featuredEvents
   }
 }
 
@@ -107,6 +118,9 @@ const mapDispatchToProps = dispatch => {
     },
     selectCategory: (events) => {
       dispatch({type: 'SELECT_CATEGORY', payload: events})
+    },
+    selectAll: (events) => {
+      dispatch({type: 'SELECT_ALL', payload: events})
     }
   }
 }
