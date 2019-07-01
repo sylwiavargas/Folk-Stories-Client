@@ -31,11 +31,15 @@ class NavBarContainer extends Component {
          </div>
        )}
    </Spring>
-      <div>
+        {localStorage.token ?
+              <div>
         <button onClick={this.signOut}>Sign out</button>
+        </div>
+        :
+        <div>
         <LoginForm formInput={this.props.formInput}/>
-        <SignUpForm formInput={this.props.formInput}/>
-      </div>
+        <SignUpForm formInput={this.props.formInput}/>      </div>}
+
     </div>
     )
   }

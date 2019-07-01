@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import NavBarContainer from '../containers/NavBarContainer';
-import Loading from './Loading'
 import Footer from './Footer'
 import { Link } from 'react-router-dom';
 
@@ -30,7 +29,7 @@ class Event extends Component {
       {this.props.events !== undefined ?
         this.props.events.map((event, index) => {
           return <li key={index}>
-          <h2> {event.event.title_eng} </h2>
+          <h2> {event.event.month_id}/{event.event.day_id}/{event.event.year_era_id}: {event.event.title_eng}</h2>
           <p> {event.event.description_eng} </p>
           <a href={event.event.read_more_eng}> Read more </a>
           {event.event.people ?

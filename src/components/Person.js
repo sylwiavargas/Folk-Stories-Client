@@ -3,6 +3,7 @@ import { connect} from 'react-redux';
 import NavBarContainer from '../containers/NavBarContainer';
 import Loading from './Loading'
 import Footer from './Footer'
+import { Link } from 'react-router-dom'
 
 class Person extends Component {
 
@@ -36,7 +37,7 @@ class Person extends Component {
           <h2> See {person.name} events: </h2>
           <ul>
           {
-            person.events.map((event, index) => <li key={index}> {event.year}: {event.title_eng} </li>)
+            person.events.map((event, index) => <li key={index}><Link to={`/events/${event.id}`}>{event.year_era_id}: {event.title_eng}</Link>  </li>)
           }
           </ul>
           <img src = {person.picture} alt={person.name}/>

@@ -42,7 +42,7 @@ class EventContainer extends Component {
   render() {
     console.log(this.props.events)
     return (
-      <div>
+      <div className="main">
       <ul>
       {this.props.events !== undefined ?
         this.props.events.map((event, index) => {
@@ -58,6 +58,7 @@ class EventContainer extends Component {
       : null
       }
       </ul>
+      <h1> Add a new event! </h1>
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <input placeholder="Title" type="text" name="title_eng"/>
         <input placeholder="Description" type="text" name="description_eng"/>

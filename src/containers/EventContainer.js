@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Trail } from "react-spring/renderprops";
 
 
 class EventContainer extends Component {
@@ -16,18 +17,29 @@ class EventContainer extends Component {
   }
 
   render() {
+    const evs = this.props.events;
+    // console.log(evs)
     return (
       <div>
       <ul>
       {this.props.events !== undefined ?
-        this.props.events.map((event, index) => {
-          return <li key={index}>
-          <h2> {event.title_eng} </h2>
-          <p> {event.description_eng} </p>
-          <a href={event.read_more_eng.toString()}> Read more </a>
-          <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
-          </li>
-        })
+          <Trail
+           items={evs}
+           keys={event => event.id}
+           from={{ marginLeft: -20, opacity: 0 }}
+           to={{ marginLeft: 20, opacity: 1 }}
+         >
+           {event => props => (
+             <div style={props}>
+             <h2> {event.title_eng} </h2>
+             {event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
+             <p> {event.description_eng} </p>
+             <a href={event.read_more_eng.toString()}> Read more </a>
+             <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
+             </div>
+
+           )}
+         </Trail>
       : null
       }
       </ul>
