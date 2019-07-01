@@ -3,6 +3,7 @@ import { connect} from 'react-redux';
 import NavBarContainer from '../containers/NavBarContainer';
 import Loading from './Loading'
 import Footer from './Footer'
+import { Link } from 'react-router-dom';
 
 const API = "http://localhost:3000/api/v1/events"
 
@@ -19,40 +20,27 @@ class Event extends Component {
       this.getEvent()
     }
 
-    handleSubmit = (e)=> {
-      e.preventDefault();
-      let title_eng = e.target.title_eng.value
-      let description_eng = e.target.description_eng.value
-      let mmddyyy = e.target.mmddyyy.value
-      let occurance = {event: {title_eng, description_eng, mmddyyy}}
-      this.addEvent(occurance)
-    }
-
-    addEvent = (userInput) =>{
-      fetch(API , {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(userInput)
-        })
-      .then(res => res.json())
-      .then(event => this.props.addEvent(event))
-    }
-
   render() {
     console.log(this.props)
     return(
       <div className="App">
       <NavBarContainer />
       <div className="main">
-      <form onSubmit={(e) => this.handleSubmit(e)}>
-        <input placeholder="Title" type="text" name="title_eng"/>
-        <input placeholder="Description" type="text" name="description_eng"/>
-        <input placeholder="Date (MMDDYYY)" type="text" name="mmddyyy"/>
-        <button>Submit</button>
-      </form>
+      <ul>
+      {this.props.events !== undefined ?
+        this.props.events.map((event, index) => {
+          return <li key={index}>
+          <h2> {event.event.title_eng} </h2>
+          <p> {event.event.description_eng} </p>
+          <a href={event.event.read_more_eng}> Read more </a>
+          {event.event.people ?
+          <p> <strong> Related people: </strong>  {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})}
+          </p> : null}
+          </li>
+        })
+      : null
+      }
+      </ul>
     </div>
     <Footer />
     </div>
@@ -62,7 +50,7 @@ class Event extends Component {
 
 const mapStateToProps = state => {
   return {
-    events: state.events
+    events: state.events.events
   }
 }
 
@@ -70,9 +58,6 @@ const mapDispatchToProps = dispatch => {
   return {
     saveEvents: (e) => {
       dispatch({type: 'SAVE_EVENTS', payload: e})
-    },
-    addEvent: (e) => {
-      dispatch({type: 'ADD_EVENT', payload: e})
     }
   }
 }
