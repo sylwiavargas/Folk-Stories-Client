@@ -5,7 +5,6 @@ import '../App.css'
 class Footer extends Component {
 
   render() {
-    console.log("Footer here")
     return (
       <div className="footer">
       Made with love

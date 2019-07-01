@@ -16,16 +16,19 @@ class EventContainer extends Component {
   }
 
   render() {
+    console.log(this.props.events)
     return (
       <div>
       <ul>
-      {this.props.events.length !== 0 ?
-        this.props.events.events.map((event, index) => {
+      {this.props.events !== undefined ?
+        this.props.events.map((event, index) => {
           return <li key={index}>
           <h2> {event.title_eng} </h2>
           <p> {event.description_eng} </p>
-          <a href={event.read_more_eng.toString()}> Read more </a>
-          <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
+          <a href={event.read_more_eng}> Read more </a>
+          {event.people ?
+          <p> <strong> Related people: </strong>  {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})}
+          </p> : null}
           </li>
         })
       : null
@@ -38,7 +41,7 @@ class EventContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    events: state.events
+    events: state.events.events[0]
   }
 }
 

@@ -12,7 +12,7 @@ class Event extends Component {
       const num = this.props.match.params.id
       fetch(API + `/${num}`)
         .then(res => res.json())
-        .then(e => this.props.saveEvent(e))
+        .then(e => this.props.saveEvents(e))
     }
 
     componentDidMount(){
@@ -23,10 +23,8 @@ class Event extends Component {
       e.preventDefault();
       let title_eng = e.target.title_eng.value
       let description_eng = e.target.description_eng.value
-      let year = e.target.year.value
-      let month = e.target.month.value
-      let day = e.target.day.value
-      let occurance = {event: {title_eng, description_eng, year, month, day}}
+      let mmddyyy = e.target.mmddyyy.value
+      let occurance = {event: {title_eng, description_eng, mmddyyy}}
       this.addEvent(occurance)
     }
 
@@ -44,8 +42,7 @@ class Event extends Component {
     }
 
   render() {
-    const props = this.props.events.events[0]
-    console.log(props)
+    console.log(this.props)
     return(
       <div className="App">
       <NavBarContainer />
@@ -53,9 +50,7 @@ class Event extends Component {
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <input placeholder="Title" type="text" name="title_eng"/>
         <input placeholder="Description" type="text" name="description_eng"/>
-        <input placeholder="Year" type="text" name="year"/>
-        <input placeholder="Month" type="text" name="month"/>
-        <input placeholder="Day" type="text" name="day"/>
+        <input placeholder="Date (MMDDYYY)" type="text" name="mmddyyy"/>
         <button>Submit</button>
       </form>
     </div>
@@ -73,8 +68,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveEvent: (e) => {
-      dispatch({type: 'SAVE_EVENT', payload: e})
+    saveEvents: (e) => {
+      dispatch({type: 'SAVE_EVENTS', payload: e})
     },
     addEvent: (e) => {
       dispatch({type: 'ADD_EVENT', payload: e})
