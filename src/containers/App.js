@@ -56,7 +56,6 @@ class App extends Component {
           localStorage.removeItem('token')
           alert(response.errors)
         } else {
-          console.log(response)
           this.props.autoLogin(response)
           this.props.loading()
         }

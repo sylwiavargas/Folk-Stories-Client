@@ -6,6 +6,12 @@ import { Trail } from "react-spring/renderprops";
 
 class EventContainer extends Component {
 
+  state = {
+    queerEvents: false,
+    womenEvents: false,
+    allEvents: true
+  }
+
   getEvents = () => {
     fetch(`http://localhost:3000/api/v1/events`)
       .then(res => res.json())
@@ -16,13 +22,51 @@ class EventContainer extends Component {
     this.getEvents();
   }
 
+  handleAll = () => {
+    this.getEvents()
+    this.setState({
+      allEvents: true,
+      queerEvents: false,
+      womenEvents: false
+    })
+  }
+
+  handleWomen = () => {
+    let womenEvents = [];
+    womenEvents = this.props.events.filter((event) => {
+      // if event.types includes an object with id = 1
+      return event.types.map(typeObj => typeObj.id).includes(1)
+    })
+    this.setState({
+      womenEvents: !this.state.womenEvents,
+      allEvents: false
+    })
+    this.props.selectCategory(womenEvents)
+  }
+
+  handleQueer = () => {
+    let queerEvents = [];
+    queerEvents = this.props.events.filter((event) => {
+      return event.types.map(typeObj => typeObj.id).includes(2)
+    })
+    this.setState({
+      queerEvents: !this.state.queerEvents,
+      allEvents: false
+    })
+    this.props.selectCategory(queerEvents)
+  }
+
   render() {
     const evs = this.props.events;
-    // console.log(evs)
+    console.log(this.props.featuredEvents)
+    debugger
     return (
       <div>
+      <button onClick={() => {this.handleAll()}}> All </button>
+      <button onClick={() => {this.handleWomen()}}> Women </button>
+      <button onClick={() => {this.handleQueer()}}> Queer </button>
       <ul>
-      {this.props.events !== undefined ?
+      {this.props.featuredEvents !== undefined ?
           <Trail
            items={evs}
            keys={event => event.id}
@@ -50,7 +94,9 @@ class EventContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    events: state.events.events[0]
+    events: state.events.events[0],
+    user: state.user,
+    featuredEvents: []
   }
 }
 
@@ -58,6 +104,9 @@ const mapDispatchToProps = dispatch => {
   return {
     saveEvents: (events) => {
       dispatch({type: 'SAVE_EVENTS', payload: events})
+    },
+    selectCategory: (events) => {
+      dispatch({type: 'SELECT_CATEGORY', payload: events})
     }
   }
 }
