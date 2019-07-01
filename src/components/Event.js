@@ -4,18 +4,18 @@ import NavBarContainer from '../containers/NavBarContainer';
 import Loading from './Loading'
 import Footer from './Footer'
 
-const API = "http://localhost:3000/api/v1"
+const API = "http://localhost:3000/api/v1/events"
 
 class Event extends Component {
 
     getEvent = () => {
       const num = this.props.match.params.id
-      fetch(`http://localhost:3000/api/v1/events/${num}`)
+      fetch(API + `/${num}`)
         .then(res => res.json())
-        .then(event => this.props.saveEvent(event))
+        .then(e => this.props.saveEvent(e))
     }
 
-    componentDidMount() {
+    componentDidMount(){
       this.getEvent()
     }
 
@@ -31,7 +31,7 @@ class Event extends Component {
     }
 
     addEvent = (userInput) =>{
-      fetch(API + `/events`, {
+      fetch(API , {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -44,18 +44,22 @@ class Event extends Component {
     }
 
   render() {
-    const props = this.props
+    const props = this.props.events.events[0]
     console.log(props)
     return(
-    <div>
-    <form onSubmit={(e) => this.handleSubmit(e)}>
-      <input placeholder="Title" type="text" name="title_eng"/>
-      <input placeholder="Description" type="text" name="description_eng"/>
-      <input placeholder="Year" type="text" name="year"/>
-      <input placeholder="Month" type="text" name="month"/>
-      <input placeholder="Day" type="text" name="day"/>
-      <button>Submit</button>
-    </form>
+      <div className="App">
+      <NavBarContainer />
+      <div className="main">
+      <form onSubmit={(e) => this.handleSubmit(e)}>
+        <input placeholder="Title" type="text" name="title_eng"/>
+        <input placeholder="Description" type="text" name="description_eng"/>
+        <input placeholder="Year" type="text" name="year"/>
+        <input placeholder="Month" type="text" name="month"/>
+        <input placeholder="Day" type="text" name="day"/>
+        <button>Submit</button>
+      </form>
+    </div>
+    <Footer />
     </div>
     )}
 }
@@ -63,7 +67,7 @@ class Event extends Component {
 
 const mapStateToProps = state => {
   return {
-    event: state.events
+    events: state.events
   }
 }
 
