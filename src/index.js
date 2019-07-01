@@ -8,6 +8,7 @@ import './index.css';
 import App from './containers/App';
 import BioContainer from './containers/BioContainer'
 import LoginForm from './containers/LoginForm'
+import Person from './components/Person'
 import Notfound from './components/notfound'
 
 // import thunk from 'redux-thunk'
@@ -32,9 +33,9 @@ const routing = (
     <div>
       <Switch>
         <Route exact path="/" component={App} />
-        <Route path="/Bios" component={BioContainer} />
+        <Route exact path="/Bios" component={BioContainer} />
         <Route path="/Login" component={LoginForm} />
-        <Route exact path="/Bios/:id" component={BioContainer} />
+        <Route exact path="/Bios/:id" component={Person} />
         <Route component={Notfound} />
       </ Switch>
     </div>

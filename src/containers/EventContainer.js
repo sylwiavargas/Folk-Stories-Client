@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+
 
 class EventContainer extends Component {
 
@@ -23,7 +25,7 @@ class EventContainer extends Component {
           <h2> {event.title_eng} </h2>
           <p> {event.description_eng} </p>
           <a href={event.read_more_eng.toString()}> Read more </a>
-          <p> <strong> Related people: </strong> {event.people.map((person) => {return person.name})} </p>
+          <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
           </li>
         })
       : null

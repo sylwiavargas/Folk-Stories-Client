@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import NavBarContainer from './NavBarContainer'
-
+import { Link } from 'react-router-dom'
+import NavBarContainer from './NavBarContainer';
+import Person from '../components/Person';
 
 class BioContainer extends Component {
 
@@ -9,24 +10,31 @@ class BioContainer extends Component {
     fetch(`http://localhost:3000/api/v1/people`)
       .then(res => res.json())
       .then(people => this.props.savePeople(people))
+
     }
 
   render() {
-    const { url } = this.props.match
+    const path = this.props.match.path
+    console.log(this.props.people)
     return(
-      <div>
+      <div className="App">
       <NavBarContainer />
-      bio container here
-      <p>{url.id}</p>
-      <button onClick={this.getPeeps}> Show Peeps </button>
-      <ul>
-      {this.props.people.length !== 0 ?
-        this.props.people.map((person, index) => {
-          return <li key={index}> {person.name} </li>
-        })
-      : null
+      {
+        path.includes("/:id") ?
+        <Person />
+        :
+        <div className="main">
+        <button onClick={() => {this.getPeeps()}}> Show Peeps </button>
+        <ul>
+        {this.props.people.length !== 0 ?
+          this.props.people.map((person, index) => {
+            return <li key={index}> <Link to={`/bios/${person.id}`}>{person.name}</Link></li>
+          })
+        : null
+        }
+        </ul>
+        </div>
       }
-      </ul>
       </div>
     )
   }
@@ -35,7 +43,8 @@ class BioContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    people: state.people.people
+    people: state.people.people,
+    person: state.people.person
   }
 }
 
@@ -43,6 +52,9 @@ const mapDispatchToProps = dispatch => {
   return {
     savePeople: (people) => {
       dispatch({type: 'SAVE_PEOPLE', payload: people})
+    },
+    savePerson: (person) => {
+      dispatch({type: 'SAVE_PERSON', payload: person})
     }
   }
 }
