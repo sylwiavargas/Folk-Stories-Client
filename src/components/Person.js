@@ -33,7 +33,7 @@ class Person extends Component {
           <h1> {person.name} </h1>
           <h2> "{person.quote_eng}" </h2>
           <p> {person.bio_eng} </p>
-          <p> <a href = {person.read_more_eng}> Read more about {person.name} </a> </p>
+          <p> <a href = {person.read_more_eng} target="_blank" rel="noopener noreferrer"> Read more about {person.name} </a> </p>
           <h2> See {person.name} events: </h2>
           <ul>
           {

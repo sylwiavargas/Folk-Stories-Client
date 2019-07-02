@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import NavBarContainer from './NavBarContainer';
-import Footer from '../components/Footer'
+import Footer from '../components/Footer';
+import Popup from '../components/Popup';
 
 class UserProfile extends Component {
 
   state={
+    id: this.props.id,
     username: this.props.username,
     name: this.props.user.name,
     email: this.props.user.email,
     zip: this.props.user.zip,
+    showPopup: false
   }
 
   formInput = (event) => {
@@ -18,22 +21,29 @@ class UserProfile extends Component {
     })
   }
 
+  togglePopup = () => {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  }
+
   submitEvent = event => {
     event.preventDefault()
-    this.setState({
-      name: "",
-      email: "",
-      zip: ""})
     this.updateProfile({
-        username: "hey",
+        username: this.state.username,
         name: this.state.name,
         email: this.state.email,
         zip: this.state.zip
     })
+    this.setState({
+      username: "",
+      name: "",
+      email: "",
+      zip: ""})
   }
 
   updateProfile = (user) =>{
-    console.log(user)
+    console.log(this.props)
     const id = this.props.user.id
     fetch(`http://localhost:3000/api/v1/users/${id}` , {
         method: 'PATCH',
@@ -47,10 +57,33 @@ class UserProfile extends Component {
     .then(user => console.log(user))
   }
 
+  deleteProfile = () =>{
+    console.log(this.state.id)
+    const id = this.state.id
+    fetch(`http://localhost:3000/api/v1/users/${id}` , {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({id: id})
+      })
+      .then(res => res.text())
+    }
+
   render() {
     // console.log(this.props.user, "STATE", this.state)
     return (
       <div className="main">
+      <div>
+      <button onClick={() => this.togglePopup()}> Click To Launch Popup</button>
+      <button onClick={() => this.deleteProfile()}> DELETE</button>
+
+      {this.state.showPopup ?
+      <Popup
+        text='Are you sure you this is what you want to submit?'
+        closePopup={this.togglePopup.bind(this)}
+      />
+      : null
+      }
+      </div>
       <h1> This is you: </h1>
       <form onSubmit={(e) => this.submitEvent(e)}>
         <input onChange={this.formInput} type="text" name="name" value={this.state.name} />
@@ -71,12 +104,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    savePeople: (people) => {
-      dispatch({type: 'SAVE_PEOPLE', payload: people})
-    },
-    savePerson: (person) => {
-      dispatch({type: 'SAVE_PERSON', payload: person})
-    }
   }
 }
 
