@@ -66,10 +66,11 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="App">
       <NavBarContainer formInput={this.formInput}/>
-      <MainContainer />
+      <MainContainer formInput={this.formInput}/>
       <Footer />
     </div>
     );

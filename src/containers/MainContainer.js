@@ -14,6 +14,7 @@ import Event from '../components/Event'
 import EventsPage from './EventsPage'
 import Notfound from '../components/notfound'
 import Loading from '../components/Loading'
+import SignUpForm from './SignUpForm'
 
 import '../App.css';
 
@@ -34,6 +35,7 @@ class MainContainer extends Component {
       <Route exact path="/events/:id" component={Event} />
       <Route exact path="/bios/:id" component={Person} />
       <Route exact path="/you" component={UserProfile} />
+      <Route exact path="/signUp" component={SignUpForm} />
       <Route component={Notfound} />
            </Switch>
       }

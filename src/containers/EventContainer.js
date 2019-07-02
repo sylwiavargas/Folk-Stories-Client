@@ -2,8 +2,10 @@ import React, { Component, Fragment } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Trail } from "react-spring/renderprops";
-import facebook from '../img/facebook.png'
-import twitter from '../img/twitter.svg'
+import {Spring,config} from 'react-spring/renderprops';
+import moment from 'moment';
+import facebook from '../img/facebook.png';
+import twitter from '../img/twitter.svg';
 
 class EventContainer extends Component {
 
@@ -77,9 +79,21 @@ class EventContainer extends Component {
     const evs = this.props.events;
     const efs = this.props.featuredEvents;
     // const userTypes = this.props.user.currentUser.types.map((type) => type.name_eng);
-    console.log(this.props.user.currentUser)
     return (
       <div>
+      <Spring config={config.default}
+      from={{ opacity: 0.6, marginLeft: -10 }}
+      to={{ opacity: 1, marginLeft: 50 }}
+      >
+      {props => (
+        <div style={props}>
+          <article className="post">
+            <h1>{moment().format('MMMM Do YYYY')} || Happened today:</h1>
+            <EventContainer />
+          </article>
+        </div>
+      )}
+      </Spring>
       <button onClick={() => {this.handleAll()}}> All </button>
       <button onClick={() => {this.handleWomen()}}> Women </button>
       <button onClick={() => {this.handleQueer()}}> Queer </button>
