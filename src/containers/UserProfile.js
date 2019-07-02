@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import NavBarContainer from './NavBarContainer';
-import Footer from '../components/Footer';
 import Popup from '../components/Popup';
 
 class UserProfile extends Component {
@@ -12,7 +10,8 @@ class UserProfile extends Component {
     name: this.props.user.name,
     email: this.props.user.email,
     zip: this.props.user.zip,
-    showPopup: false
+    showPopup: false,
+    change: false,
   }
 
   formInput = (event) => {
@@ -35,21 +34,22 @@ class UserProfile extends Component {
         email: this.state.email,
         zip: this.state.zip
     })
+    // this is where you do a dispatch to redux
     this.setState({
-      username: "",
-      name: "",
-      email: "",
-      zip: ""})
+      change: true})
   }
 
   updateProfile = (user) =>{
-    console.log(this.props)
+    console.log("in updateProfile", this.props)
+    const token = localStorage.getItem("token")
     const id = this.props.user.id
     fetch(`http://localhost:3000/api/v1/users/${id}` , {
         method: 'PATCH',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
+          'Accept': '*/*',
         },
         body: JSON.stringify({user})
       })
@@ -58,8 +58,8 @@ class UserProfile extends Component {
   }
 
   deleteProfile = () =>{
-    console.log(this.state.id)
-    const id = this.state.id
+    // console.log(this.state.id)
+    const id = this.props.user.id
     fetch(`http://localhost:3000/api/v1/users/${id}` , {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'},
@@ -73,8 +73,6 @@ class UserProfile extends Component {
     return (
       <div className="main">
       <div>
-      <button onClick={() => this.togglePopup()}> Click To Launch Popup</button>
-      <button onClick={() => this.deleteProfile()}> DELETE</button>
 
       {this.state.showPopup ?
       <Popup
@@ -82,6 +80,11 @@ class UserProfile extends Component {
         closePopup={this.togglePopup.bind(this)}
       />
       : null
+      }
+      {this.state.change === true ?
+        <div> <h1> Changes have been implemented! </h1> </div>
+      :
+       null
       }
       </div>
       <h1> This is you: </h1>
@@ -91,6 +94,14 @@ class UserProfile extends Component {
         <input onChange={this.formInput} type="text" name="zip" value={this.state.zip} />
         <button>Submit</button>
       </form>
+      <br/>
+      <h1> Fed up with us already? </h1>
+        <button onClick={() => this.deleteProfile()}> DELETE YOUR PROFILE</button>
+      <br/>
+      <br/>
+      <br/>
+      ---------------------------------<br/>
+      <button onClick={() => this.togglePopup()}> Test Popup</button>
       </div>
   )}
 

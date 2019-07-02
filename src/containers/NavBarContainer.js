@@ -4,14 +4,21 @@ import { NavLink, withRouter } from 'react-router-dom'
 import {Spring,config} from 'react-spring/renderprops'
 
 import '../App.css'
-import SignUpForm from './SignUpForm'
-import LoginForm from './LoginForm.js';
-
 
 class NavBarContainer extends Component {
 
   goBack = () => {
     this.props.history.push('/')
+  }
+
+  signupRoute = () => {
+      let path = `/signUp`
+      this.props.history.push(path)
+  }
+
+  loginRoute = () => {
+      let path = `/login`
+      this.props.history.push(path)
   }
 
   signOut = () => {
@@ -23,29 +30,30 @@ class NavBarContainer extends Component {
   render() {
     return (
       <div className="header">
-      <Spring from={{ number: 0 }} to={{ number: 100 }} config={config.slow}>
-        {props => (
-         <div style={{ width: props.number + "%" }}>
-           <nav className="nav-bar">
-               <NavLink activeClassName="active" to="/">Home</NavLink><br/>
-               <NavLink activeClassName="active" to="/bios">Bio</NavLink><br/>
-                <NavLink activeClassName="active" to="/events">Events</NavLink><br/>
-                <NavLink activeClassName="active" to="/you">You</NavLink>
-               <br/>
-           </nav>
-         </div>
-       )}
-   </Spring>
+        <Spring from={{ number: 0 }} to={{ number: 100 }} config={config.slow}>
+          {props => (
+           <div style={{ width: props.number + "%" }}>
+             <nav className="nav-bar">
+                 <NavLink activeClassName="active" to="/">Home</NavLink><br/>
+                 <NavLink activeClassName="active" to="/bios">Bio</NavLink><br/>
+                  <NavLink activeClassName="active" to="/events">Events</NavLink><br/>
+                  <NavLink activeClassName="active" to="/you">You</NavLink>
+                 <br/>
+             </nav>
+           </div>
+         )}
+        </Spring>
+        <br/>
         {localStorage.token ?
-              <div>
-        <button onClick={this.signOut}>Sign out</button>
-        </div>
-        :
-        <div>
-        <LoginForm formInput={this.props.formInput}/>
-        <SignUpForm formInput={this.props.formInput}/>      </div>}
-
-    </div>
+          <div>
+            <button onClick={this.signOut}>Sign out</button>
+          </div>
+          :
+          <div>
+            <button onClick={this.loginRoute}>Login</button>
+            <button onClick={this.signupRoute}>SignUp</button>
+          </div>}
+      </div>
     )
   }
 

@@ -111,7 +111,7 @@ class EventContainer extends Component {
             <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
            </Fragment>
          )
-        : this.props.events !== undefined ?
+        : this.props.events !== undefined && this.props.events.length > 0 ?
           <Trail
            items={evs}
            keys={event => event.id}

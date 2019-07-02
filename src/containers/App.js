@@ -3,7 +3,6 @@ import { connect} from 'react-redux';
 
 import MainContainer from './MainContainer'
 import NavBarContainer from './NavBarContainer'
-import Loading from '../components/Loading'
 import Footer from '../components/Footer'
 
 import '../App.css'
@@ -12,34 +11,34 @@ const API = "http://localhost:3000/api/v1"
 
 class App extends Component {
 
-  goBack = () => {
-    this.props.history.push('/')
-  }
-
-  formInput = (userInput) => {
-    let path;
-    userInput.user ? path = '/users' : path = "/login";
-
-    fetch(API + `${path}`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userInput)
-    })
-    .then(res => res.json())
-    .then(response => {
-      if (response.errors){
-        const errors = response.errors.split ('')
-        alert(errors)
-      } else {
-        localStorage.setItem("token", response.jwt)
-        this.props.login(response.user)
-        this.goBack()
-      }
-    })
-  }
+  // goBack = () => {
+  //   this.props.history.push('/')
+  // }
+  //
+  // formInput = (userInput) => {
+  //   let path;
+  //   userInput.user ? path = '/users' : path = "/login";
+  //
+  //   fetch(API + `${path}`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(userInput)
+  //   })
+  //   .then(res => res.json())
+  //   .then(response => {
+  //     if (response.errors){
+  //       const errors = response.errors.split ('')
+  //       alert(errors)
+  //     } else {
+  //       localStorage.setItem("token", response.jwt)
+  //       this.props.login(response.user)
+  //       this.goBack()
+  //     }
+  //   })
+  // }
 
   componentDidMount(){
     const token = localStorage.getItem('token')
@@ -47,7 +46,7 @@ class App extends Component {
     if (token !== null) {
       fetch(API + '/reauth', {
         headers: {
-          'Authorization': token
+          'Authorization': `Bearer ${token}`
         }
       })
       .then(res => res.json())
@@ -69,8 +68,8 @@ class App extends Component {
     console.log(this.props)
     return (
       <div className="App">
-      <NavBarContainer formInput={this.formInput}/>
-      <MainContainer formInput={this.formInput}/>
+      <NavBarContainer/>
+      <MainContainer/>
       <Footer />
     </div>
     );

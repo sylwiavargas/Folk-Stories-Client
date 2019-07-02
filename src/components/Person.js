@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import NavBarContainer from '../containers/NavBarContainer';
 import Loading from './Loading'
-import Footer from './Footer'
 import { Link } from 'react-router-dom'
 
 class Person extends Component {

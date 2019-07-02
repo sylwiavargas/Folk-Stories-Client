@@ -1,9 +1,7 @@
 
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Redirect, Route, withRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { connect} from 'react-redux';
-import { Spring,config } from 'react-spring/renderprops';
-import moment from 'moment';
 
 // routes:
 import EventContainer from './EventContainer';
@@ -14,11 +12,10 @@ import Event from '../components/Event'
 import EventsPage from './EventsPage'
 import Notfound from '../components/notfound'
 import Loading from '../components/Loading'
-import SignUpForm from './SignUpForm'
+import SignUpForm from '../components/SignUpForm'
+import LoginForm from '../components/LoginForm'
 
 import '../App.css';
-
-const API = "http://localhost:3000/api/v1"
 
 class MainContainer extends Component {
 
@@ -36,6 +33,7 @@ class MainContainer extends Component {
       <Route exact path="/bios/:id" component={Person} />
       <Route exact path="/you" component={UserProfile} />
       <Route exact path="/signUp" component={SignUpForm} />
+      <Route exact path="/login" component={LoginForm} />
       <Route component={Notfound} />
            </Switch>
       }
