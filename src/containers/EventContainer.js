@@ -86,7 +86,7 @@ class EventContainer extends Component {
       {efs && efs.length > 0 ?
         efs.map((event, index) =>
           <Fragment key={index}>
-           <h2> {event.title_eng} </h2>
+           <h2> {event.year_era_id}: {event.title_eng} </h2>
            {event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
            <p> {event.description_eng} </p>
            <a href={event.read_more_eng.toString()}> Read more </a>
@@ -102,7 +102,7 @@ class EventContainer extends Component {
          >
            {event => props => (
              <div style={props}>
-             <h2> {event.title_eng} </h2>
+             <h2> {event.year_era_id}: {event.title_eng} </h2>
              {event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
              <p> {event.description_eng} </p>
              <a href={event.read_more_eng.toString()}> Read more </a>
