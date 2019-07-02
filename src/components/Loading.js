@@ -22,8 +22,10 @@ export default class Loading extends Component {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          color: 'white',
         }}
         onClick={() => this.forceUpdate()}>
+        "LOADING..."<br/>
         <svg width="180" viewBox="0 0 23 23">
           <Gradient id="gradient-dashoffset" />
           <g
@@ -36,8 +38,8 @@ export default class Loading extends Component {
               from={{ dash: offset }}
               to={{ dash: 0 }}
               config={{
-                delay: 1000,
-                duration: 3000,
+                delay: 1,
+                duration: 1500,
                 easing: easings.easeCubic,
               }}>
               {props => (

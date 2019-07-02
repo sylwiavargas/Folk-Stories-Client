@@ -22,11 +22,10 @@ class NavBarContainer extends Component {
         {props => (
          <div style={{ width: props.number + "%" }}>
            <nav className="nav-bar">
-               <NavLink exact activeClassName="active" to="/">Home</NavLink>
-               <NavLink activeClassName="active" to="/bios">Bio</NavLink>
-               <NavLink exact activeClassName="active" to="/contact">Contact</NavLink>
-                <NavLink exact activeClassName="active" to="/events">Events</NavLink>
-                <NavLink exact activeClassName="active" to="/you">You</NavLink>
+               <NavLink activeClassName="active" to="/">Home</NavLink><br/>
+               <NavLink activeClassName="active" to="/bios">Bio</NavLink><br/>
+                <NavLink activeClassName="active" to="/events">Events</NavLink><br/>
+                <NavLink activeClassName="active" to="/you">You</NavLink>
                <br/>
            </nav>
          </div>

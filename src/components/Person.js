@@ -9,7 +9,7 @@ class Person extends Component {
 
     getPeep = () => {
       const num = this.props.match.params.id
-      fetch(`http://localhost:3000/api/v1/people/${num}`)
+      fetch(`http://localhost:3000/api/v1/bios/${num}`)
         .then(res => res.json())
         .then(person => this.props.savePerson(person))
     }
@@ -27,9 +27,7 @@ class Person extends Component {
         <Loading />
       </div>
       :
-      <div className="App">
-        <NavBarContainer />
-        <div className="main">
+        <div>
           <h1> {person.name} </h1>
           <h2> "{person.quote_eng}" </h2>
           <p> {person.bio_eng} </p>
@@ -41,8 +39,6 @@ class Person extends Component {
           }
           </ul>
           <img src = {person.picture} alt={person.name}/>
-        </div>
-        <Footer />
       </div>
     )}
 }
