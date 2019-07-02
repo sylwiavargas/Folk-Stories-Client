@@ -24,7 +24,7 @@ class BioContainer extends Component {
         path.includes("/:id") ?
         <Person />
         :
-        <div className="main">
+        <div className="bio">
         <button onClick={() => {this.getPeeps()}}> Show Peeps </button>
         <ul>
         {this.props.people.length !== 0 ?

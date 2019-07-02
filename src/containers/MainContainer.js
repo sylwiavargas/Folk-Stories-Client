@@ -19,7 +19,7 @@ class MainContainer extends Component {
       {props => (
         <div style={props}>
           <article className="post">
-            <h1>{moment().format('D MMMM YYYY')} || Happened today:</h1>
+            <h1>{moment().format('MMMM Do YYYY')} || Happened today:</h1>
             <EventContainer />
           </article>
         </div>

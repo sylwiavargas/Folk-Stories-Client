@@ -76,7 +76,7 @@ class EventContainer extends Component {
     const evs = this.props.events;
     const efs = this.props.featuredEvents;
     const userTypes = this.props.user.currentUser.types.map((type) => type.name_eng);
-    console.log(this.props)
+    console.log(this.props.user.currentUser)
     return (
       <div>
       <button onClick={() => {this.handleAll()}}> All </button>

@@ -24,6 +24,19 @@ font-family: sans-serif;
   height: 85%;
 }
 
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card {
+  height: 40vh;
+  margin: 2em;
+  padding-left: 2em;
+  text-align: left;
+  background-color: red;
+}
+
 .footer{
   position: absolute;
   bottom: 0;
@@ -36,9 +49,62 @@ font-family: sans-serif;
 }
 
 .bio {
-
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  padding: 0rem;
+  margin: 2rem;
+  width: 90%;
+  height: 85%;
 }
 
 .picture {
 
+}
+
+.sidebar {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 280px;
+  background: white;
+  padding: 20px;
+  font-size: 15px;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  margin: 20px;
+  color: #a0a0a0;
+  z-index: 100;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.ant-avatar {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  font-size: 3em !important;
+}
+
+.middle .ant-form-item-control {
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar .ant-form-item {
+  margin: 0;
+}
+
+.sidebar .ant-form-item-control {
+  line-height: 29px;
 }
