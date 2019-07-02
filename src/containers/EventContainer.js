@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Trail } from "react-spring/renderprops";
+import facebook from '../img/facebook.png'
+import twitter from '../img/twitter.svg'
 
 
 class EventContainer extends Component {
@@ -91,6 +93,8 @@ class EventContainer extends Component {
            <p> {event.description_eng} </p>
            <a href={event.read_more_eng.toString()}> Read more </a>
            <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
+           <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
+            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
            </Fragment>
          )
         : this.props.events !== undefined ?
@@ -107,8 +111,9 @@ class EventContainer extends Component {
              <p> {event.description_eng} </p>
              <a href={event.read_more_eng.toString()}> Read more </a>
              <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
+             <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
+              <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
              </div>
-
            )}
          </Trail>
       : null

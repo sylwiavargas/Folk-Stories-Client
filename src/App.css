@@ -108,3 +108,11 @@ font-family: sans-serif;
 .sidebar .ant-form-item-control {
   line-height: 29px;
 }
+
+.sharing {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  margin: 2px 2px 2px 2px;
+  padding: 2px;
+}

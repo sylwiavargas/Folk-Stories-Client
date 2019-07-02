@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 class UserProfile extends Component {
 
   state={
+    username: this.props.username,
     name: this.props.user.name,
     email: this.props.user.email,
     zip: this.props.user.zip,
@@ -23,10 +24,16 @@ class UserProfile extends Component {
       name: "",
       email: "",
       zip: ""})
-    this.updateProfile(this.state)
+    this.updateProfile({
+        username: "hey",
+        name: this.state.name,
+        email: this.state.email,
+        zip: this.state.zip
+    })
   }
 
-  updateProfile = (userInfo) =>{
+  updateProfile = (user) =>{
+    console.log(user)
     const id = this.props.user.id
     fetch(`http://localhost:3000/api/v1/users/${id}` , {
         method: 'PATCH',
@@ -34,21 +41,21 @@ class UserProfile extends Component {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({user:{userInfo}})
+        body: JSON.stringify({user})
       })
     .then(res => res.json())
     .then(user => console.log(user))
   }
 
   render() {
-    console.log(this.props.user, "STATE", this.state)
+    // console.log(this.props.user, "STATE", this.state)
     return (
       <div className="main">
       <h1> This is you: </h1>
       <form onSubmit={(e) => this.submitEvent(e)}>
-        <input onChange={(e) => this.formInput(e)} type="text" name="name" value={this.props.user.name} />
-        <input onChange={(e) => this.formInput(e)} type="text" name="email" value={this.props.user.email} />
-        <input onChange={(e) => this.formInput(e)} type="text" name="zip" value={this.props.user.zip} />
+        <input onChange={this.formInput} type="text" name="name" value={this.state.name} />
+        <input onChange={this.formInput} type="text" name="email" value={this.state.email} />
+        <input onChange={this.formInput} type="text" name="zip" value={this.state.zip} />
         <button>Submit</button>
       </form>
       </div>
