@@ -10,9 +10,14 @@ import LoginForm from './LoginForm.js';
 
 class NavBarContainer extends Component {
 
+  goBack = () => {
+    this.props.history.push('/')
+  }
+
   signOut = () => {
     localStorage.removeItem('token')
     this.props.clearCurrentUser()
+    this.goBack()
   }
 
   render() {

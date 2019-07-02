@@ -94,10 +94,10 @@ class EventContainer extends Component {
           </div>
         )}
       </Spring>
-      </div>
       <button onClick={() => {this.handleAll()}}> All </button>
       <button onClick={() => {this.handleWomen()}}> Women </button>
       <button onClick={() => {this.handleQueer()}}> Queer </button>
+      </div>
       <ul>
       {efs && efs.length > 0 ?
         efs.map((event, index) =>
