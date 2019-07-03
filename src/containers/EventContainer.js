@@ -43,9 +43,10 @@ class EventContainer extends Component {
 
   handleWomen = () => {
     let womenEvents = [];
-    womenEvents = this.props.events.monthday.events.filter((event) => {
+    womenEvents = this.props.events.filter((event) => {
+      console.log(event.event.types)
       // if event.types includes an object with id = 1
-      return event.types.map(typeObj => typeObj.id).includes(1)
+      return event.event.types.map(typeObj => typeObj.id).includes(1)
     })
     if (this.state.women === false) {
       womenEvents.forEach((e) => this.props.selectCategory(e))
@@ -63,8 +64,8 @@ class EventContainer extends Component {
 
   handleQueer = () => {
     let queerEvents = [];
-    queerEvents = this.props.events.monthday.events.filter((event) => {
-      return event.types.map(typeObj => typeObj.id).includes(2)
+    queerEvents = this.props.events.filter((event) => {
+      return event.event.types.map(typeObj => typeObj.id).includes(2)
     })
     if (this.state.queer === false) {
       queerEvents.forEach((e) => this.props.selectCategory(e))
@@ -120,11 +121,11 @@ class EventContainer extends Component {
       {efs && efs.length > 0 ?
         efs.map((event, index) =>
           <Fragment key={index}>
-           <h2> {event.year_era_id}: {event.title_eng} </h2>
-           {event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
-           <p> {event.description_eng} </p>
-           <a href={event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> Read more </a>
-           <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
+           <h2> {event.event.year_era_id}: {event.event.title_eng} </h2>
+           {event.event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
+           <p> {event.event.description_eng} </p>
+           <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
+             </a> </p>
            <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
             <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
            </Fragment>
@@ -156,10 +157,7 @@ class EventContainer extends Component {
 }
 
 // DELETED now
-// url = evs.events.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
-// domain = url && url[1]
-// console.log(url)
-// console.log(domain)
+// <p> <strong> Related people: </strong> {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
 
 
 // {event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
