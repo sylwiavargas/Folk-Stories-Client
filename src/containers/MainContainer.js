@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { connect} from 'react-redux';
 
 // routes:
-import EventContainer from './EventContainer';
+import TodayEventContainer from './TodayEventContainer';
 import BioContainer from './BioContainer'
 import UserProfile from './UserProfile'
 import Person from '../components/Person'
@@ -14,6 +14,7 @@ import Notfound from '../components/notfound'
 import Loading from '../components/Loading'
 import SignUpForm from '../components/SignUpForm'
 import LoginForm from '../components/LoginForm'
+import EventPage from './EventPage'
 
 import '../App.css';
 
@@ -60,9 +61,10 @@ class MainContainer extends Component {
       <Loading />
       :
       <Switch>
-      <Route exact path="/" component={EventContainer} />
+      <Route exact path="/" component={TodayEventContainer} />
       <Route exact path="/bios" component={BioContainer} />
       <Route exact path="/contribute" component={ContributeContainer} />
+      <Route path="/(dates|dates/:id)/" component={EventPage} />
       <Route exact path="/events/:id" component={Event} />
       <Route exact path="/bios/:id" component={Person} />
       <Route exact path="/you" component={UserProfile} />

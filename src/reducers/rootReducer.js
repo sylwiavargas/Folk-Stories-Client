@@ -3,12 +3,14 @@ import loadingReducer from './loadingReducer';
 import userReducer from './userReducer';
 import peopleReducer from './peopleReducer';
 import eventReducer from './eventReducer';
+import dateReducer from './dateReducer';
 
 const rootReducer = () => combineReducers({
   loading: loadingReducer,
   user: userReducer,
   people: peopleReducer,
-  events: eventReducer
+  events: eventReducer,
+  dates: dateReducer
 });
 
 export default rootReducer;

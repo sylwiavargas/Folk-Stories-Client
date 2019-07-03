@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import Loading from './Loading'
-import { Link } from 'react-router-dom'
+import Loading from './Loading';
+import { Link } from 'react-router-dom';
+import facebook from '../img/facebook.png';
+import twitter from '../img/twitter.svg';
 
 class Person extends Component {
 
@@ -18,7 +20,13 @@ class Person extends Component {
 
   render() {
     const person = this.props.person.person.person
-    console.log(this.props)
+    let first_name;
+
+    if (person) {
+      first_name = person.name.split(" ")[0]
+      // console.log("first name")
+    }
+
     return(
       !person ?
       <div className="App">
@@ -29,13 +37,26 @@ class Person extends Component {
           <h1> {person.name} </h1>
           <h2> "{person.quote_eng}" </h2>
           <p> {person.bio_eng} </p>
-          <p> <a href = {person.read_more_eng} target="_blank" rel="noopener noreferrer"> Read more about {person.name} </a> </p>
-          <h2> See {person.name} events: </h2>
+          <p> Read more about {person.name} at <a href = {person.read_more_eng} target="_blank" rel="noopener noreferrer"> { person.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]} </a> </p>
+
+          <h2> Visit {first_name}'s places: </h2>
+          <ul>
+          {
+            person.places.map((place, index) => <li key={index}>{place.name_eng}</li>)
+          }
+          </ul>
+
+          <h2> See {first_name}'s events: </h2>
           <ul>
           {
             person.events.map((event, index) => <li key={index}><Link to={`/events/${event.id}`}>{event.year_era_id}: {event.title_eng}</Link>  </li>)
           }
           </ul>
+
+          <h2> Tell your friends about {first_name}: </h2>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
+           <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
+
           <img src = {person.picture} alt={person.name}/>
       </div>
     )}

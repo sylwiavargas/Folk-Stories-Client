@@ -18,8 +18,8 @@ class Event extends Component {
   }
 
   render() {
-    console.log("PROPS", this.props.events)
-    console.log("LENGTH", this.props.events.length)
+    // console.log("PROPS", this.props.events)
+    // console.log("LENGTH", this.props.events.length)
     return(
       <div className="main">
       <ul>

@@ -8,13 +8,13 @@ import moment from 'moment';
 import facebook from '../img/facebook.png';
 import twitter from '../img/twitter.svg';
 
-class EventContainer extends Component {
+class TodayEventContainer extends Component {
 
   state = {
     queer: false,
     women: false,
     allEvents: true,
-    userEvents: []
+    // userEvents: []
   }
 
   getEvents = () => {
@@ -91,7 +91,7 @@ class EventContainer extends Component {
 
   handleUserTypes = (events) => {
     const userTypes = this.props.user.currentUser.types;
-    let userEvents = [];
+    // let userEvents = [];
 
     userTypes.forEach((type) => {
          type.name_eng === "Women" ?
@@ -109,7 +109,7 @@ class EventContainer extends Component {
     const evs = this.props.events;
     const efs = this.props.featuredEvents;
 
-    console.log("State", this.state)
+    // console.log("State", this.state)
     // console.log("USER TYPES", this.props.user.currentUser.types)
 
     // if (evs) {
@@ -231,4 +231,4 @@ const mapDispatchToProps = dispatch => {
 
 
 export default connect(
-  mapStateToProps, mapDispatchToProps)(EventContainer);
+  mapStateToProps, mapDispatchToProps)(TodayEventContainer);

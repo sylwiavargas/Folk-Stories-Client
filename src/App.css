@@ -38,7 +38,7 @@ font-family: sans-serif;
 }
 
 .footer{
-  position: absolute;
+  position: sticky;
   bottom: 0;
   width: 100%;
   padding-left: 1%;
