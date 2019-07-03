@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Trail } from "react-spring/renderprops";
 import {Spring,config} from 'react-spring/renderprops'
 import moment from 'moment';
+import psl from 'psl';
 import facebook from '../img/facebook.png';
 import twitter from '../img/twitter.svg';
 
@@ -18,8 +19,8 @@ class EventContainer extends Component {
   getEvents = () => {
     const today = moment().format('MD')
     const datesapi = `http://localhost:3000/api/v1/dates/${today}`
+    fetch(datesapi)
     // fetch(`http://localhost:3000/api/v1/events`)
-    fetch(`http://localhost:3000/api/v1/events`)
       .then(res => res.json())
       .then(events => this.props.saveEvents(events))
     // debugger
@@ -42,7 +43,7 @@ class EventContainer extends Component {
 
   handleWomen = () => {
     let womenEvents = [];
-    womenEvents = this.props.events.filter((event) => {
+    womenEvents = this.props.events.monthday.events.filter((event) => {
       // if event.types includes an object with id = 1
       return event.types.map(typeObj => typeObj.id).includes(1)
     })
@@ -62,7 +63,7 @@ class EventContainer extends Component {
 
   handleQueer = () => {
     let queerEvents = [];
-    queerEvents = this.props.events.filter((event) => {
+    queerEvents = this.props.events.monthday.events.filter((event) => {
       return event.types.map(typeObj => typeObj.id).includes(2)
     })
     if (this.state.queer === false) {
@@ -80,11 +81,21 @@ class EventContainer extends Component {
   }}
 
   render() {
-    // const today = moment().format('MD')
-    // const datesapi = `http://localhost:3000/api/v1/dates/${today}`
-    // console.log(this.props.events)
+
+    const today = moment().format('MD')
+    const datesapi = `http://localhost:3000/api/v1/dates/${today}`
     const evs = this.props.events;
     const efs = this.props.featuredEvents;
+
+    let url;
+    let domain;
+
+    if (evs) {
+      // console.log(this.props.events[0].event)
+      console.log(this.props.events)
+    }
+
+    // console.log(evs)
     // const userTypes = this.props.user.currentUser.types.map((type) => type.name_eng);
     return (
       <div>
@@ -118,20 +129,19 @@ class EventContainer extends Component {
             <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
            </Fragment>
          )
-        : this.props.events !== undefined && this.props.events.length > 0 ?
+        : evs !== undefined && evs.length > 0 ?
           <Trail
            items={evs}
-           keys={event => event.id}
+           keys={event => event.event.id}
            from={{ marginLeft: -20, opacity: 0 }}
            to={{ marginLeft: 20, opacity: 1 }}
          >
-           {event => props => (
+           {e => props => (
              <div style={props}>
-             <h2> {event.year_era_id}: {event.title_eng} </h2>
-             {event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
-             <p> {event.description_eng} </p>
-             <a href={event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> Read more </a>
-             <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
+             <h2> {e.event.year_era_id}: {e.event.title_eng} </h2>
+             <p> {e.event.description_eng} </p>
+             <p> Read more about this event at <a href={e.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { e.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
+               </a> </p>
              <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
               <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
              </div>
@@ -145,6 +155,20 @@ class EventContainer extends Component {
 
 }
 
+// DELETED now
+// url = evs.events.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
+// domain = url && url[1]
+// console.log(url)
+// console.log(domain)
+
+
+// {event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
+//
+// <a href={event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> Read more </a>
+
+// <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
+// <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
+// <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
 const mapStateToProps = state => {
   return {
     events: state.events.events[0],

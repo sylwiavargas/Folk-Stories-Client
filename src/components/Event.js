@@ -18,20 +18,21 @@ class Event extends Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props.events)
     return(
       <div className="main">
       <ul>
-      {this.props.events !== undefined && this.props.events > 0 ?
+      {this.props.events !== undefined && this.props.events.length > 0 ?
         this.props.events.map((event, index) => {
           return <li key={index}>
-          <h2> {event.event.month_id}/{event.event.day_id}/{event.event.year_era_id}: {event.event.title_eng}</h2>
+          <h2> {event.month_id}/{event.day_id}/{event.event.year_era_id}: {event.event.title_eng}</h2>
           <p> {event.event.description_eng} </p>
           <a href={event.event.read_more_eng} target="_blank" rel="noopener noreferrer"> Read more </a>
           {event.event.people ?
-          <p> <strong> Related people: </strong>  {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})}
-          </p> : null}
-          </li>
+              <p> <strong> Related people: </strong>  {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})}
+              </p> : null}
+              </li>
+
         })
       : null
       }
