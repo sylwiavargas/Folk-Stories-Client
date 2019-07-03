@@ -30,33 +30,38 @@ class NavBarContainer extends Component {
   render() {
     return (
       <div className="header">
+        {
+        localStorage.token ?
         <Spring from={{ number: 0 }} to={{ number: 100 }} config={config.slow}>
           {props => (
            <div style={{ width: props.number + "%" }}>
              <nav className="nav-bar">
-                 <NavLink activeClassName="active" to="/">Home</NavLink><br/>
-                 <NavLink activeClassName="active" to="/bios">Bio</NavLink><br/>
-                  <NavLink activeClassName="active" to="/events">Events</NavLink><br/>
-                  <NavLink activeClassName="active" to="/you">You</NavLink>
-                 <br/>
+                <NavLink exact activeClassName="active" to="/">Home</NavLink><br/>
+                <NavLink activeClassName="active" to="/bios">Bios</NavLink><br/>
+                <NavLink activeClassName="active" to="/contribute">Contribute!</NavLink><br/>
+                <NavLink activeClassName="active" to="/you">You</NavLink><br/>
              </nav>
-           </div>
-         )}
-        </Spring>
-        <br/>
-        {localStorage.token ?
-          <div>
-            <button onClick={this.signOut}>Sign out</button>
-          </div>
+             <button onClick={this.signOut}>Sign out</button>
+           </div>)}
+          </Spring>
           :
           <div>
-            <button onClick={this.loginRoute}>Login</button>
-            <button onClick={this.signupRoute}>SignUp</button>
-          </div>}
-      </div>
-    )
-  }
-
+          <Spring from={{ number: 0 }} to={{ number: 100 }} config={config.slow}>
+            {props => (
+                <div style={{ width: props.number + "%" }}>
+                  <nav className="nav-bar">
+                    <NavLink activeClassName="active" to="/">Home</NavLink><br/>
+                    <NavLink activeClassName="active" to="/bios">Bios</NavLink><br/>
+                  </nav>
+                  <button onClick={this.loginRoute}>Login</button>
+                  <button onClick={this.signupRoute}>SignUp</button>
+                </div>
+            )}
+          </Spring>
+          </div>
+      }
+    </div>
+  )}
 }
 
 const mapStateToProps = state => {

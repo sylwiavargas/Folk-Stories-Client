@@ -9,7 +9,7 @@ import BioContainer from './BioContainer'
 import UserProfile from './UserProfile'
 import Person from '../components/Person'
 import Event from '../components/Event'
-import EventsPage from './EventsPage'
+import ContributeContainer from './ContributeContainer'
 import Notfound from '../components/notfound'
 import Loading from '../components/Loading'
 import SignUpForm from '../components/SignUpForm'
@@ -17,7 +17,41 @@ import LoginForm from '../components/LoginForm'
 
 import '../App.css';
 
+const API = "http://localhost:3000/api/v1"
+
+
 class MainContainer extends Component {
+
+
+    goBack = () => {
+      this.props.history.push('/')
+    }
+
+    formInput = (userInput) => {
+      let path;
+      userInput.user ? path = '/users' : path = "/login";
+
+      fetch(API + `${path}`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInput)
+      })
+      .then(res => res.json())
+      .then(response => {
+        if (response.errors){
+          const errors = response.errors.split ('')
+          alert(errors)
+        } else {
+          localStorage.setItem("token", response.jwt)
+          this.props.login(response.user)
+          this.goBack()
+        }
+      })
+    }
+
 
   render() {
     return(
@@ -28,11 +62,11 @@ class MainContainer extends Component {
       <Switch>
       <Route exact path="/" component={EventContainer} />
       <Route exact path="/bios" component={BioContainer} />
-      <Route exact path="/events" component={EventsPage} />
+      <Route exact path="/contribute" component={ContributeContainer} />
       <Route exact path="/events/:id" component={Event} />
       <Route exact path="/bios/:id" component={Person} />
       <Route exact path="/you" component={UserProfile} />
-      <Route exact path="/signUp" component={SignUpForm} />
+      <Route exact path="/signUp" component={SignUpForm} formInput={this.formInput}/>
       <Route exact path="/login" component={LoginForm} />
       <Route component={Notfound} />
            </Switch>

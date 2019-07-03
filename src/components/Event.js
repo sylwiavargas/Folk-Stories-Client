@@ -1,32 +1,28 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import NavBarContainer from '../containers/NavBarContainer';
-import Footer from './Footer'
 import { Link } from 'react-router-dom';
 
 const API = "http://localhost:3000/api/v1/events"
 
 class Event extends Component {
 
-    getEvent = () => {
-      const num = this.props.match.params.id
-      fetch(API + `/${num}`)
-        .then(res => res.json())
-        .then(e => this.props.saveEvents(e))
-    }
+  getEvent = () => {
+    const num = this.props.match.params.id
+    fetch(API + `/${num}`)
+      .then(res => res.json())
+      .then(e => this.props.saveEvents(e))
+  }
 
-    componentDidMount(){
-      this.getEvent()
-    }
+  componentDidMount(){
+    this.getEvent()
+  }
 
   render() {
     console.log(this.props)
     return(
-      <div className="App">
-      <NavBarContainer />
       <div className="main">
       <ul>
-      {this.props.events !== undefined ?
+      {this.props.events !== undefined && this.props.events > 0 ?
         this.props.events.map((event, index) => {
           return <li key={index}>
           <h2> {event.event.month_id}/{event.event.day_id}/{event.event.year_era_id}: {event.event.title_eng}</h2>
@@ -40,8 +36,6 @@ class Event extends Component {
       : null
       }
       </ul>
-    </div>
-    <Footer />
     </div>
     )}
 }

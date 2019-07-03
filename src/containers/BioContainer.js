@@ -8,7 +8,7 @@ import Footer from '../components/Footer'
 class BioContainer extends Component {
 
   getPeeps = () => {
-    fetch(`http://localhost:3000/api/v1/people`)
+    fetch(`http://localhost:3000/api/v1/bios`)
       .then(res => res.json())
       .then(people => this.props.savePeople(people))
 
@@ -19,7 +19,6 @@ class BioContainer extends Component {
     console.log(this.props.people)
     return(
       <div className="App">
-      <NavBarContainer />
       {
         path.includes("/:id") ?
         <Person />
@@ -27,7 +26,7 @@ class BioContainer extends Component {
         <div className="bio">
         <button onClick={() => {this.getPeeps()}}> Show Peeps </button>
         <ul>
-        {this.props.people.length !== 0 ?
+        {this.props.people.length > 0 ?
           this.props.people.map((person, index) => {
             return <li key={index}> <Link to={`/bios/${person.id}`}>{person.name}</Link></li>
           })
@@ -36,7 +35,6 @@ class BioContainer extends Component {
         </ul>
         </div>
       }
-      <Footer />
       </div>
     )
   }
