@@ -25,7 +25,7 @@ class EventContainer extends Component {
       .then(res => res.json())
       .then(events => {
         this.props.saveEvents(events)
-        this.handleUserTypes(events)
+        // this.handleUserTypes(events)
       })
       // .then(console.log("fetch done"))
       // .then(this.handleUserTypes())
@@ -132,9 +132,9 @@ class EventContainer extends Component {
           </div>
         )}
       </Spring>
-      <button onClick={() => {this.handleAll()}}> All </button>
-      <button onClick={() => {this.handleWomen()}}> Women </button>
-      <button onClick={() => {this.handleQueer()}}> Queer </button>
+      <button onClick={this.handleAll}> All </button>
+      <button onClick={this.handleWomen}> Women </button>
+      <button onClick={this.handleQueer}> Queer </button>
       </div>
       <ul>
       {efs && efs.length > 0 ?
