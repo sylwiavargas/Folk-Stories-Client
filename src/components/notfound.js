@@ -4,7 +4,7 @@ import Goo from './Goo'
 class Notfound extends Component {
 
   state = {
-    time: 20
+    time: 15
   };
 
   startTimer() {
@@ -27,10 +27,11 @@ class Notfound extends Component {
   }
 
   render() {
+    console.log("Goo comes from a codepen by drcmda: https://codesandbox.io/embed/8zx4ppk01l")
     return (
       <div>
         {
-          this.state.time < 20 ?
+          this.state.time < 15 ?
           <Fragment>
           <Goo />
           <p className="main">
