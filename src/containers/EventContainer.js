@@ -18,9 +18,11 @@ class EventContainer extends Component {
   getEvents = () => {
     const today = moment().format('MD')
     const datesapi = `http://localhost:3000/api/v1/dates/${today}`
-    fetch(datesapi)
+    // fetch(`http://localhost:3000/api/v1/events`)
+    fetch(`http://localhost:3000/api/v1/events`)
       .then(res => res.json())
       .then(events => this.props.saveEvents(events))
+    // debugger
     }
 
   componentDidMount(){
@@ -78,9 +80,9 @@ class EventContainer extends Component {
   }}
 
   render() {
-    const today = moment().format('MD')
-    const datesapi = `http://localhost:3000/api/v1/dates/${today}`
-    console.log(this.props.events)
+    // const today = moment().format('MD')
+    // const datesapi = `http://localhost:3000/api/v1/dates/${today}`
+    // console.log(this.props.events)
     const evs = this.props.events;
     const efs = this.props.featuredEvents;
     // const userTypes = this.props.user.currentUser.types.map((type) => type.name_eng);

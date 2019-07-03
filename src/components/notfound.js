@@ -4,14 +4,12 @@ import Goo from './Goo'
 class Notfound extends Component {
 
   state = {
-    time: 15
+    time: 5
   };
 
   startTimer() {
     this.setState({
-      isOn: true,
       time: this.state.time,
-      start: Date.now() - this.state.time
     })
     this.timer = setInterval(() => this.setState({
       time: this.state.time - 1
@@ -22,7 +20,7 @@ class Notfound extends Component {
     this.startTimer()
   }
 
-  goBack = () => {
+  goBack() {
     this.props.history.push('/')
   }
 
@@ -31,7 +29,10 @@ class Notfound extends Component {
     return (
       <div>
         {
-          this.state.time < 15 ?
+          this.state.time == 0 ?
+          this.goBack()
+          :
+          this.state.time < 5 ?
           <Fragment>
           <Goo />
           <p className="main">
@@ -44,7 +45,7 @@ class Notfound extends Component {
           </p>
           </Fragment>
           :
-          this.state.time !== 0 ?
+          this.state.time == 5 ?
           <Fragment>
           <p className="main">
           <div>
@@ -55,7 +56,7 @@ class Notfound extends Component {
           </p>
           </Fragment>
           :
-          this.goBack()
+          null
         }
       </div>
     )
