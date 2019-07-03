@@ -13,7 +13,8 @@ class EventContainer extends Component {
   state = {
     queer: false,
     women: false,
-    allEvents: true
+    allEvents: true,
+    userEvents: []
   }
 
   getEvents = () => {
@@ -22,12 +23,18 @@ class EventContainer extends Component {
     fetch(datesapi)
     // fetch(`http://localhost:3000/api/v1/events`)
       .then(res => res.json())
-      .then(events => this.props.saveEvents(events))
+      .then(events => {
+        this.props.saveEvents(events)
+        this.handleUserTypes(events)
+      })
+      // .then(console.log("fetch done"))
+      // .then(this.handleUserTypes())
     // debugger
     }
 
   componentDidMount(){
     this.getEvents();
+    // this.handleUserTypes()
   }
 
   handleAll = () => {
@@ -63,8 +70,9 @@ class EventContainer extends Component {
   }}
 
   handleQueer = () => {
+    // debugger
     let queerEvents = [];
-    queerEvents = this.props.events.filter((event) => {
+      queerEvents = this.props.events.filter((event) => {
       return event.event.types.map(typeObj => typeObj.id).includes(2)
     })
     if (this.state.queer === false) {
@@ -81,17 +89,34 @@ class EventContainer extends Component {
     this.props.deleteCategory(newE)
   }}
 
+  handleUserTypes = (events) => {
+    const userTypes = this.props.user.currentUser.types;
+    let userEvents = [];
+
+    userTypes.forEach((type) => {
+         type.name_eng === "Women" ?
+            this.handleWomen()
+          : type.name_eng === "Queer" ?
+            this.handleQueer()
+          :
+            this.handleAll()
+          }
+      )
+    }
+
+
   render() {
     const evs = this.props.events;
     const efs = this.props.featuredEvents;
+
+    console.log("State", this.state)
+    // console.log("USER TYPES", this.props.user.currentUser.types)
 
     // if (evs) {
     //   // console.log(this.props.events[0].event)
     //   console.log(this.props.events)
     // }
 
-    // console.log(evs)
-    // const userTypes = this.props.user.currentUser.types.map((type) => type.name_eng);
     return (
       <div>
       <div>
@@ -153,7 +178,23 @@ class EventContainer extends Component {
 }
 
 // DELETED now
-// <p> <strong> Related people: </strong> {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
+// handleUserTypes = () => {
+//   const userTypes = this.props.user.currentUser.types;
+//   return (this.props.events !== undefined && this.props.events.length > 0 ?
+//     userTypes.forEach(
+//       (type) => {
+//        return (type.name_eng === "Women" ?
+//           this.handleWomen()
+//         : type.name_eng === "Queer" ?
+//           console.log(this)
+//           // this.handleQueer()
+//
+//         :
+//           console.log("nothing has been done"))
+//         }
+//     )
+//   : null)
+//   }
 
 
 // {event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
