@@ -49,7 +49,6 @@ class UserProfile extends Component {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token,
-          'Accept': '*/*',
         },
         body: JSON.stringify({user})
       })

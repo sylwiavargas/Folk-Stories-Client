@@ -1,5 +1,4 @@
 import React from 'react'
-import { render } from 'react-dom'
 import { useTrail, animated } from 'react-spring'
 import './goo.css'
 

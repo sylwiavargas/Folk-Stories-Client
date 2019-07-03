@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const API = "http://localhost:3000/api/v1/events"
 const API2 = "http://localhost:3000/api/v1/bios"

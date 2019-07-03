@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom'
-import NavBarContainer from './NavBarContainer';
 import Person from '../components/Person';
-import Footer from '../components/Footer'
 
 class BioContainer extends Component {
 

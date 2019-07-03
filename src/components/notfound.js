@@ -29,7 +29,7 @@ class Notfound extends Component {
     return (
       <div>
         {
-          this.state.time == 0 ?
+          this.state.time === 0 ?
           this.goBack()
           :
           this.state.time < 5 ?
@@ -45,7 +45,7 @@ class Notfound extends Component {
           </p>
           </Fragment>
           :
-          this.state.time == 5 ?
+          this.state.time === 5 ?
           <Fragment>
           <p className="main">
           <div>
