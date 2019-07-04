@@ -22,19 +22,19 @@ class Calendar extends Component {
 
     return(
       <div className="main">
-      <h1> <NavLink to={`/months/7`}> July </NavLink> </h1>
-      <NavLink to={`/dates/71`}> 1 </NavLink><br/>
-      <NavLink to={`/dates/72`}> 2 </NavLink><br/>
-      <NavLink to={`/dates/73`}> 3 </NavLink><br/>
-      <NavLink to={`/dates/74`}> 4 </NavLink><br/>
-      <NavLink to={`/dates/75`}> 5 </NavLink><br/>
-      <NavLink to={`/dates/76`}> 6 </NavLink><br/>
-      <NavLink to={`/dates/77`}> 7 </NavLink><br/>
-      <NavLink to={`/dates/78`}> 8 </NavLink><br/>
-      <NavLink to={`/dates/79`}> 9 </NavLink><br/>
-      <NavLink to={`/dates/710`}> 10 </NavLink><br/>
-      <NavLink to={`/dates/711`}> 11 </NavLink><br/>
-      <NavLink to={`/dates/712`}> 12 </NavLink><br/>
+      <h1> <NavLink to={`/dates/7`}> July </NavLink> </h1>
+      <NavLink to={`/dates/7/71`}> 1 </NavLink><br/>
+      <NavLink to={`/dates/7/72`}> 2 </NavLink><br/>
+      <NavLink to={`/dates/7/73`}> 3 </NavLink><br/>
+      <NavLink to={`/dates/7/74`}> 4 </NavLink><br/>
+      <NavLink to={`/dates/7/75`}> 5 </NavLink><br/>
+      <NavLink to={`/dates/7/76`}> 6 </NavLink><br/>
+      <NavLink to={`/dates/7/77`}> 7 </NavLink><br/>
+      <NavLink to={`/dates/7/78`}> 8 </NavLink><br/>
+      <NavLink to={`/dates/7/79`}> 9 </NavLink><br/>
+      <NavLink to={`/dates/7/710`}> 10 </NavLink><br/>
+      <NavLink to={`/dates/7/711`}> 11 </NavLink><br/>
+      <NavLink to={`/dates/7/712`}> 12 </NavLink><br/>
       </div>
     )}
 }

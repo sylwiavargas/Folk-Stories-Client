@@ -64,8 +64,7 @@ class MainContainer extends Component {
       <Route exact path="/" component={TodayEventContainer} />
       <Route exact path="/bios" component={BioContainer} />
       <Route exact path="/contribute" component={ContributeContainer} />
-      <Route path="/(dates|dates/:id)/" component={DatesPage} />
-      <Route exact path="/months/:id" component={DatesPage} />
+      <Route path="/(dates|dates/:id|dates/:id/:id)/" component={DatesPage} />
       <Route exact path="/events/:id" component={Event} />
       <Route exact path="/bios/:id" component={Person} />
       <Route exact path="/you" component={UserProfile} />

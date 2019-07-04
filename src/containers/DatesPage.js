@@ -26,8 +26,8 @@ class DatesPage extends Component {
         <div>
         <Switch>
           <Route exact path="/dates" component={TodayEventContainer} />
-          <Route exact path="/dates/:id" component={EverydayEventContainer} />
-          <Route exact path="/months/:id" component={MonthContainer} />
+          <Route exact path="/dates/:id/:id" component={EverydayEventContainer} />
+          <Route exact path="/dates/:id" component={MonthContainer} />
           <Route component={TodayEventContainer} />
         </Switch>
         </div>
