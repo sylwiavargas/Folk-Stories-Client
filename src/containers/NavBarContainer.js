@@ -38,6 +38,7 @@ class NavBarContainer extends Component {
              <nav className="nav-bar">
                 <NavLink exact activeClassName="active" to="/">Home</NavLink><br/>
                 <NavLink activeClassName="active" to="/bios">Bios</NavLink><br/>
+                <NavLink activeClassName="active" to="/bios">Events</NavLink><br/>
                 <NavLink activeClassName="active" to="/contribute">Contribute!</NavLink><br/>
                 <NavLink activeClassName="active" to="/you">You</NavLink><br/>
              </nav>
@@ -52,6 +53,7 @@ class NavBarContainer extends Component {
                   <nav className="nav-bar">
                     <NavLink activeClassName="active" to="/">Home</NavLink><br/>
                     <NavLink activeClassName="active" to="/bios">Bios</NavLink><br/>
+                    <NavLink activeClassName="active" to="/bios">Events</NavLink><br/>
                   </nav>
                   <button onClick={this.loginRoute}>Login</button>
                   <button onClick={this.signupRoute}>SignUp</button>

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect} from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route  } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 // import { Trail } from "react-spring/renderprops";
 // import {Spring,config} from 'react-spring/renderprops'
@@ -17,14 +17,11 @@ class DatesPage extends Component {
 
 // when user clicks anything, the state will change and a different container will render
 
-  state = {
-    daySelected: false,
-  }
-
   render() {
+    console.log(this.props)
     return (
       <div>
-      <Calendar />
+      <Calendar onClick={this.chageState}/>
         <div>
         <Switch>
           <Route exact path="/dates" component={TodayEventContainer} />

@@ -10,12 +10,11 @@ import twitter from '../img/twitter.svg';
 
 class EverydayEventContainer extends Component {
 
-  // state = {
-  //   queer: false,
-  //   women: false,
-  //   allEvents: true,
-  //   // userEvents: []
-  // }
+  state = {
+    allEvents: true,
+    queer: false,
+    women: false,
+  }
 
   getEvents = () => {
     const num = this.props.match.params.id
@@ -34,7 +33,12 @@ class EverydayEventContainer extends Component {
 
   componentDidMount(){
     this.getEvents();
-    // this.handleUserTypes()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.location !== this.props.location) {
+      this.getEvents()
+    }
   }
 
   handleAll = () => {
@@ -110,7 +114,7 @@ class EverydayEventContainer extends Component {
     const efs = this.props.featuredEvents;
     const month = this.props.match.params.id.substring(0,1)
     const day = this.props.match.params.id.substring(1)
-    // console.log(this.props.match.params.id.substring(1))
+     console.log(this.props.location)
 
     // console.log("State", this.state)
     // console.log("USER TYPES", this.props.user.currentUser.types)

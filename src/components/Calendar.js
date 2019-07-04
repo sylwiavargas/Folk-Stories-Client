@@ -6,18 +6,20 @@ const API = "http://localhost:3000/api/v1/dates"
 
 class Calendar extends Component {
 
-  getDates = () => {
-    fetch(API)
-      .then(res => res.json())
-      .then(e => this.props.saveDates(e))
-  }
 
-  componentDidMount(){
-    this.getDates()
-  }
+
+  // getDates = () => {
+  //   fetch(API)
+  //     .then(res => res.json())
+  //     .then(e => this.props.saveDates(e))
+  // }
+  //
+  // componentDidMount(){
+  //   this.getDates()
+  // }
 
   render() {
-    console.log("PROPS", this.props.dates)
+    
     return(
       <div className="main">
       <h1> July </h1>
