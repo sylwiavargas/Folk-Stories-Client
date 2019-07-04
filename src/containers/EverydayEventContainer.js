@@ -114,7 +114,7 @@ class EverydayEventContainer extends Component {
     const efs = this.props.featuredEvents;
     const month = this.props.match.params.id.substring(0,1)
     const day = this.props.match.params.id.substring(1)
-     console.log(this.props.location)
+     console.log(!this.props.events > 0)
 
     // console.log("State", this.state)
     // console.log("USER TYPES", this.props.user.currentUser.types)
@@ -174,7 +174,11 @@ class EverydayEventContainer extends Component {
              </div>
            )}
          </Trail>
-      : null
+      :
+        <div>
+        <p> Oh well, no events here yet! </p>
+        <p> Would you like to <Link to={`/contribute`}>contribute?</Link></p>
+        </div>
       }
       </ul>
       </div>

@@ -4,34 +4,19 @@ import { Link } from 'react-router-dom'
 
 class MonthContainer extends Component {
 
-  getPeeps = () => {
-    fetch(`http://localhost:3000/api/v1/bios`)
-      .then(res => res.json())
-      .then(people => this.props.savePeople(people))
-
-    }
+  // getPeeps = () => {
+  //   fetch(`http://localhost:3000/api/v1/bios`)
+  //     .then(res => res.json())
+  //     .then(people => this.props.savePeople(people))
+  //
+  //   }
 
   render() {
-    const path = this.props.match.path
+    // const path = this.props.match.path
     // console.log(this.props.people)
     return(
-      <div className="App">
-      {
-        path.includes("/:id") ?
-        <Person />
-        :
-        <div className="bio">
-        <button onClick={() => {this.getPeeps()}}> Show Peeps </button>
-        <ul>
-        {this.props.people.length > 0 ?
-          this.props.people.map((person, index) => {
-            return <li key={index}> <Link to={`/bios/${person.id}`}>{person.name}</Link></li>
-          })
-        : null
-        }
-        </ul>
-        </div>
-      }
+      <div className="main">
+      Hey, Months
       </div>
     )
   }

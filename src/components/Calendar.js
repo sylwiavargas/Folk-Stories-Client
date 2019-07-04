@@ -19,10 +19,10 @@ class Calendar extends Component {
   // }
 
   render() {
-    
+
     return(
       <div className="main">
-      <h1> July </h1>
+      <h1> <NavLink to={`/months/7`}> July </NavLink> </h1>
       <NavLink to={`/dates/71`}> 1 </NavLink><br/>
       <NavLink to={`/dates/72`}> 2 </NavLink><br/>
       <NavLink to={`/dates/73`}> 3 </NavLink><br/>

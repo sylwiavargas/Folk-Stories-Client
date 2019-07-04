@@ -8,6 +8,7 @@ import moment from 'moment';
 import TodayEventContainer from './TodayEventContainer';
 import EverydayEventContainer from './EverydayEventContainer';
 import Calendar from '../components/Calendar';
+import MonthContainer from './MonthContainer';
 import Notfound from '../components/notfound'
 
 // import facebook from '../img/facebook.png';
@@ -26,6 +27,7 @@ class DatesPage extends Component {
         <Switch>
           <Route exact path="/dates" component={TodayEventContainer} />
           <Route exact path="/dates/:id" component={EverydayEventContainer} />
+          <Route exact path="/months/:id" component={MonthContainer} />
           <Route component={TodayEventContainer} />
         </Switch>
         </div>
