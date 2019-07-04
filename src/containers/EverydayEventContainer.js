@@ -108,7 +108,9 @@ class EverydayEventContainer extends Component {
   render() {
     const evs = this.props.events;
     const efs = this.props.featuredEvents;
-    console.log("here's everyday event container")
+    const month = this.props.match.params.id.substring(0,1)
+    const day = this.props.match.params.id.substring(1)
+    // console.log(this.props.match.params.id.substring(1))
 
     // console.log("State", this.state)
     // console.log("USER TYPES", this.props.user.currentUser.types)
@@ -127,6 +129,7 @@ class EverydayEventContainer extends Component {
         >
         {props => (
           <div style={props}>
+          <h1> Here's what happened on {month}/{day} :</h1>
           </div>
         )}
       </Spring>

@@ -13,7 +13,7 @@ import Notfound from '../components/notfound'
 // import facebook from '../img/facebook.png';
 // import twitter from '../img/twitter.svg';
 
-class EventsPage extends Component {
+class DatesPage extends Component {
 
 // when user clicks anything, the state will change and a different container will render
 
@@ -25,19 +25,17 @@ class EventsPage extends Component {
     return (
       <div>
       <Calendar />
-      <div>
-      <Switch>
-        <Route exact path="/dates" component={TodayEventContainer} />
-        <Route exact path="/dates/:id" component={EverydayEventContainer} />
-        <Route component={TodayEventContainer} />
-      </Switch>
-      </div>
+        <div>
+        <Switch>
+          <Route exact path="/dates" component={TodayEventContainer} />
+          <Route exact path="/dates/:id" component={EverydayEventContainer} />
+          <Route component={TodayEventContainer} />
+        </Switch>
+        </div>
       </div>
   )}
 
 }
-
-
 
 const mapStateToProps = state => {
   return {
@@ -66,4 +64,4 @@ const mapDispatchToProps = dispatch => {
 
 
 export default connect(
-  mapStateToProps, mapDispatchToProps)(EventsPage);
+  mapStateToProps, mapDispatchToProps)(DatesPage);

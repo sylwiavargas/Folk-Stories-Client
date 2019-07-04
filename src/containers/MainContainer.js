@@ -14,7 +14,7 @@ import Notfound from '../components/notfound'
 import Loading from '../components/Loading'
 import SignUpForm from '../components/SignUpForm'
 import LoginForm from '../components/LoginForm'
-import EventPage from './EventPage'
+import DatesPage from './DatesPage'
 
 import '../App.css';
 
@@ -64,7 +64,7 @@ class MainContainer extends Component {
       <Route exact path="/" component={TodayEventContainer} />
       <Route exact path="/bios" component={BioContainer} />
       <Route exact path="/contribute" component={ContributeContainer} />
-      <Route path="/(dates|dates/:id)/" component={EventPage} />
+      <Route path="/(dates|dates/:id)/" component={DatesPage} />
       <Route exact path="/events/:id" component={Event} />
       <Route exact path="/bios/:id" component={Person} />
       <Route exact path="/you" component={UserProfile} />
