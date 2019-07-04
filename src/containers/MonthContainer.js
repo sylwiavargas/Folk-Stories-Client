@@ -168,19 +168,11 @@ class MonthContainer extends Component {
         {propsMonth ?
           <div>
           {
-            propsMonth.events.map((e) => <li key={e.id}> <Link to={`/events/${e.id}`}  key={e.id}> {e.year_era_id}: {e.title_eng} </Link></li>)
+            propsMonth.events.map((e) => <li key={e.id}>{e.year_era_id}: <Link to={`/events/${e.id}`}  key={e.id} arget="_blank" rel="noopener noreferrer">  {e.title_eng} </Link> <br/></li>)
           }
           </div>
           : null }
           </div>
-          //          </a> </p>
-          //        <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name} </Link>})} </p>
-          //        <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
-          //         <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
-          //        </div>
-          //      )}
-          //    </Trail>
-
     )}
 
   }
