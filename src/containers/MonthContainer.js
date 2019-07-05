@@ -13,7 +13,9 @@ class MonthContainer extends Component {
       allEvents: true,
       queer: false,
       women: false,
-      month: ""
+      month: "",
+      loading: true
+
     }
 
     getMonth = () => {
@@ -30,6 +32,17 @@ class MonthContainer extends Component {
       this.getMonth();
       this.checkMonth()
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.events.events !== this.props.events.events) {
+          this.setState({
+            loading: false
+          })
+        console.log("prevProps", prevProps.events.events , "Thisprops", this.props.events.events )
+        }
+    }
+
+
 
     checkMonth = () => {
       let month;
@@ -142,12 +155,13 @@ class MonthContainer extends Component {
 
     render() {
 
-      const propsMonth = this.props.month
+      const propsMonth = this.props.events.events
       let evs;
-      if (propsMonth) {
-        let evs = propsMonth.events;
-        console.log(propsMonth.events)
-      }
+      console.log(this.props.events.events)
+      // if (propsMonth) {
+      //   let evs = propsMonth.events;
+      //   console.log(propsMonth.events)
+      // }
       const efs = this.props.featuredEvents;
 
       return (
@@ -164,16 +178,17 @@ class MonthContainer extends Component {
             )}
             </Spring>
           </div>
-        {propsMonth ?
+        { this.state.loading === false ?
+          propsMonth && propsMonth.length > 0 ?
           <div>
           {
-            propsMonth.events.map((e) => <li key={e.id}>{e.year_era_id}: <Link to={`/events/${e.id}`}  key={e.id} arget="_blank" rel="noopener noreferrer">  {e.title_eng} </Link> <br/></li>)
+            propsMonth[0].events.map((e) => <li key={e.id}>{e.year_era_id}: <Link to={`/events/${e.id}`}  key={e.id} arget="_blank" rel="noopener noreferrer">  {e.title_eng} </Link> <br/></li>)
           }
           </div>
-          : null }
+          : null
+          : <p> loading </p> }
           </div>
     )}
-
   }
 
 
@@ -235,7 +250,7 @@ class MonthContainer extends Component {
 
   const mapStateToProps = state => {
     return {
-      month: state.events.events[0],
+      events: state.events,
       user: state.user,
       featuredEvents: state.events.featuredEvents
     }

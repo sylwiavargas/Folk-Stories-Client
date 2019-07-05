@@ -14,6 +14,7 @@ class EverydayEventContainer extends Component {
     allEvents: false,
     queer: false,
     women: false,
+    loading: true,
   }
 
   getEvents = () => {
@@ -26,6 +27,9 @@ class EverydayEventContainer extends Component {
         this.props.saveEvents(events)
         if (this.state.allEvents === false) {
           this.handleUserTypes(events)
+          this.setState({
+            loading: false
+          })
         }
       })
       // .then(console.log("fetch done"))
@@ -39,6 +43,9 @@ class EverydayEventContainer extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.location !== this.props.location) {
+      this.setState({
+        loading: true
+      })
       this.getEvents()
     }
   }
@@ -113,6 +120,7 @@ class EverydayEventContainer extends Component {
 
 
   render() {
+    console.log(this.state.loading)
     const evs = this.props.events;
     const efs = this.props.featuredEvents;
     const month = this.props.match.params.id.substring(0,1)
@@ -120,13 +128,13 @@ class EverydayEventContainer extends Component {
      // console.log(!this.props.events > 0)
 
     // console.log("State", this.state)
-    console.log("USER TYPES", this.props.user.currentUser.types)
-
-    if(efs && efs.length > 0) {
-      console.log("this is the efs:", efs)
-    } else {
-      console.log("no efs")
-    }
+    // console.log("USER TYPES", this.props.user.currentUser.types)
+    //
+    // if(efs && efs.length > 0) {
+    //   console.log("this is the efs:", efs)
+    // } else {
+    //   console.log("no efs")
+    // }
 
     // if (evs) {
     //   // console.log(this.props.events[0].event)
@@ -150,6 +158,7 @@ class EverydayEventContainer extends Component {
       <button onClick={this.handleWomen}> Women </button>
       <button onClick={this.handleQueer}> Queer </button>
       </div>
+      {this.state.loading === false ?
       <ul>
       {efs && efs.length > 0 ?
         efs.map((event, index) =>
@@ -190,6 +199,7 @@ class EverydayEventContainer extends Component {
         </div>
       }
       </ul>
+      : <p> loading </p> }
       </div>
   )}
 
@@ -234,6 +244,9 @@ const mapDispatchToProps = dispatch => {
   return {
     saveEvents: (events) => {
       dispatch({type: 'SAVE_EVENTS', payload: events})
+    },
+    deleteEvents: (events) => {
+      dispatch({type: 'DELETE_EVENTS'})
     },
     selectCategory: (events) => {
       dispatch({type: 'SELECT_CATEGORY', payload: events})

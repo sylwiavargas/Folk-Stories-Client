@@ -14,6 +14,8 @@ export default function eventReducer(
         return {...state, featuredEvents: [...state.featuredEvents, action.payload]}
       case 'DELETE_CATEGORY':
         return {...state, featuredEvents: action.payload}
+        case 'DELETE_EVENTS':
+          return {...state, events: []}
       case 'SELECT_ALL':
         return {...state, featuredEvents: action.payload}
       default:
