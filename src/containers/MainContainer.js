@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect} from 'react-redux';
 
-// routes:
-import TodayEventContainer from './TodayEventContainer';
+// import TodayEventContainer from './TodayEventContainer'; //commented it out to test
 import BioContainer from './BioContainer'
 import UserProfile from './UserProfile'
 import Person from '../components/Person'
@@ -15,6 +14,8 @@ import Loading from '../components/Loading'
 import SignUpForm from '../components/SignUpForm'
 import LoginForm from '../components/LoginForm'
 import DatesPage from './DatesPage'
+import Force from '../components/Force';
+
 
 import '../App.css';
 
@@ -61,7 +62,7 @@ class MainContainer extends Component {
       <Loading />
       :
       <Switch>
-      <Route exact path="/" component={TodayEventContainer} />
+      <Route exact path="/" component={Force} /> //later relace with TodayEventContainer
       <Route exact path="/bios" component={BioContainer} />
       <Route exact path="/contribute" component={ContributeContainer} />
       <Route path="/(dates|dates/:id|dates/:id/:id)/" component={DatesPage} />
