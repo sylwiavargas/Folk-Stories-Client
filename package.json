@@ -5,6 +5,7 @@
   "dependencies": {
     "@vx/gradient": "0.0.189",
     "bcryptjs": "^2.4.3",
+    "d3": "^5.9.7",
     "d3-ease": "^1.0.5",
     "delay": "^4.3.0",
     "moment": "^2.24.0",
@@ -38,5 +39,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

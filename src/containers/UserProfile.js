@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import Popup from '../components/Popup';
 
 class UserProfile extends Component {
+
 
   state={
     id: this.props.id,
@@ -72,14 +72,6 @@ class UserProfile extends Component {
     return (
       <div className="main">
       <div>
-
-      {this.state.showPopup ?
-      <Popup
-        text='Are you sure you this is what you want to submit?'
-        closePopup={this.togglePopup.bind(this)}
-      />
-      : null
-      }
       {this.state.change === true ?
         <div> <h1> Changes have been implemented! </h1> </div>
       :

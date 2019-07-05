@@ -1,15 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Switch, Route  } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 // import { Trail } from "react-spring/renderprops";
 // import {Spring,config} from 'react-spring/renderprops'
-import moment from 'moment';
 import TodayEventContainer from './TodayEventContainer';
 import EverydayEventContainer from './EverydayEventContainer';
 import Calendar from '../components/Calendar';
 import MonthContainer from './MonthContainer';
-import Notfound from '../components/notfound'
 
 // import facebook from '../img/facebook.png';
 // import twitter from '../img/twitter.svg';

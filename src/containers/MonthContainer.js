@@ -1,12 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Trail } from "react-spring/renderprops";
 import {Spring,config} from 'react-spring/renderprops'
-import moment from 'moment';
-// import psl from 'psl';
-import facebook from '../img/facebook.png';
-import twitter from '../img/twitter.svg';
 class MonthContainer extends Component {
 
     state = {
@@ -84,6 +79,8 @@ class MonthContainer extends Component {
         case '12':
           month = 'December'
         break;
+        default:
+         month = "";
       }
       this.setState({
         month: month
@@ -156,13 +153,6 @@ class MonthContainer extends Component {
     render() {
 
       const propsMonth = this.props.events.events
-      let evs;
-      console.log(this.props.events.events)
-      // if (propsMonth) {
-      //   let evs = propsMonth.events;
-      //   console.log(propsMonth.events)
-      // }
-      const efs = this.props.featuredEvents;
 
       return (
         <div>

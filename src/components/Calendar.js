@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const API = "http://localhost:3000/api/v1/dates"
-
 class Calendar extends Component {
 
   // getDates = () => {
