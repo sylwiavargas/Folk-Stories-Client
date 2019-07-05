@@ -6,6 +6,10 @@ const API = "http://localhost:3000/api/v1/events"
 
 class Event extends Component {
 
+  state = {
+    loading: true
+  }
+
   getEvent = () => {
     const num = this.props.match.params.id
     fetch(API + `/${num}`)
@@ -17,27 +21,39 @@ class Event extends Component {
     this.getEvent()
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.events !== this.props.events) {
+      this.setState({
+        loading: false
+      })
+    console.log("I changed the state")
+    }
+  }
+
   render() {
-    // console.log("PROPS", this.props.events)
+    console.log("STATE", this.state)
+    console.log("PROPS", this.props.events)
     // console.log("LENGTH", this.props.events.length)
     return(
       <div className="main">
-      <ul>
-      {this.props.events !== undefined && this.props.events.length > 0 ?
-        this.props.events.map((event, index) => {
-          return <li key={index}>
-          <h2> {event.event.month_id}/{event.event.day_id}/{event.event.year_era_id}: {event.event.title_eng}</h2>
-          <p> {event.event.description_eng} </p>
-          <a href={event.event.read_more_eng} target="_blank" rel="noopener noreferrer"> Read more </a>
-          {event.event.people ?
-              <p> <strong> Related people: </strong>  {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name} </Link>})}
-              </p> : null}
-              </li>
+      { this.state.loading === false ?
+        <ul>
+        {this.props.events !== undefined && this.props.events.length > 0 ?
+          this.props.events.map((event, index) => {
+            return <li key={index}>
+            <h2> {event.event.month_id}/{event.event.day_id}/{event.event.year_era_id}: {event.event.title_eng}</h2>
+            <p> {event.event.description_eng} </p>
+            <a href={event.event.read_more_eng} target="_blank" rel="noopener noreferrer"> Read more </a>
+            {event.event.people ?
+                <p> <strong> Related people: </strong>  {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name} </Link>})}
+                </p> : null}
+                </li>
 
-        })
-      : null
-      }
-      </ul>
+          })
+        : null
+        }
+        </ul>
+      : <p> loading </p> }
     </div>
     )}
 }

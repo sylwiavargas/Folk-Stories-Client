@@ -11,7 +11,7 @@ import twitter from '../img/twitter.svg';
 class EverydayEventContainer extends Component {
 
   state = {
-    allEvents: true,
+    allEvents: false,
     queer: false,
     women: false,
   }
@@ -24,7 +24,9 @@ class EverydayEventContainer extends Component {
       .then(res => res.json())
       .then(events => {
         this.props.saveEvents(events)
-        // this.handleUserTypes(events)
+        if (this.state.allEvents === false) {
+          this.handleUserTypes(events)
+        }
       })
       // .then(console.log("fetch done"))
       // .then(this.handleUserTypes())
@@ -48,7 +50,8 @@ class EverydayEventContainer extends Component {
       allEvents: true,
       queer: false,
       women: false
-    })
+    }, () => console.log("inside handleAll after setState", this.props.events))
+
     this.props.selectAll(featuredEvents)
   }
 
@@ -114,10 +117,16 @@ class EverydayEventContainer extends Component {
     const efs = this.props.featuredEvents;
     const month = this.props.match.params.id.substring(0,1)
     const day = this.props.match.params.id.substring(1)
-     console.log(!this.props.events > 0)
+     // console.log(!this.props.events > 0)
 
     // console.log("State", this.state)
-    // console.log("USER TYPES", this.props.user.currentUser.types)
+    console.log("USER TYPES", this.props.user.currentUser.types)
+
+    if(efs && efs.length > 0) {
+      console.log("this is the efs:", efs)
+    } else {
+      console.log("no efs")
+    }
 
     // if (evs) {
     //   // console.log(this.props.events[0].event)

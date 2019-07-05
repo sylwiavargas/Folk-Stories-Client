@@ -9,8 +9,7 @@ class SignupForm extends React.Component {
   }
 
   formInput = (userInput) => {
-    let path;
-    userInput.user ? path = '/users' : path = "/login";
+    let path = '/users';
 
     fetch(API + `${path}`, {
       method: 'POST',
@@ -27,8 +26,7 @@ class SignupForm extends React.Component {
         alert(errors)
       } else {
         localStorage.setItem("token", response.jwt)
-        this.props.login(response.user)
-        this.goBack()
+        this.props.history.push('/')
       }
     })
   }

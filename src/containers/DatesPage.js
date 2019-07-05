@@ -19,7 +19,7 @@ class DatesPage extends Component {
 // when user clicks anything, the state will change and a different container will render
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div>
       <Calendar onClick={this.chageState}/>

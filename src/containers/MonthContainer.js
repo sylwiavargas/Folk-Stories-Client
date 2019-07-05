@@ -140,7 +140,6 @@ class MonthContainer extends Component {
         )
       }
 
-
     render() {
 
       const propsMonth = this.props.month
