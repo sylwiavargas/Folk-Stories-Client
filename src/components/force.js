@@ -7,83 +7,70 @@ import { connect} from 'react-redux';
 
 class Force extends Component {
 
-  getPeeps = () => {
-    fetch(`http://localhost:3000/api/v1/bios`)
+  // state = {
+  //   nodes: [],
+  //   links: []
+  // }
+
+  getConnections = () => {
+    fetch(`http://localhost:3000/api/v1/connections`)
       .then(res => res.json())
-      .then(people => this.props.savePeople(people))
+      .then(connections => this.props.saveConnections(connections))
     }
 
-  componentDidMount(){
-    this.getPeeps()
-  }
+    componentDidMount(){
+      this.getConnections()
+    }
+
+
+    // console.log(this.state)
+    // // let data;
+    // let first_folks;
+    // let second_folks;
+    //   if (this.props.connections && this.props.connections.length > 0) {
+    //     this.props.connections.map((connection) => {this.setState( prevState => ({
+    //           nodes:[...prevState.nodes, connection.first_person]
+    //       }))
+    //   })
+    // } else {
+    //   return null
+    // }
 
   render() {
-      console.log(this.props.people[0])
       const data = {
-          nodes: [{ id: 'Eleanor' }, { id: 'Amelia' }, { id: 'Nina' }],
-          links: [{ source: 'Eleanor', target: 'Amelia' }, { source: 'Eleanor', target: 'Nina' }]
+          nodes: [{ id: 'Eleanor' }, { id: 'Amelia' }, { id: 'Nina' }, { id: 'Lora1'}, { id: 'Lora2'}, { id: 'Lora3'}, { id: 'Lora5'}, { id: 'Lora6'},],
+          links: [{ source: 'Eleanor', target: 'Amelia' }, { source: 'Eleanor', target: 'Nina' }, { source: 'Amelia', target: 'Nina' }, { source: 'Lora2', target: 'Lora3' }, { source: 'Lora5', target: 'Lora6' }],
       };
 
 
       // the graph configuration, you only need to pass down properties
       // that you want to override, otherwise default ones will be used
       const myConfig = {
-
-        "automaticRearrangeAfterDropNode": true,
-        "collapsible": true,
-        "directed": true,
-        "focusAnimationDuration": 0.75,
-        "focusZoom": 1,
-        "height": 400,
-        "highlightDegree": 2,
-        "highlightOpacity": 0.2,
-        "linkHighlightBehavior": true,
-        "maxZoom": 12,
-        "minZoom": 0.05,
-        "nodeHighlightBehavior": true,
-        "panAndZoom": false,
-        "staticGraph": false,
-        "width": 800,
-        "d3": {
-          "alphaTarget": 0.05,
-          "gravity": -250,
-          "linkLength": 120,
-          "linkStrength": 2
-        },
-        "node": {
-          "color": "#d3d3d3",
-          "fontColor": "black",
-          "fontSize": 10,
-          "fontWeight": "normal",
-          "highlightColor": "red",
-          "highlightFontSize": 14,
-          "highlightFontWeight": "bold",
-          "highlightStrokeColor": "red",
-          "highlightStrokeWidth": 1.5,
-          "mouseCursor": "crosshair",
-          "opacity": 0.9,
-          "renderLabel": true,
-          "size": 200,
-          "strokeColor": "none",
-          "strokeWidth": 1.5,
-          "svg": "",
-          "symbolType": "circle"
-        },
-        "link": {
-          "color": "lightgray",
-          "fontColor": "black",
-          "fontSize": 8,
-          "fontWeight": "normal",
-          "highlightColor": "red",
-          "highlightFontSize": 8,
-          "highlightFontWeight": "normal",
-          "labelProperty": "label",
-          "mouseCursor": "pointer",
-          "opacity": 1,
-          "renderLabel": false,
-          "semanticStrokeWidth": true,
-          "strokeWidth": 3
-        }
+          nodeHighlightBehavior: true,
+          automaticRearrangeAfterDropNode: false,
+          width: 1000,
+          height: 500,
+          maxZoom: 1,
+          minZoom: 0.1,
+          "d3": {
+            'viewBox':'-0 -5 10 10',
+            'refX':34,
+            'refY':0,
+            'orient':'auto',
+            'markerWidth':8,
+            'markerHeight':8,
+            'xoverflow':'visible'
+          },
+          node: {
+              color: 'lightgreen',
+              size: 100,
+              fontSize: 30,
+              highlightStrokeColor: 'black'
+          },
+          link: {
+              color: 'red',
+              highlightColor: 'violet'
+          }
       };
 
       // graph event callbacks
@@ -151,17 +138,15 @@ class Force extends Component {
 const mapStateToProps = state => {
   return {
     people: state.people.people,
-    person: state.people.person
+    person: state.people.person,
+    connections: state.people.connections
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    savePeople: (people) => {
-      dispatch({type: 'SAVE_PEOPLE', payload: people})
-    },
-    savePerson: (person) => {
-      dispatch({type: 'SAVE_PERSON', payload: person})
+    saveConnections: (connections) => {
+      dispatch({type: 'SAVE_CONNECTIONS', payload: connections})
     }
   }
 }
