@@ -115,7 +115,7 @@ font-family: 'Josefin Sans', sans-serif;
 
 .bio {
   display: grid;
-  grid-template-columns: 15% 85%;
+  grid-template-columns: 20% 5% 75%;
   padding: 0rem;
   margin: 2rem;
   width: 90%;
