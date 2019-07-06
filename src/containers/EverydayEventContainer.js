@@ -25,8 +25,14 @@ class EverydayEventContainer extends Component {
       .then(res => res.json())
       .then(events => {
         this.props.saveEvents(events)
-        if (this.state.allEvents === false) {
-          this.handleUserTypes(events)
+        if (this.props.user.currentUser.types) {
+          if (this.state.allEvents === false) {
+            this.handleUserTypes(events)
+            this.setState({
+              loading: false
+            })
+          }
+        } else {
           this.setState({
             loading: false
           })
