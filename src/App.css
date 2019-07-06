@@ -115,15 +115,43 @@ font-family: 'Josefin Sans', sans-serif;
 
 .bio {
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 15% 85%;
   padding: 0rem;
   margin: 2rem;
   width: 90%;
-  height: 85%;
+  height: 100%;
 }
 
-.picture {
+.image-cropper {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
 
+.image-cropper:hover {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.formtable {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 0rem;
+  margin: 2rem;
+  width: 90%;
+  height: 100%;
 }
 
 .sharing {

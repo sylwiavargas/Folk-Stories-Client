@@ -7,16 +7,16 @@ import twitter from '../img/twitter.svg';
 
 class Person extends Component {
 
-    getPeep = () => {
-      const num = this.props.match.params.id
-      fetch(`http://localhost:3000/api/v1/bios/${num}`)
-        .then(res => res.json())
-        .then(person => this.props.savePerson(person))
-    }
+  getPeep = () => {
+    const num = this.props.match.params.id
+    fetch(`http://localhost:3000/api/v1/bios/${num}`)
+      .then(res => res.json())
+      .then(person => this.props.savePerson(person))
+  }
 
-    componentDidMount() {
-      this.getPeep()
-    }
+  componentDidMount() {
+    this.getPeep()
+  }
 
   render() {
     const person = this.props.person.person.person
@@ -34,8 +34,15 @@ class Person extends Component {
       </div>
       :
         <div>
-          <h1> {person.name} </h1>
-          <h2> "{person.quote_eng}" </h2>
+        <div className="bio">
+          <div className="image-cropper column">
+            <img src = {person.picture} alt={person.name}/>
+          </div>
+          <div className="column">
+            <h1> {person.name} </h1>
+            <h2> "{person.quote_eng}" </h2>
+          </div>
+        </div>
           <p> {person.bio_eng} </p>
           <p> Read more about {person.name} at <a href = {person.read_more_eng} target="_blank" rel="noopener noreferrer"> { person.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]} </a> </p>
 
@@ -56,8 +63,6 @@ class Person extends Component {
           <h2> Tell your friends about {first_name}: </h2>
           <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
-
-          <img src = {person.picture} alt={person.name}/>
       </div>
     )}
 }

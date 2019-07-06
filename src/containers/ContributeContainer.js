@@ -65,23 +65,26 @@ class ContributeContainer extends Component {
 
   render() {
     return (
-      <div className="main">
-      <h1> Add a new event! </h1>
-      <form onSubmit={(e) => this.handleSubmitEvent(e)}>
-        <input placeholder="Title" type="text" name="title_eng"/>
-        <input placeholder="Description" type="text" name="description_eng"/>
-        <input placeholder="Date (MMDDYYY)" type="text" name="mmddyyy"/>
-        <button>Submit</button>
-      </form>
-      <br />
-      <h1> Add a new bio! </h1>
-      <form onSubmit={(e) => this.handleSubmitPeep(e)}>
-        <input placeholder="Name" type="text" name="name"/>
-        <input placeholder="Bio" type="text" name="bio_eng"/>
-        <input placeholder="Year of birth" type="text" name="birth"/>
-        <input placeholder="Year of death" type="text" name="death"/>
-        <button>Submit</button>
-      </form>
+      <div className="formtable">
+        <div class="column">
+          <h1> Add a new event: </h1>
+          <form onSubmit={(e) => this.handleSubmitEvent(e)}>
+            <input placeholder="Title" type="text" name="title_eng"/><br/><br/>
+            <input placeholder="Description" type="text" name="description_eng"/><br/><br/>
+            <input placeholder="Date (MMDDYYY)" type="text" name="mmddyyy"/><br/> <br/><br/>
+            <button className="notbutton left">Submit</button>
+          </form>
+        </div>
+        <div class="column">
+          <h1> Add a new bio: </h1>
+          <form onSubmit={(e) => this.handleSubmitPeep(e)}>
+            <input placeholder="Name" type="text" name="name"/><br/><br/>
+            <input placeholder="Bio" type="text" name="bio_eng"/><br/><br/>
+            <input placeholder="Year of birth" type="text" name="birth"/><br/><br/>
+            <input placeholder="Year of death" type="text" name="death"/><br/><br/> <br/>
+            <button className="notbutton left">Submit</button>
+          </form>
+        </div>
       </div>
     )}
 

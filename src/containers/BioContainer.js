@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom'
 import Person from '../components/Person';
@@ -6,37 +6,48 @@ import Force from '../components/Force.js';
 
 class BioContainer extends Component {
 
+  state ={
+    show: false
+  }
+
   getPeeps = () => {
     fetch(`http://localhost:3000/api/v1/bios`)
       .then(res => res.json())
       .then(people => this.props.savePeople(people))
-
+      .then(this.setState({
+        show: true
+      }))
     }
 
   render() {
     const path = this.props.match.path
-    // console.log(this.props.people)
+    // console.log(this.state.show)
     return(
       <div className="App">
       {
         path.includes("/:id") ?
         <Person />
         :
-        <div className="bio">
-        <Link onClick={() => {this.getPeeps()}} className="notbutton"> Show People </Link>
-        <ul>
-        {this.props.people.length > 0 ?
-          this.props.people.map((person, index) => {
-            return <li key={index}> <Link to={`/bios/${person.id}`}>{person.name}</Link></li>
-          })
-        : null
-        }
-        </ul>
-        </div>
-
+        this.state.show === false
+          ? <div className="bio">
+          <Link onClick={() => {this.getPeeps()}} className="notbutton"> Show People </Link>
+          </div>
+          : <div className="main">
+            <h1> Here are the folks: </h1>
+            <ul>
+              {this.props.people.length > 0
+                ? this.props.people.map((person, index) => {
+                  return <li key={index}> <Link to={`/bios/${person.id}`}>{person.name}</Link></li>
+                })
+                : null
+              }
+            </ul>
+            <h1> Here's how they relate: </h1>
+            <div style={{"border": "2px solid black", "backgroundImage": "linear-gradient(300deg, #c16ecf 0%,  #2376ae  100%)"}}>
+            <Force/>
+            </div>
+          </div>
       }
-      <h1> Here's how they relate: </h1>
-      <Force />
       </div>
     )
   }

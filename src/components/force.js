@@ -52,6 +52,10 @@ class Force extends Component {
           maxZoom: 1,
           minZoom: 0.1,
           "d3": {
+            "alphaTarget": 0.95,
+            "gravity": -500,
+            "linkLength": 100,
+            "linkStrength": 1,
             'viewBox':'-0 -5 10 10',
             'refX':34,
             'refY':0,
@@ -62,7 +66,7 @@ class Force extends Component {
           },
           node: {
               color: 'lightgreen',
-              size: 50,
+              size: 80,
               fontSize: 15,
               highlightStrokeColor: 'black'
           },
