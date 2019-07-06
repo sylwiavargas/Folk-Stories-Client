@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom'
 import Person from '../components/Person';
-import Force from '../components/Force';
+import Force from '../components/Force.js';
 
 class BioContainer extends Component {
 

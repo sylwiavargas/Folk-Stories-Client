@@ -36,13 +36,13 @@ class NavBarContainer extends Component {
           {props => (
            <div style={{ width: props.number + "%" }}>
              <nav className="nav-bar">
-                <NavLink exact activeClassName="active" to="/">Home</NavLink><br/>
-                <NavLink activeClassName="active" to="/bios">Bios</NavLink><br/>
-                <NavLink activeClassName="active" to="/dates">Events</NavLink><br/>
-                <NavLink activeClassName="active" to="/contribute">Contribute!</NavLink><br/>
-                <NavLink activeClassName="active" to="/you">You</NavLink><br/>
+                <NavLink exact activeClassName="active" to="/" className="navlink">Home</NavLink><br/>
+                <NavLink activeClassName="active" to="/bios" className="navlink">Bios</NavLink><br/>
+                <NavLink activeClassName="active" to="/dates" className="navlink">Events</NavLink><br/>
+                <NavLink activeClassName="active" to="/contribute" className="navlink">Contribute!</NavLink><br/>
+                <NavLink activeClassName="active" to="/you" className="navlink">You</NavLink><br/>
              </nav>
-             <button onClick={this.signOut}>Sign out</button>
+             <button onClick={this.signOut} >Sign out</button>
            </div>)}
           </Spring>
           :
@@ -50,13 +50,13 @@ class NavBarContainer extends Component {
           <Spring from={{ number: 0 }} to={{ number: 100 }} config={config.slow}>
             {props => (
                 <div style={{ width: props.number + "%" }}>
+                <button onClick={this.loginRoute} style={{"float": "right"}}>Login</button>
+                <button onClick={this.signupRoute} style={{"float": "right"}}>SignUp</button>
                   <nav className="nav-bar">
-                    <NavLink activeClassName="active" to="/">Home</NavLink><br/>
-                    <NavLink activeClassName="active" to="/bios">Bios</NavLink><br/>
-                    <NavLink activeClassName="active" to="/dates">Events</NavLink><br/>
+                    <NavLink activeClassName="active" to="/" className="navlink-logout">Home</NavLink><br/>
+                    <NavLink activeClassName="active" to="/bios" className="navlink-logout">Bios</NavLink><br/>
+                    <NavLink activeClassName="active" to="/dates" className="navlink-logout">Events</NavLink><br/>
                   </nav>
-                  <button onClick={this.loginRoute}>Login</button>
-                  <button onClick={this.signupRoute}>SignUp</button>
                 </div>
             )}
           </Spring>

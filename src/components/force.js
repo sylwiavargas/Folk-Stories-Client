@@ -4,7 +4,6 @@ import { Graph } from 'react-d3-graph';
 import { connect} from 'react-redux';
 
 
-
 class Force extends Component {
 
   // state = {

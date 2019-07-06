@@ -1,11 +1,20 @@
 body {
 margin: 0px;
 padding: 0rem;
-font-family: sans-serif;
+font: Helvetica;
+
 }
 
-.active{
-   color:red;
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-left: 1%;
+  padding-top: 1%;
+  background-color: black;
+  color: white;
+  height: 5%;
 }
 
 .header{
@@ -15,6 +24,34 @@ font-family: sans-serif;
   color: white;
   width: 100%;
   height: 10%;
+}
+
+.header .navlink{
+  float: left;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  width: 20%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+  display: inline-block;
+  text-align: center; /* If you want the text to be centered */
+}
+
+.header .navlink-logout{
+  float: left;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  width: 33%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+  display: inline-block;
+  text-align: center; /* If you want the text to be centered */
+}
+
+.header hover {
+  background-color: #000;
+}
+
+.header .active{
+   color:red;
 }
 
 .main {
@@ -37,17 +74,6 @@ font-family: sans-serif;
   background-color: red;
 }
 
-.footer{
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding-left: 1%;
-  padding-top: 1%;
-  background-color: black;
-  color: white;
-  height: 5%;
-}
-
 .bio {
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -61,81 +87,10 @@ font-family: sans-serif;
 
 }
 
-.sidebar {
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-  width: 280px;
-  background: white;
-  padding: 20px;
-  font-size: 15px;
-}
-
-.sidebar-toggle {
-  position: absolute;
-  margin: 20px;
-  color: #a0a0a0;
-  z-index: 100;
-  font-size: 1.5em;
-  cursor: pointer;
-}
-
-.login-form-forgot {
-  float: right;
-}
-
-.login-form-button {
-  width: 100%;
-}
-
-.ant-avatar {
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  border-radius: 50%;
-  font-size: 3em !important;
-}
-
-.middle .ant-form-item-control {
-  display: flex;
-  justify-content: center;
-}
-
-.sidebar .ant-form-item {
-  margin: 0;
-}
-
-.sidebar .ant-form-item-control {
-  line-height: 29px;
-}
-
 .sharing {
   width: 30px;
   height: 30px;
   border-radius: 20px;
   margin: 2px 2px 2px 2px;
   padding: 2px;
-}
-
-.popup {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  background-color: rgba(0,0,0, 0.9);
-}
-
-.popup\_inner {
-  position: absolute;
-  left: 50%;
-  right: 50%;
-  top: 50%;
-  bottom: 50%;
-  margin: 50;
-  border-radius: 20px;
-  background: white;
 }
