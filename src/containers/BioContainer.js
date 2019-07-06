@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom'
 import Person from '../components/Person';
+import Force from '../components/Force';
 
 class BioContainer extends Component {
 
@@ -22,7 +23,7 @@ class BioContainer extends Component {
         <Person />
         :
         <div className="bio">
-        <button onClick={() => {this.getPeeps()}}> Show Peeps </button>
+        <button onClick={() => {this.getPeeps()}}> Show People </button>
         <ul>
         {this.props.people.length > 0 ?
           this.props.people.map((person, index) => {
@@ -32,7 +33,10 @@ class BioContainer extends Component {
         }
         </ul>
         </div>
+
       }
+      <h1> Here's how they relate: </h1>
+      <Force />
       </div>
     )
   }

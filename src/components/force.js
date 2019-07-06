@@ -38,7 +38,7 @@ class Force extends Component {
 
   render() {
       const data = {
-          nodes: [{ id: 'Eleanor' }, { id: 'Amelia' }, { id: 'Nina' }, { id: 'Lora1'}, { id: 'Lora2'}, { id: 'Lora3'}, { id: 'Lora5'}, { id: 'Lora6'},],
+          nodes: [{ id: 'Eleanor' }, { id: 'Amelia' }, { id: 'Nina' }, { id: 'Lora2'}, { id: 'Lora3'}, { id: 'Lora5'}, { id: 'Lora6'},],
           links: [{ source: 'Eleanor', target: 'Amelia' }, { source: 'Eleanor', target: 'Nina' }, { source: 'Amelia', target: 'Nina' }, { source: 'Lora2', target: 'Lora3' }, { source: 'Lora5', target: 'Lora6' }],
       };
 
@@ -63,8 +63,8 @@ class Force extends Component {
           },
           node: {
               color: 'lightgreen',
-              size: 100,
-              fontSize: 30,
+              size: 50,
+              fontSize: 15,
               highlightStrokeColor: 'black'
           },
           link: {
