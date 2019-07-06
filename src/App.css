@@ -145,6 +145,21 @@ img {
     width: auto;
 }
 
+.calendartable {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  padding: 0rem;
+  margin: 2rem;
+  width: 90%;
+  height: 100%;
+}
+
+.space {
+  padding: 2px;
+  width: 20px;
+  height: 20px;
+}
+
 .formtable {
   display: grid;
   grid-template-columns: 50% 50%;

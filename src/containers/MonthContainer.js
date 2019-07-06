@@ -173,6 +173,7 @@ class MonthContainer extends Component {
           <div>
           {
             propsMonth[0].events.map((e) => <li key={e.id}>{e.year_era_id}: <Link to={`/events/${e.id}`}  key={e.id} arget="_blank" rel="noopener noreferrer">  {e.title_eng} </Link> <br/></li>)
+
           }
           </div>
           : null

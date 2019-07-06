@@ -18,19 +18,19 @@ class Calendar extends Component {
 
     return(
       <div className="main">
-      <h1> <NavLink to={`/dates/7`}> July </NavLink> </h1>
-      <NavLink to={`/dates/7/71`}> 1 </NavLink><br/>
-      <NavLink to={`/dates/7/72`}> 2 </NavLink><br/>
-      <NavLink to={`/dates/7/73`}> 3 </NavLink><br/>
-      <NavLink to={`/dates/7/74`}> 4 </NavLink><br/>
-      <NavLink to={`/dates/7/75`}> 5 </NavLink><br/>
-      <NavLink to={`/dates/7/76`}> 6 </NavLink><br/>
-      <NavLink to={`/dates/7/77`}> 7 </NavLink><br/>
-      <NavLink to={`/dates/7/78`}> 8 </NavLink><br/>
-      <NavLink to={`/dates/7/79`}> 9 </NavLink><br/>
-      <NavLink to={`/dates/7/710`}> 10 </NavLink><br/>
-      <NavLink to={`/dates/7/711`}> 11 </NavLink><br/>
-      <NavLink to={`/dates/7/712`}> 12 </NavLink><br/>
+      <h1> <NavLink to={`/dates/7`} style={{"text-decoration": "none"}}> July </NavLink> </h1>
+      <NavLink to={`/dates/7/71`} className="notbutton left space"> 1 </NavLink>
+      <NavLink to={`/dates/7/72`} className="notbutton left space"> 2 </NavLink>
+      <NavLink to={`/dates/7/73`} className="notbutton left space"> 3 </NavLink>
+      <NavLink to={`/dates/7/74`} className="notbutton left space"> 4 </NavLink>
+      <NavLink to={`/dates/7/75`} className="notbutton left space"> 5 </NavLink>
+      <NavLink to={`/dates/7/76`} className="notbutton left space"> 6 </NavLink>
+      <NavLink to={`/dates/7/77`} className="notbutton left space"> 7 </NavLink>
+      <NavLink to={`/dates/7/78`} className="notbutton left space"> 8 </NavLink>
+      <NavLink to={`/dates/7/79`} className="notbutton left space"> 9 </NavLink>
+      <NavLink to={`/dates/7/710`} className="notbutton left space"> 10 </NavLink>
+      <NavLink to={`/dates/7/711`} className="notbutton left space"> 11 </NavLink>
+      <NavLink to={`/dates/7/712`}className="notbutton left space"> 12 </NavLink><br/>
       </div>
     )}
 }

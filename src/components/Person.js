@@ -35,8 +35,11 @@ class Person extends Component {
       :
         <div>
         <div className="bio">
-          <div className="image-cropper column" style={{"marginRight": "20em"}}>
-            <img src = {person.picture} alt={person.name}/>
+          <div className="column" style={{"marginRight": "20em"}}>
+            <div className="image-cropper">
+              <img src = {person.picture} alt={person.name}/>
+            </div>
+
           </div>
           <div className="column">
 
@@ -61,6 +64,7 @@ class Person extends Component {
             </ul>
           </div>
           <div className="column">
+          <br/>
           <h2> Tell your friends about {first_name}: </h2>
           <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>

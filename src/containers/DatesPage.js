@@ -19,15 +19,17 @@ class DatesPage extends Component {
   render() {
     // console.log(this.props)
     return (
-      <div>
-      <Calendar onClick={this.chageState}/>
+      <div className="calendartable">
         <div>
-        <Switch>
-          <Route exact path="/dates" component={TodayEventContainer} />
-          <Route exact path="/dates/:id/:id" component={EverydayEventContainer} />
-          <Route exact path="/dates/:id" component={MonthContainer} />
-          <Route component={TodayEventContainer} />
-        </Switch>
+          <Switch>
+            <Route exact path="/dates" component={TodayEventContainer} />
+            <Route exact path="/dates/:id/:id" component={EverydayEventContainer} />
+            <Route exact path="/dates/:id" component={MonthContainer} />
+            <Route component={TodayEventContainer} />
+          </Switch>
+        </div>
+        <div>
+          <Calendar onClick={this.chageState}/>
         </div>
       </div>
   )}
