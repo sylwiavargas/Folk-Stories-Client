@@ -154,9 +154,9 @@ class EverydayEventContainer extends Component {
           </div>
         )}
       </Spring>
-      <button onClick={this.handleAll}> All </button>
-      <button onClick={this.handleWomen}> Women </button>
-      <button onClick={this.handleQueer}> Queer </button>
+      <button onClick={this.handleAll} className="notbutton left"> All </button>
+      <button onClick={this.handleWomen} className="notbutton left"> Women </button>
+      <button onClick={this.handleQueer} className="notbutton left"> Queer </button><br/><br/>
       </div>
       {this.state.loading === false ?
       <ul>

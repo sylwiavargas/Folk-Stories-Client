@@ -23,7 +23,7 @@ class BioContainer extends Component {
         <Person />
         :
         <div className="bio">
-        <button onClick={() => {this.getPeeps()}}> Show People </button>
+        <Link onClick={() => {this.getPeeps()}} className="notbutton"> Show People </Link>
         <ul>
         {this.props.people.length > 0 ?
           this.props.people.map((person, index) => {

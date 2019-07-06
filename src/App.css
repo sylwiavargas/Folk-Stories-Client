@@ -2,7 +2,7 @@ body {
 margin: 0px;
 padding: 0rem;
 font: Helvetica;
-
+font-family: 'Josefin Sans', sans-serif;
 }
 
 
@@ -19,39 +19,49 @@ font: Helvetica;
 
 .header{
   padding-left: 1%;
+  padding-right: 1%;
   padding-top: 1%;
-  background-color: black;
-  color: white;
-  width: 100%;
+  padding-bottom: 1%;
+  /* background-color: black; */
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  width: 98%;
   height: 10%;
+  border-bottom: 5px solid black;
+  background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf   100%);
+
 }
 
-.header .navlink{
-  float: left;
-  color: white;
+.header a{
   text-decoration: none;
   font-size: 17px;
-  width: 20%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
-  display: inline-block;
-  text-align: center; /* If you want the text to be centered */
+  display: inline-flex;
+  padding: 0 2em;
 }
 
-.header .navlink-logout{
-  float: left;
-  color: white;
-  text-decoration: none;
-  font-size: 17px;
-  width: 33%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
-  display: inline-block;
-  text-align: center; /* If you want the text to be centered */
-}
-
-.header hover {
-  background-color: #000;
+.header a:hover {
+  color: red;
 }
 
 .header .active{
-   color:red;
+   color: white;
+}
+
+.notbutton {
+  float: right;
+  background-color: white;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid black;
+  padding: 2 2px;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 2px;
+}
+
+.left {
+  float: left;
 }
 
 .main {

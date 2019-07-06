@@ -54,8 +54,8 @@ class SignupForm extends React.Component {
         <h4> Password: </h4> <input placeholder="password" type="password" name="password"/>
         <h4> Again, password: </h4><input placeholder="password confirmation" type="password" name="password_confirmation"/>
         <h4> Your zipcode: </h4><input placeholder="zip" type="text" name="zip"/>
-        <h4> Email: </h4><input placeholder="email" type="email" name="email"/>
-        <br/> <button>Submit</button>
+        <h4> Email: </h4><input placeholder="email" type="email" name="email"/> <br/>
+        <br/> <button className="notbutton left">Submit</button>
       </form>
       </div>
     )

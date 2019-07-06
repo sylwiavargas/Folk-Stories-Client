@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { NavLink, withRouter } from 'react-router-dom'
+import { NavLink, Link, withRouter } from 'react-router-dom'
 import {Spring,config} from 'react-spring/renderprops'
 
 import '../App.css'
@@ -32,34 +32,27 @@ class NavBarContainer extends Component {
       <div className="header">
         {
         localStorage.token ?
-        <Spring from={{ number: 0 }} to={{ number: 100 }} config={config.slow}>
-          {props => (
-           <div style={{ width: props.number + "%" }}>
-             <nav className="nav-bar">
-                <NavLink exact activeClassName="active" to="/" className="navlink">Home</NavLink><br/>
+            <>
+             <nav className="navbar">
+               <Link onClick={this.signOut} className="notbutton">Sign out</Link>
+                <NavLink exact activeClassName="active" to="/" className="navlink">Today</NavLink><br/>
                 <NavLink activeClassName="active" to="/bios" className="navlink">Bios</NavLink><br/>
                 <NavLink activeClassName="active" to="/dates" className="navlink">Events</NavLink><br/>
                 <NavLink activeClassName="active" to="/contribute" className="navlink">Contribute!</NavLink><br/>
                 <NavLink activeClassName="active" to="/you" className="navlink">You</NavLink><br/>
              </nav>
-             <button onClick={this.signOut} >Sign out</button>
-           </div>)}
-          </Spring>
+             </>
           :
           <div>
-          <Spring from={{ number: 0 }} to={{ number: 100 }} config={config.slow}>
-            {props => (
-                <div style={{ width: props.number + "%" }}>
-                <button onClick={this.loginRoute} style={{"float": "right"}}>Login</button>
-                <button onClick={this.signupRoute} style={{"float": "right"}}>SignUp</button>
-                  <nav className="nav-bar">
-                    <NavLink activeClassName="active" to="/" className="navlink-logout">Home</NavLink><br/>
-                    <NavLink activeClassName="active" to="/bios" className="navlink-logout">Bios</NavLink><br/>
-                    <NavLink activeClassName="active" to="/dates" className="navlink-logout">Events</NavLink><br/>
+              <>
+                  <nav className="navbar">
+                  <Link onClick={this.loginRoute} className="notbutton">Login</Link>
+                  <Link onClick={this.signupRoute} className="notbutton">SignUp</Link>
+                    <NavLink activeClassName="active" to="/" className="navlink">Today</NavLink><br/>
+                    <NavLink activeClassName="active" to="/bios" className="navlink">Bios</NavLink><br/>
+                    <NavLink activeClassName="active" to="/dates" className="navlink">Events</NavLink><br/>
                   </nav>
-                </div>
-            )}
-          </Spring>
+                </>
           </div>
       }
     </div>

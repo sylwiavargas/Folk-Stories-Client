@@ -49,8 +49,8 @@ class LoginForm extends Component {
       <h1> Log in: </h1>
       <form onSubmit={(event) => this.handleSubmit(event)}>
       <h4> Username: </h4><input placeholder="username" type="username" name="username"/>
-      <h4> Password: </h4><input placeholder="password" type="password" name="password"/>
-      <br/><button>Submit</button>
+      <h4> Password: </h4><input placeholder="password" type="password" name="password"/><br/>
+      <br/><button className="notbutton left">Submit</button>
       </form>
       </div>
     )
