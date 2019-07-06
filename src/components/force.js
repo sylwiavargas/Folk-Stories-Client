@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import * as d3 from "d3";
 import { Graph } from 'react-d3-graph';
 import { connect} from 'react-redux';
 
@@ -85,9 +84,9 @@ class Force extends Component {
           window.alert(`Clicked node ${nodeId}`);
       };
 
-      const onDoubleClickNode = function(nodeId) {
-          window.alert(`Double clicked node ${nodeId}`);
-      };
+      // const onDoubleClickNode = function(nodeId) {
+      //     window.alert(`Double clicked node ${nodeId}`);
+      // };
 
       const onRightClickNode = function(event, nodeId) {
           window.alert(`Right clicked node ${nodeId}`);

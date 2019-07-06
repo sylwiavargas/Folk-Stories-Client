@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { NavLink, Link, withRouter } from 'react-router-dom'
-import {Spring,config} from 'react-spring/renderprops'
 
 import '../App.css'
 
