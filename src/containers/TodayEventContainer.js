@@ -126,16 +126,14 @@ class TodayEventContainer extends Component {
         >
         {props => (
           <div style={props}>
-            <article className="post">
               <h1>{moment().format('MMMM Do YYYY')} || Happened today:</h1>
-            </article>
           </div>
         )}
       </Spring>
       <button onClick={this.handleAll} className="notbutton left"> All </button>
       <button onClick={this.handleWomen} className="notbutton left"> Women </button>
       <button onClick={this.handleQueer} className="notbutton left"> Queer </button>
-      </div>
+      </div><br/><br/><br/>
       <ul>
       {efs && efs.length > 0 ?
         efs.map((event, index) =>

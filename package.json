@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "@vx/gradient": "0.0.189",
     "bcryptjs": "^2.4.3",
     "d3": "^5.9.7",

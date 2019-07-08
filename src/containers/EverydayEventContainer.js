@@ -52,6 +52,7 @@ class EverydayEventContainer extends Component {
       this.setState({
         loading: true
       })
+      this.props.deleteEvents()
       this.getEvents()
     }
   }
@@ -162,7 +163,7 @@ class EverydayEventContainer extends Component {
       </Spring>
       <button onClick={this.handleAll} className="notbutton left"> All </button>
       <button onClick={this.handleWomen} className="notbutton left"> Women </button>
-      <button onClick={this.handleQueer} className="notbutton left"> Queer </button><br/><br/>
+      <button onClick={this.handleQueer} className="notbutton left"> Queer </button><br/><br/><br/><br/>
       </div>
       {this.state.loading === false ?
       <ul>

@@ -39,26 +39,20 @@ ul {
   bottom: 0;
   width: 100%;
   padding-left: 1%;
-  padding-top: 1%;
   background-color: black;
   color: white;
-  height: 5%;
+  height: 12%;
 }
 
-.logo{
-  float: left;
- position: relative;
- left: 15%;
- top: 1%;
- margin-left: -100px;
- margin-top: -50px;
-}
+.logo {
+    display: inline-block;
+    height: 100px;
+  }
 
 .header{
   padding-left: 3%;
   padding-right: 3%;
-  padding-top: 3%;
-  padding-bottom: 3%;
+  padding-top: 1%;
   /* background-color: black; */
   color: black;
   font-weight: bold;
@@ -83,6 +77,41 @@ ul {
 
 .header .active{
    color: white;
+}
+
+.navbar {
+  list-style-type: none;
+}
+
+.hello {
+  display: block;
+}
+
+.bye {
+    display: none;
+}
+
+.navbar li {
+  text-align: center;
+  margin: 15px auto;
+}
+
+.header-toggle {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    color: rgba(255,255,255,0.8);
+    font-size: 24px;
+}
+
+.hamburger {
+    display: inline-block;
+    width: 40px;
+}
+
+.inline {
+  display: inline-block;
 }
 
 .notbutton {
@@ -153,6 +182,8 @@ ul {
 .image-cropper img {
   width: 100%;
   height: auto;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 
 .calendartable {

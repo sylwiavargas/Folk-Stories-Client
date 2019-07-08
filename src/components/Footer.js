@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import '../App.css'
+import logo from '../assets/images/logo.png'
+
 
 
 class Footer extends Component {
 
   render() {
     return (
-      <div className="footer">
-      Made with love
+    <div className="footer">
+        <img src={logo} className="logo" alt="logo"/>
     </div>
     )
   }

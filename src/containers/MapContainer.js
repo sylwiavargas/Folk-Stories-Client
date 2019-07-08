@@ -41,10 +41,12 @@ export class MapContainer extends Component {
          lng: -74.0060
         }}
       >
+      
         <Marker
           onClick={this.onMarkerClick}
           name={'New York City'}
         />
+
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
