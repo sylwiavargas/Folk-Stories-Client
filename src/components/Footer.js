@@ -9,7 +9,7 @@ class Footer extends Component {
   render() {
     return (
     <div className="footer">
-        <img src={logo} className="logo" alt="logo"/>
+        <a href="/"><img src={logo} className="logo" alt="logo"/></a>
     </div>
     )
   }

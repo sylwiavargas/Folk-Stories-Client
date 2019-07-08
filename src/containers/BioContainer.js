@@ -29,7 +29,7 @@ class BioContainer extends Component {
         :
         this.state.show === false ?
           <div className="bio">
-          <Link onClick={() => {this.getPeeps()}} className="notbutton"> Show People </Link>
+          <Link onClick={() => {this.getPeeps()}} className="notbutton dramatic"> Show People </Link>
           </div>
           : <div className="main">
             <h1> Here are the folks: </h1>

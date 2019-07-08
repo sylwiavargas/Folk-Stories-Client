@@ -39,14 +39,18 @@ ul {
   bottom: 0;
   width: 100%;
   padding-left: 1%;
-  background-color: black;
-  color: white;
-  height: 12%;
+  /* background-color: black; */
+  background-color: white;
+  /* border-top: 1px solid black; */
+  background-color: rgba(255, 255, 255, 0);
+  height: 10%;
 }
 
 .logo {
-    display: inline-block;
-    height: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 90px;
   }
 
 .header{
@@ -93,8 +97,14 @@ ul {
 
 .navbar li {
   text-align: center;
-  margin: 15px auto;
+  display: inline-block;
+  margin-left: 100px;
 }
+
+/* :focus {
+  outline: red solid 1 px;
+  background-color: black;
+} */
 
 .header-toggle {
     position: absolute;
@@ -124,6 +134,11 @@ ul {
   font-weight: bold;
   font-size: 18px;
   margin: 2px;
+}
+
+.dramatic {
+  /* height: 500px;
+  width: 500px; */
 }
 
 .notbutton:hover {

@@ -21,6 +21,12 @@ class NavBarContainer extends Component {
       show: !this.state.show})
   }
 
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      this.toggleClass()
+    }
+  }
+
   signupRoute = () => {
       let path = `/signUp`
       this.props.history.push(path)
@@ -58,7 +64,7 @@ class NavBarContainer extends Component {
     return (
       <div>
         <nav className="header">
-        <img src={hamburger} className="hamburger inline" alt="menu" onClick={this.toggleClass} />
+        <img src={hamburger} className="hamburger inline" alt="menu" onClick={this.toggleClass} tabindex="0" onKeyPress={this.handleKeyPress}/>
        {
           localStorage.token ?
               <>

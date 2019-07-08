@@ -20,8 +20,8 @@ body {
   position: absolute;
   will-change: transform;
   border-radius: 50%;
-  background: #721997;
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  background: #c16ecf;
+  box-shadow: 10px 30px 5px 0px #2376ae;
   opacity: 0.6;
 }
 

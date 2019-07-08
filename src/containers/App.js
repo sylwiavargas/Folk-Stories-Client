@@ -70,6 +70,8 @@ class App extends Component {
       <div className="App">
       <NavBarContainer/>
       <MainContainer/>
+      <br/>
+      <br/>
       <Footer />
     </div>
     );
