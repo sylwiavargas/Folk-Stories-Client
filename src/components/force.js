@@ -16,7 +16,7 @@ class Force extends Component {
       .then(connections => this.props.saveConnections(connections))
     }
 
-    componentDidMount(){
+  componentDidMount(){
       this.getConnections()
     }
 
@@ -35,24 +35,55 @@ class Force extends Component {
     // }
 
   render() {
-      const data = {
-          nodes: [{ id: 'Eleanor' }, { id: 'Amelia' }, { id: 'Nina' }, { id: 'Lora2'}, { id: 'Lora3'}, { id: 'Lora5'}, { id: 'Lora6'},],
-          links: [{ source: 'Eleanor', target: 'Amelia' }, { source: 'Eleanor', target: 'Nina' }, { source: 'Amelia', target: 'Nina' }, { source: 'Lora2', target: 'Lora3' }, { source: 'Lora5', target: 'Lora6' }],
-      };
+    const nodes = [];
+    const link = [];
+    const links = []
+    const peeps = this.props.connections.map((connection) => {
+      nodes.push({id: connection.person_one.name}, {id: connection.person_two.name})
+      link.push({source: connection.person_one.name, target: connection.person_two.name})
+      links.push(link)
+    } )
+
+
+        console.log("NODES", nodes)
+        console.log("LINK", link)
+        console.log("LINKS", links)
+
+
+    const data = {
+        nodes: [{ id: 'Eleanor Roosevelt' }, { id: 'Amelia Earhart' }, { id: 'Susan Sontag' }, { id: 'Annie Leibovitz'}, { id: 'Lorena Hickok'}, { id: 'Nina Simone'}, { id: 'Lorraine Hansberry'}, { id: 'Miriam Makeba'}, { id: 'Gloria Steinem'}, { id: 'Wilma Mankiller'}, { id: 'Martha Graham'}, { id: 'Hellen Keller'}, { id: 'Helen Tamiris'}, { id: 'Dorothy Pitnam Hughes'}, { id: 'Angela Davis'}, { id: 'Doris Humpray'}, { id: 'Katherine Dunham'}, { id: 'Marsha P. Johnson'}, { id: 'Storme DeLarverie'}, { id: 'Maria Skłodowska-Curie'}, { id: 'Kazimiera Bujwidowa'}],
+        links: [
+          { source: 'Eleanor Roosevelt', target: 'Amelia Earhart' },
+          {source: 'Eleanor Roosevelt', target: 'Lorena Hickok' },
+          {source: 'Susan Sontag', target: 'Annie Leibovitz' },
+          {source: 'Nina Simone', target: 'Lorraine Hansberry' },
+          {source: 'Nina Simone', target: 'Miriam Makeba' },
+          {source: 'Gloria Steinem', target: 'Wilma Mankiller' },
+          {source: 'Gloria Steinem', target: 'Angela Davis' },
+          {source: 'Gloria Steinem', target: 'Dorothy Pitnam Hughes' },
+          {source: 'Martha Graham', target: 'Hellen Keller' },
+          {source: 'Martha Graham', target: 'Doris Humpray' },
+          {source: 'Martha Graham', target: 'Helen Tamiris' },
+          {source: 'Martha Graham', target: 'Katherine Dunham' },
+          {source: 'Marsha P. Johnson', target: 'Storme DeLarverie' },
+          {source: 'Maria Skłodowska-Curie', target: 'Kazimiera Bujwidowa' },
+    ]};
+
+    console.log(data)
 
 
       // the graph configuration, you only need to pass down properties
       // that you want to override, otherwise default ones will be used
       const myConfig = {
           nodeHighlightBehavior: true,
-          automaticRearrangeAfterDropNode: false,
+          automaticRearrangeAfterDropNode: true,
           width: 1000,
           height: 500,
-          maxZoom: 1,
+          maxZoom: 0.2,
           minZoom: 0.1,
           "d3": {
             "alphaTarget": 0.95,
-            "gravity": -500,
+            "gravity": -150,
             "linkLength": 100,
             "linkStrength": 1,
             'viewBox':'-0 -5 10 10',

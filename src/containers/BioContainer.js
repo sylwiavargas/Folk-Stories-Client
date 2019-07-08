@@ -23,6 +23,10 @@ class BioContainer extends Component {
     const path = this.props.match.path
     return(
       <div className="App">
+      <div style={{"border": "2px solid black", "backgroundImage": "linear-gradient(300deg, #c16ecf 0%,  #2376ae  100%)"}}>
+      <Force/>
+      </div>
+
       {
         path.includes("/:id") ?
         <Person />
