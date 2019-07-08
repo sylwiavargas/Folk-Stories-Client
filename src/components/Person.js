@@ -46,7 +46,9 @@ class Person extends Component {
           </div>
           <div className="column">
             <h1> {person.name} </h1>
-            <h2> "{person.quote_eng}" </h2>
+            {person.quote_eng === " " ?
+            null :
+            <h2> "{person.quote_eng}" </h2>}
             <p> {person.bio_eng} </p>
             <p> Read more about {person.name} at <a href = {person.read_more_eng} target="_blank" rel="noopener noreferrer"> { person.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]} </a> </p>
             <h2> Visit {first_name}'s places: </h2>
@@ -59,7 +61,7 @@ class Person extends Component {
             <h2> See {first_name}'s events: </h2>
             <ul>
             {
-              person.events.map((event, index) => <li key={index}><Link to={`/events/${event.id}`}>{event.year_era_id}: {event.title_eng}</Link>  </li>)
+              person.events.map((event, index) => <li key={index}>{event.year_era_id}: <Link to={`/events/${event.id}`}> {event.title_eng}</Link>  </li>)
             }
             </ul>
           </div>

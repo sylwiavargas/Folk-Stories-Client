@@ -5,6 +5,10 @@ font: Helvetica;
 font-family: 'Josefin Sans', sans-serif;
 }
 
+ul {
+  list-style-type: none;
+}
+
 @-webkit-keyframes shadow-pop-tr {
   0% {
     box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
@@ -41,11 +45,20 @@ font-family: 'Josefin Sans', sans-serif;
   height: 5%;
 }
 
+.logo{
+  float: left;
+ position: relative;
+ left: 15%;
+ top: 1%;
+ margin-left: -100px;
+ margin-top: -50px;
+}
+
 .header{
-  padding-left: 1%;
-  padding-right: 1%;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 3%;
+  padding-bottom: 3%;
   /* background-color: black; */
   color: black;
   font-weight: bold;
@@ -123,26 +136,23 @@ font-family: 'Josefin Sans', sans-serif;
 }
 
 .image-cropper {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 50%;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .image-cropper:hover {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     position: relative;
     overflow: hidden;
-    border-radius: 50%;
 }
 
-img {
-    display: inline;
-    margin: 0 auto;
-    height: 100%;
-    width: auto;
+.image-cropper img {
+  width: 100%;
+  height: auto;
 }
 
 .calendartable {

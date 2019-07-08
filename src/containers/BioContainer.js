@@ -21,15 +21,15 @@ class BioContainer extends Component {
 
   render() {
     const path = this.props.match.path
-    // console.log(this.state.show)
+    console.log(this.state)
     return(
       <div className="App">
       {
         path.includes("/:id") ?
         <Person />
         :
-        this.state.show === false
-          ? <div className="bio">
+        this.state.show === false ?
+          <div className="bio">
           <Link onClick={() => {this.getPeeps()}} className="notbutton"> Show People </Link>
           </div>
           : <div className="main">
@@ -39,7 +39,7 @@ class BioContainer extends Component {
                 ? this.props.people.map((person, index) => {
                   return <li key={index}> <Link to={`/bios/${person.id}`}>{person.name}</Link></li>
                 })
-                : null
+                : <p> loading </p>
               }
             </ul>
             <h1> Here's how they relate: </h1>

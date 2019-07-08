@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { NavLink, Link, withRouter } from 'react-router-dom'
 
 import '../App.css'
+import logo from '../assets/images/logo.png'
 
 class NavBarContainer extends Component {
 
@@ -25,6 +26,9 @@ class NavBarContainer extends Component {
     this.props.clearCurrentUser()
     this.goBack()
   }
+
+  // <img src={logo} alt="logo" className="logo"/>
+
 
   render() {
     return (

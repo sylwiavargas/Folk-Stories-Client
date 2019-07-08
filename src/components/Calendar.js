@@ -18,7 +18,7 @@ class Calendar extends Component {
 
     return(
       <div className="main">
-      <h1> <NavLink to={`/dates/7`} style={{"text-decoration": "none"}}> July </NavLink> </h1>
+      <h1> <NavLink to={`/dates/7`} style={{"textDecoration": "none"}}> July </NavLink> </h1>
       <NavLink to={`/dates/7/71`} className="notbutton left space"> 1 </NavLink>
       <NavLink to={`/dates/7/72`} className="notbutton left space"> 2 </NavLink>
       <NavLink to={`/dates/7/73`} className="notbutton left space"> 3 </NavLink>

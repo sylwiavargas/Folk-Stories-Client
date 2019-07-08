@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
+import arrow from '../img/arrow.png';
+
 
 const API = "http://localhost:3000/api/v1/events"
 
 class Event extends Component {
+
+  goBack = () => {
+    this.props.history.push('/')
+  }
 
   state = {
     loading: true
@@ -26,7 +32,6 @@ class Event extends Component {
       this.setState({
         loading: false
       })
-    console.log("I changed the state")
     }
   }
 
