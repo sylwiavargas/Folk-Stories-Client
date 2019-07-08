@@ -39,8 +39,15 @@ class Force extends Component {
     const link = [];
     const links = []
     const peeps = this.props.connections.map((connection) => {
+      const co = () =>  {if (connection.relationship === "romantic") {
+        return "red"
+      } else if (connection.relationship === "collaboration") {
+        return "5c17e8"
+      } if (connection.relationship === "friendship") {
+        return "e8a217"
+      }}
       nodes.push({id: connection.person_one.name}, {id: connection.person_two.name})
-      link.push({source: connection.person_one.name, target: connection.person_two.name})
+      link.push({source: connection.person_one.name, target: connection.person_two.name, color: co})
       links.push(link)
     } )
 
@@ -53,12 +60,12 @@ class Force extends Component {
     const data = {
         nodes: [{ id: 'Eleanor Roosevelt' }, { id: 'Amelia Earhart' }, { id: 'Susan Sontag' }, { id: 'Annie Leibovitz'}, { id: 'Lorena Hickok'}, { id: 'Nina Simone'}, { id: 'Lorraine Hansberry'}, { id: 'Miriam Makeba'}, { id: 'Gloria Steinem'}, { id: 'Wilma Mankiller'}, { id: 'Martha Graham'}, { id: 'Hellen Keller'}, { id: 'Helen Tamiris'}, { id: 'Dorothy Pitnam Hughes'}, { id: 'Angela Davis'}, { id: 'Doris Humpray'}, { id: 'Katherine Dunham'}, { id: 'Marsha P. Johnson'}, { id: 'Storme DeLarverie'}, { id: 'Maria Skłodowska-Curie'}, { id: 'Kazimiera Bujwidowa'}],
         links: [
-          { source: 'Eleanor Roosevelt', target: 'Amelia Earhart' },
-          {source: 'Eleanor Roosevelt', target: 'Lorena Hickok' },
+          { source: 'Eleanor Roosevelt', target: 'Amelia Earhart', color: "5c17e8"},
+          {source: 'Eleanor Roosevelt', target: 'Lorena Hickok'},
           {source: 'Susan Sontag', target: 'Annie Leibovitz' },
-          {source: 'Nina Simone', target: 'Lorraine Hansberry' },
+          {source: 'Nina Simone', target: 'Lorraine Hansberry', color: "e8a217" },
           {source: 'Nina Simone', target: 'Miriam Makeba' },
-          {source: 'Gloria Steinem', target: 'Wilma Mankiller' },
+          {source: 'Gloria Steinem', target: 'Wilma Mankiller'},
           {source: 'Gloria Steinem', target: 'Angela Davis' },
           {source: 'Gloria Steinem', target: 'Dorothy Pitnam Hughes' },
           {source: 'Martha Graham', target: 'Hellen Keller' },
@@ -82,27 +89,45 @@ class Force extends Component {
           maxZoom: 0.2,
           minZoom: 0.1,
           "d3": {
+            "manyBody.strength": -30,
+            "simulation.alpha": 0.95,
+            "simulation.tick": 100,
             "alphaTarget": 0.95,
             "gravity": -150,
-            "linkLength": 100,
+            "linkLength": 150,
             "linkStrength": 1,
-            'viewBox':'-0 -5 10 10',
-            'refX':34,
-            'refY':0,
-            'orient':'auto',
-            'markerWidth':8,
-            'markerHeight':8,
-            'xoverflow':'visible'
+            "viewBox": "-0 -5 10 10",
+            "refX": 34,
+            "refY": 0,
+            "orient":"auto",
+            "markerWidth":8,
+            "markerHeight":8,
+            "xoverflow":"visible"
           },
           node: {
-              color: 'lightgreen',
+            label:'label text',
+              color: "#17e89f",
               size: 80,
               fontSize: 15,
-              highlightStrokeColor: 'black'
+              fontColor: "rgba(255, 255, 255, .5)",
+              highlightStrokeColor: "#2376ae",
+              "mouseCursor": "pointer",
+              "highlightFontSize": 18,
+              "highlightFontWeight": "bold",
+              "highlightStrokeWidth": 1.5,
+              "svg": "",
+              labelProperty: "label",
+              renderLabel: true,
           },
           link: {
-              color: 'red',
-              highlightColor: 'violet'
+              color: "red",
+              fontColor: "black",
+              fontSize: 11,
+              highlightColor: "red",
+              "mouseCursor": "pointer",
+              labelProperty: "label",
+              renderLabel: true,
+
           }
       };
 
@@ -131,8 +156,8 @@ class Force extends Component {
       //     window.alert(`Mouse out node ${nodeId}`);
       // };
 
-      const onClickLink = function(source, target) {
-          window.alert(`Clicked link between ${source} and ${target}`);
+      const onClickLink = function(source, target, label) {
+          window.alert(`Clicked link between ${source} and ${target} - their relationship was ${label}`);
       };
 
       const onRightClickLink = function(event, source, target) {
