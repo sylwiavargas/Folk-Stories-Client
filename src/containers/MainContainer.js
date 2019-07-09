@@ -14,7 +14,7 @@ import Loading from '../components/Loading'
 import SignUpForm from '../components/SignUpForm'
 import LoginForm from '../components/LoginForm'
 import DatesPage from './DatesPage'
-// import MapContainer from './MapContainer'
+import MapContainer from './MapContainer'
 
 import '../App.css';
 
@@ -63,8 +63,10 @@ class MainContainer extends Component {
       <Switch>
       {// <Route exact path="/" component={MapContainer} />
       // <Route exact path="/bios/:id" component={Person} />
+      //       <Route exact path="/" component={DatesPage} />
+
       }
-      <Route exact path="/" component={DatesPage} />
+      <Route exact path="/" component={MapContainer} />
       <Route path="/(bios|bios/:id)" component={BioContainer} />
       <Route exact path="/contribute" component={ContributeContainer} />
       <Route path="/(dates|dates/:id|dates/:id/:id)/" component={DatesPage} />
