@@ -290,6 +290,13 @@ ul, li {
   box-shadow: 0px 4px 10px -8px black
 }
 
+.teal-forever {
+  margin-left: 2%;
+  padding-left: 2%;
+  background-color: #17e89f;
+  box-shadow: 0px 4px 10px -8px black
+}
+
 .teal:hover {
   background-color: #17e89f;
   box-shadow: 0px 4px 10px -8px black

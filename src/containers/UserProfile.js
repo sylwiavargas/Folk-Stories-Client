@@ -3,7 +3,6 @@ import { connect} from 'react-redux';
 
 class UserProfile extends Component {
 
-
   state={
     id: this.props.id,
     username: this.props.username,
@@ -73,7 +72,7 @@ class UserProfile extends Component {
       <div className="main">
         <div>
           {this.state.change === true ?
-            <div> <h1> Changes have been implemented! </h1> </div>
+            <div> <h1> Thank you! Our admins will add yoursuggestion! </h1> </div>
           :
            null
           }

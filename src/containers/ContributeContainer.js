@@ -7,6 +7,10 @@ const API2 = "http://localhost:3000/api/v1/bios"
 
 class ContributeContainer extends Component {
 
+  state={
+    change: false,
+  }
+
   handleSubmitEvent = (e)=> {
     e.preventDefault();
     let title_eng = e.target.title_eng.value
@@ -37,6 +41,9 @@ class ContributeContainer extends Component {
       })
     .then(res => res.json())
     .then(event => this.props.addEvent(event))
+    .then(console.log("added event!"))
+    this.setState({
+      change: true})
   }
 
   addPeep = (userInput) =>{
@@ -50,22 +57,32 @@ class ContributeContainer extends Component {
       })
     .then(res => res.json())
     .then(peep => this.props.addPeep(peep))
+    .then(console.log("added peep!"))
+    this.setState({
+      change: true})
   }
 
 
   render() {
     return (
+      <div>
+      {this.state.change === true ?
+        <div className="teal-forever"> <h1>  Changes have been implemented! </h1> </div>
+      :
+       null
+      }
       <div className="formtable">
         <div class="column teal">
           <h1> Add a new event: </h1>
           <form onSubmit={(e) => this.handleSubmitEvent(e)}>
             <input placeholder="Title" type="text" name="title_eng" className="bold"/><br/><br/>
             <input className="textarea"  placeholder="Description" type="textarea" name="description_eng"/><br/><br/>
-            <input placeholder="Date (MMDDYYY)" type="text" name="mmddyyy"/><br/> <br/><br/>
+            <input placeholder="Date (YYYYMMDD)" type="text" name="mmddyyy"/><br/> <br/><br/>
             <button className="notbutton left">Submit</button>
           </form>
         </div>
         <div class="column yellow">
+
           <h1> Add a new bio: </h1>
           <form onSubmit={(e) => this.handleSubmitPeep(e)}>
             <input placeholder="Name" type="text" name="name" className="bold"/><br/><br/>
@@ -75,6 +92,7 @@ class ContributeContainer extends Component {
             <button className="notbutton left">Submit</button>
           </form>
         </div>
+      </div>
       </div>
     )}
 
