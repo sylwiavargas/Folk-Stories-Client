@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Graph } from 'react-d3-graph';
 import { connect} from 'react-redux';
+import Legend from './Legend'
 
 
 class Force extends Component {
@@ -139,6 +140,8 @@ class Force extends Component {
     return (
       <div>
       { data && data.nodes && data.nodes.length > 0 ?
+        <>
+      <Legend />
       <Graph
           id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
           data={data}
@@ -150,6 +153,7 @@ class Force extends Component {
           // onRightClickLink={onRightClickLink}
 
       />
+      </>
       : null}
       </div>
     )

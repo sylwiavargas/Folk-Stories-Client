@@ -493,7 +493,21 @@ a:hover {
 
 .force{
   border: 2px solid black;
-  background-image: linear-gradient(300deg, #c16ecf 0%,  #2376ae  100%)
+  background-image: linear-gradient(300deg, #c16ecf 0%,  #2376ae  100%);
+}
+
+.legend{
+  position: absolute;
+  background-color: white;
+  padding-left: 0.5%;
+  font-size: 80%;
+  line-height: 20%;
+  border: 2px solid black;
+  width: 130px;
+  height: 100px;
+  left: 74%;
+  top: 53%;
+  z-index: 3;
 }
 
 .wrapper-bio {
