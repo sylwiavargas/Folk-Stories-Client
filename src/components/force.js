@@ -63,6 +63,15 @@ class Force extends Component {
         // console.log("LINKS", links)
         console.log(this.props)
 
+        const onClickNode = (nodeId) => {
+          const node = nodes.find((node) => node.id === nodeId)
+          return this.props.savePerson(node)
+        };
+
+        const updateState = function(node){
+
+        }
+
 
     const data = {
         nodes: [{ id: 'Eleanor Roosevelt', n: 1 }, { id: 'Amelia Earhart' }, { id: 'Susan Sontag' }, { id: 'Annie Leibovitz'}, { id: 'Lorena Hickok'}, { id: 'Nina Simone'}, { id: 'Lorraine Hansberry'}, { id: 'Miriam Makeba'}, { id: 'Gloria Steinem'}, { id: 'Wilma Mankiller'}, { id: 'Martha Graham'}, { id: 'Hellen Keller'}, { id: 'Helen Tamiris'}, { id: 'Dorothy Pitnam Hughes'}, { id: 'Angela Davis'}, { id: 'Doris Humpray'}, { id: 'Katherine Dunham'}, { id: 'Marsha P. Johnson'}, { id: 'Storme DeLarverie'}, { id: 'Maria Skłodowska-Curie'}, { id: 'Kazimiera Bujwidowa'}],
@@ -179,7 +188,7 @@ class Force extends Component {
           id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
           data={data}
           config={myConfig}
-          // onClickNode={onClickNode}
+          onClickNode={onClickNode}
           // onRightClickNode={onRightClickNode}
           onClickGraph={onClickGraph}
           // onClickLink={onClickLink}
