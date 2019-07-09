@@ -267,6 +267,7 @@ ul, li {
   font-size: 15px;
   width: 80%;
   overflow: auto;
+  border: black 1px solid;
 }
 
 .bold {

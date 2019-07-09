@@ -63,7 +63,7 @@ class MainContainer extends Component {
       <Switch>
       {// <Route exact path="/" component={MapContainer} />
       }
-      <Route exact path="/" component={TodayEventContainer} />
+      <Route exact path="/" component={DatesPage} />
       <Route exact path="/(bios|bios/:id)" component={BioContainer} />
       <Route exact path="/contribute" component={ContributeContainer} />
       <Route path="/(dates|dates/:id|dates/:id/:id)/" component={DatesPage} />
