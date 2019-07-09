@@ -2,7 +2,8 @@ export default function peopleReducer(
   state = {
     people: [],
     person: {},
-    connections: []
+    connections: [],
+    peep: {},
   },
   action
 ){
@@ -11,6 +12,8 @@ export default function peopleReducer(
         return {...state, people: action.payload}
       case 'SAVE_PERSON':
         return {...state, person: action.payload}
+      case 'SAVE_PEEP':
+        return {...state, peep: action.payload}
       case 'ADD_PERSON':
         return {...state, people: [...state.people, action.payload]}
       case 'SAVE_CONNECTIONS':

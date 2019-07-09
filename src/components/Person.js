@@ -4,27 +4,38 @@ import Loading from './Loading';
 import { Link } from 'react-router-dom';
 import facebook from '../img/facebook.png';
 import twitter from '../img/twitter.svg';
+import Force from './Force.js';
+
 
 class Person extends Component {
+
+  state = {
+    loading: true
+  }
 
   getPeep = () => {
     const num = this.props.match.params.id
     fetch(`http://localhost:3000/api/v1/bios/${num}`)
       .then(res => res.json())
-      .then(person => this.props.savePerson(person))
+      .then(person => this.props.savePeep(person))
   }
 
   componentDidMount() {
     this.getPeep()
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.location !== this.props.location) {
+      this.getPeep()
+    }
+  }
+
   render() {
-    const person = this.props.person.person.person
+    const person = this.props.peep.person
     let first_name;
 
     if (person) {
       first_name = person.name.split(" ")[0]
-      // console.log("first name")
     }
 
     return(
@@ -66,20 +77,27 @@ class Person extends Component {
             </ul>
           </div>
           <div className="column">
-          <br/>
-          <h2> Tell your friends about {first_name}: </h2>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
-           <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
+            <br/>
+            <h2> Tell your friends about {first_name}: </h2>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
+             <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
           </div>
         </div>
       </div>
     )}
 }
 
+// <>
+// <h1> Check out other folks: </h1>
+// <div className="footer-bio force">
+//   <Force/>
+// </div>
+// </>
 
 const mapStateToProps = state => {
   return {
-    person: state.people
+    person: state.people.person,
+    peep: state.people.peep
   }
 }
 
@@ -87,6 +105,9 @@ const mapDispatchToProps = dispatch => {
   return {
     savePerson: (person) => {
       dispatch({type: 'SAVE_PERSON', payload: person})
+    },
+    savePeep: (person) => {
+      dispatch({type: 'SAVE_PEEP', payload: person})
     }
   }
 }

@@ -24,7 +24,7 @@ class BioContainer extends Component {
     }
 
   featurePeep = () => {
-      let id = this.props.person.n
+      let id = this.props.person.id
       this.props.history.push(`/bios/${id}`)
   }
 
@@ -34,9 +34,6 @@ class BioContainer extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.person !== this.props.person) {
-      this.setState({
-        show: true
-      })
       this.featurePeep()
     }
   }
@@ -59,7 +56,11 @@ class BioContainer extends Component {
               <Force/>
             </div>
           <div className="content-bio">
-            <Quote/>
+            <Switch>
+              <Route exact path="/bios" component={Quote} />
+              <Route exact path="/bios/:id" component={Person} />
+              <Route component={Quote} />
+            </Switch>
           </div>
             <div className="sidebar-bio">
             <h2> Choose a folk: </h2>

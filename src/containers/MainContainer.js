@@ -62,13 +62,13 @@ class MainContainer extends Component {
       :
       <Switch>
       {// <Route exact path="/" component={MapContainer} />
+      // <Route exact path="/bios/:id" component={Person} />
       }
       <Route exact path="/" component={DatesPage} />
-      <Route exact path="/(bios|bios/:id)" component={BioContainer} />
+      <Route path="/(bios|bios/:id)" component={BioContainer} />
       <Route exact path="/contribute" component={ContributeContainer} />
       <Route path="/(dates|dates/:id|dates/:id/:id)/" component={DatesPage} />
       <Route exact path="/events/:id" component={Event} />
-      <Route exact path="/bios/:id" component={Person} />
       <Route exact path="/you" component={UserProfile} />
       <Route exact path="/signUp" component={SignUpForm} formInput={this.formInput}/>
       <Route exact path="/login" component={LoginForm} />

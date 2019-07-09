@@ -40,10 +40,10 @@ class Event extends Component {
   }
 
   render() {
-    console.log(this.context.router)
-    // console.log("STATE", this.state)
-    // console.log("PROPS", this.props.events)
-    // console.log("LENGTH", this.props.events.length)
+    // console.log(this.context.router)
+    // // console.log("STATE", this.state)
+    // // console.log("PROPS", this.props.events)
+    // // console.log("LENGTH", this.props.events.length)
     const backgrounds = ["gradient-five", "gradient-four", "gradient-three", "gradient-two", "gradient-one"]
     const pickOne = () => backgrounds[Math.floor(Math.random()*backgrounds.length)]
     console.log(this.props.events)

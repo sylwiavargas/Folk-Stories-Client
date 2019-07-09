@@ -24,8 +24,7 @@ class Force extends Component {
 
   render() {
     const nodes = [];
-    const link = [];
-    const links = []
+    const links = [];
     const peeps = this.props.connections.map((connection) => {
       const co = () =>  {if (connection.relationship === "romantic") {
         return "red"
@@ -35,64 +34,25 @@ class Force extends Component {
         return "e8a217"
       }}
       nodes.push({id: connection.person_one.name, n: connection.person_one.id}, {id: connection.person_two.name, n: connection.person_two.id })
-      link.push({source: connection.person_one.name, target: connection.person_two.name, color: co})
-      links.push(link)
-    } )
-
-    // const findPeep = (nodeId) => {
-    //   const node = nodes.find((node) => node.id))
-    //
-    //   return console.log(node)}
-
-    // const findPeep = (nodeId) => {
-    //   return this.props.savePerson(this.props.connections.find((connection) => connection.person_one.name === nodeId || connection.person_two.name === nodeId
-    // ))}
-
-    // const onClickNode = (nodeId) => {
-    //   const node = nodes.find((node) => node.id === nodeId)
-    //   return this.props.savePerson(node)
-    // };
-    //
-    // const updateState = function(node){
-    //
-    // }
-
+      links.push({source: connection.person_one.name, target: connection.person_two.name, color: co()})
+    })
         //
         // console.log("NODES", nodes)
-        // console.log("LINK", link)
         // console.log("LINKS", links)
-        console.log(this.props)
+        // console.log(this.props)
 
-        const onClickNode = (nodeId) => {
-          const node = nodes.find((node) => node.id === nodeId)
-          return this.props.savePerson(node)
-        };
 
-        const updateState = function(node){
-
-        }
-
+    const onClickNode = (nodeId) => {
+      const person = this.props.people.find((person) => person.name === nodeId )
+      return this.props.savePerson(person)
+      console.log("force sent it")
+    };
 
     const data = {
-        nodes: [{ id: 'Eleanor Roosevelt', n: 1 }, { id: 'Amelia Earhart' }, { id: 'Susan Sontag' }, { id: 'Annie Leibovitz'}, { id: 'Lorena Hickok'}, { id: 'Nina Simone'}, { id: 'Lorraine Hansberry'}, { id: 'Miriam Makeba'}, { id: 'Gloria Steinem'}, { id: 'Wilma Mankiller'}, { id: 'Martha Graham'}, { id: 'Hellen Keller'}, { id: 'Helen Tamiris'}, { id: 'Dorothy Pitnam Hughes'}, { id: 'Angela Davis'}, { id: 'Doris Humpray'}, { id: 'Katherine Dunham'}, { id: 'Marsha P. Johnson'}, { id: 'Storme DeLarverie'}, { id: 'Maria Skłodowska-Curie'}, { id: 'Kazimiera Bujwidowa'}],
-        links: [
-          { source: 'Eleanor Roosevelt', target: 'Amelia Earhart', color: "red"},
-          {source: 'Eleanor Roosevelt', target: 'Lorena Hickok', color: "red" },
-          {source: 'Susan Sontag', target: 'Annie Leibovitz', color: "red" },
-          {source: 'Nina Simone', target: 'Lorraine Hansberry', color: "5c17e8" },
-          {source: 'Nina Simone', target: 'Miriam Makeba', color: "5c17e8"  },
-          {source: 'Gloria Steinem', target: 'Wilma Mankiller', color: "5c17e8" },
-          {source: 'Gloria Steinem', target: 'Angela Davis', color: "5c17e8"  },
-          {source: 'Gloria Steinem', target: 'Dorothy Pitnam Hughes', color: "e8a217" },
-          {source: 'Martha Graham', target: 'Hellen Keller', color: "5c17e8"  },
-          {source: 'Martha Graham', target: 'Doris Humpray', color: "5c17e8"  },
-          {source: 'Martha Graham', target: 'Helen Tamiris', color: "5c17e8"  },
-          {source: 'Martha Graham', target: 'Katherine Dunham', color: "5c17e8"  },
-          {source: 'Marsha P. Johnson', target: 'Storme DeLarverie', color: "5c17e8"  },
-          {source: 'Maria Skłodowska-Curie', target: 'Kazimiera Bujwidowa', color: "5c17e8"  },
-    ]};
+        nodes: nodes,
+        links: links};
 
-    // console.log(data)
+    // console.log("DATA", data)
 
       const myConfig = {
           nodeHighlightBehavior: true,
@@ -102,12 +62,12 @@ class Force extends Component {
           maxZoom: 5,
           minZoom: 0.1,
           "d3": {
-            "manyBody.strength": -30,
+            "manyBody.strength": -50,
             "simulation.alpha": 0.95,
             "simulation.tick": 100,
             "alphaTarget": 0.95,
-            "gravity": -150,
-            "linkLength": 150,
+            "gravity": -100,
+            "linkLength": 120,
             "linkStrength": 1,
             "viewBox": "-0 -5 10 10",
             "refX": 34,
@@ -184,6 +144,7 @@ class Force extends Component {
       // };
     return (
       <div>
+      { data && data.nodes && data.nodes.length > 0 ?
       <Graph
           id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
           data={data}
@@ -195,6 +156,7 @@ class Force extends Component {
           // onRightClickLink={onRightClickLink}
 
       />
+      : null}
       </div>
     )
   }
