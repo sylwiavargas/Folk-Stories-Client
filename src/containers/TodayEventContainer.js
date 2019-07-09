@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Trail } from "react-spring/renderprops";
 import {Spring,config} from 'react-spring/renderprops'
 import moment from 'moment';
 // import psl from 'psl';
@@ -109,6 +108,9 @@ class TodayEventContainer extends Component {
     const evs = this.props.events;
     const efs = this.props.featuredEvents;
 
+    const backgrounds = ["gradient-five", "gradient-four", "gradient-three", "gradient-two", "gradient-one"]
+    const pickOne = () => backgrounds[Math.floor(Math.random()*backgrounds.length)]
+
     // console.log("State", this.state)
     // console.log("USER TYPES", this.props.user.currentUser.types)
 
@@ -130,44 +132,77 @@ class TodayEventContainer extends Component {
           </div>
         )}
       </Spring>
+      <div className="margin">
       <button onClick={this.handleAll} className="notbutton left"> All </button>
       <button onClick={this.handleWomen} className="notbutton left"> Women </button>
       <button onClick={this.handleQueer} className="notbutton left"> Queer </button>
+      </div>
       </div><br/><br/><br/>
       <ul>
       {efs && efs.length > 0 ?
         efs.map((event, index) =>
-          <Fragment key={index}>
-           <h2> {event.event.year_era_id}: {event.event.title_eng} </h2>
-           {event.event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
-           <p> {event.event.description_eng} </p>
-           <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
-             </a> </p>
-           <p> <strong> Related people: </strong> {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name} </Link>})} </p>
-           <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
-            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
-           </Fragment>
+        <Fragment key={index}>
+        <div className={`event-wrapper-scaled ${pickOne()}`}>
+        <div className="event-scaled">
+          <h2> {event.event.year_era_id}: {event.event.title_eng} </h2>
+          <p className="inline "><strong>Event category:</strong>
+          {event.event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
+          <p> {event.event.description_eng} </p>
+          <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
+          </a> </p>
+          {event.event.people ?
+            <>
+              <strong className=""> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
+              return (<>
+              <div className="image-cropper-mini inline margin">
+              <Link to={`/bios/${person.id}`}  key={index}> <img src = {person.picture} alt={person.name}/></Link>
+              </div>
+              </>)
+              })}
+              </> : null}
+           <p className=""> <strong> Share with friends: </strong></p>
+           <div className="">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
+          <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a></div><br/><br/>
+          </div>
+          </div>
+          <br/>
+        </Fragment>
          )
         : evs !== undefined && evs.length > 0 ?
-          <Trail
-           items={evs}
-           keys={event => event.event.id}
-           from={{ marginLeft: -20, opacity: 0 }}
-           to={{ marginLeft: 20, opacity: 1 }}
-         >
-           {e => props => (
-             <div style={props}>
-             <h2> {e.event.year_era_id}: {e.event.title_eng} </h2>
-             <p> {e.event.description_eng} </p>
-             <p> Read more about this event at <a href={e.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { e.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
-               </a> </p>
-             <p> <strong> Related people: </strong> {e.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name} </Link>})} </p>
-             <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
-              <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
-             </div>
-           )}
-         </Trail>
-      : null
+        evs.map((event, index) =>
+        <Fragment key={index}>
+        <div className={`event-wrapper-scaled ${pickOne()}`}>
+        <div className="event-scaled">
+          <h2> {event.event.year_era_id}: {event.event.title_eng} </h2>
+          <p className="inline "><strong>Event category:</strong>
+          {event.event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
+          <p> {event.event.description_eng} </p>
+          <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
+          </a> </p>
+          {event.event.people ?
+            <>
+              <strong className=""> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
+              return (<>
+              <div className="image-cropper-mini inline margin">
+              <Link to={`/bios/${person.id}`}  key={index}> <img src = {person.picture} alt={person.name}/></Link>
+              </div>
+              </>)
+              })}
+              </> : null}
+           <p className=""> <strong> Share with friends: </strong></p>
+           <div className="">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
+          <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a></div><br/><br/>
+          </div>
+          </div>
+          <br/>
+        </Fragment>
+         )
+      :         <div>
+              <p> Oh well, no events here yet! </p>
+              <p> Would you like to <Link to={`/contribute`} style={{"color": "#2376ae"}}>contribute?</Link></p>
+              </div>
       }
       </ul>
       </div>

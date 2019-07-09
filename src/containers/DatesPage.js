@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Switch, Route  } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
-// import { Trail } from "react-spring/renderprops";
-// import {Spring,config} from 'react-spring/renderprops'
 import TodayEventContainer from './TodayEventContainer';
 import EverydayEventContainer from './EverydayEventContainer';
 import Calendar from '../components/Calendar';
 import MonthContainer from './MonthContainer';
 
-// import facebook from '../img/facebook.png';
-// import twitter from '../img/twitter.svg';
-
 class DatesPage extends Component {
 
-// when user clicks anything, the state will change and a different container will render
 
   render() {
-    // console.log(this.props)
     return (
       <div className="calendartable">
         <div>

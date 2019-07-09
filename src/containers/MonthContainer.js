@@ -156,10 +156,13 @@ class MonthContainer extends Component {
 
       return (
         <div>
+        { this.state.loading === false ?
+          propsMonth && propsMonth.length > 0 ?
+          <>
           <div>
             <Spring config={config.default}
-              from={{ opacity: 0.6, marginLeft: -10 }}
-              to={{ opacity: 1, marginLeft: 50 }}
+              from={{ opacity: 0.6, marginLeft: -30 }}
+              to={{ opacity: 1, marginLeft: 10 }}
             >
             {props => (
               <div style={props}>
@@ -168,14 +171,15 @@ class MonthContainer extends Component {
             )}
             </Spring>
           </div>
-        { this.state.loading === false ?
-          propsMonth && propsMonth.length > 0 ?
-          <div>
+          <div className="month-wrapper">
+          <div className="month">
           {
-            propsMonth[0].events.map((e) => <li key={e.id}>{e.year_era_id}: <Link to={`/events/${e.id}`}  key={e.id} arget="_blank" rel="noopener noreferrer">  {e.title_eng} </Link> <br/></li>)
+            propsMonth[0].events.map((e) => <li key={e.id}><strong>{e.year_era_id}: </strong> <Link to={`/events/${e.id}`}  key={e.id} arget="_blank" rel="noopener noreferrer">  {e.title_eng} </Link> <br/></li>)
 
           }
           </div>
+          </div>
+          </>
           : null
           : <p> loading </p> }
           </div>

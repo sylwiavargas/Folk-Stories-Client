@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component  } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
+import Loading from '../components/Loading';
+import facebook from '../img/facebook.png';
+import twitter from '../img/twitter.svg';
+
 import arrow from '../img/arrow.png';
 
 
@@ -36,29 +40,48 @@ class Event extends Component {
   }
 
   render() {
-    console.log("STATE", this.state)
-    console.log("PROPS", this.props.events)
+    console.log(this.context.router)
+    // console.log("STATE", this.state)
+    // console.log("PROPS", this.props.events)
     // console.log("LENGTH", this.props.events.length)
+    const backgrounds = ["gradient-five", "gradient-four", "gradient-three", "gradient-two", "gradient-one"]
+    const pickOne = () => backgrounds[Math.floor(Math.random()*backgrounds.length)]
+    console.log(this.props.events)
+
     return(
-      <div className="main">
+      <div className={` event-wrapper ${pickOne()}`}>
       { this.state.loading === false ?
-        <ul>
+        <div className="event">
         {this.props.events !== undefined && this.props.events.length > 0 ?
           this.props.events.map((event, index) => {
-            return <li key={index}>
+            return <li style={{"padding": "5%"}} key={index}>
             <h2> {event.event.month_id}/{event.event.day_id}/{event.event.year_era_id}: {event.event.title_eng}</h2>
             <p> {event.event.description_eng} </p>
-            <a href={event.event.read_more_eng} target="_blank" rel="noopener noreferrer"> Read more </a>
+            <p> Read more at <a href = {event.event.read_more_eng} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]} </a> </p>
+
+            <p>
             {event.event.people ?
-                <p> <strong> Related people: </strong>  {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name} </Link>})}
-                </p> : null}
+              <>
+                <strong> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
+                return (<>
+                <div className="image-cropper-mini inline margin">
+                <Link to={`/bios/${person.id}`}  key={index}> <img src = {person.picture} alt={person.name}/></Link>
+                </div>
+                </>)
+                })}
+                </> : null} <p> <strong> Share with friends: </strong></p>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
+                <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a><br/></p>
+                <>
+                <img src={arrow} className="sharing" alt="go back" onClick={this.props.history.goBack} tabIndex="0"/>
+                </>
                 </li>
 
           })
         : null
         }
-        </ul>
-      : <p> loading </p> }
+        </div>
+      : <Loading /> }
     </div>
     )}
 }
