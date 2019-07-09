@@ -3,7 +3,7 @@ import { connect} from 'react-redux';
 import { Link, Switch, Route } from 'react-router-dom'
 import Person from '../components/Person';
 import Quote from '../components/Quote';
-import Force from '../components/Force.js';
+import Force from '../components/Force';
 
 class BioContainer extends Component {
 

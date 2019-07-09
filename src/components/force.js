@@ -5,11 +5,6 @@ import { connect} from 'react-redux';
 
 class Force extends Component {
 
-  // state = {
-  //   nodes: [],
-  //   links: []
-  // }
-
   getConnections = () => {
     fetch(`http://localhost:3000/api/v1/connections`)
       .then(res => res.json())

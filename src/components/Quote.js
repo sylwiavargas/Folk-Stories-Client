@@ -4,6 +4,8 @@ import Loading from './Loading';
 import { Link } from 'react-router-dom';
 import facebook from '../img/facebook.png';
 import twitter from '../img/twitter.svg';
+import logo from '../assets/images/logo.png'
+
 
 class Quote extends Component {
 
@@ -14,30 +16,15 @@ class Quote extends Component {
   render() {
 
     return(
-      <div>
-        <div className="bio-fake">
-        <div className="column">
-          <h1> Nina Simone </h1>
-          <h2> I know I’m different, but I don’t think about it. </h2>
-          <p> Nina Simone (1933-2003) was an American singer, pianist, songwriter. Her early aspirations would be to become a concert pianist, which would lead her to audition at Curtis Institiute of Music in Philadelphia, but was sadly rejected; a decision she felt was based on her race. Later on, she was involved in Civil Rights Movement and performed and spoke at many civil rights meetings, such as at the Selma to Montgomery marches. Simone had always included songs in her repertoire that drew upon her African-American origins. On her debut album, Simone for the first time openly addressed the racial inequality that was prevalent in the United States with the song “Mississippi Goddam”, her response to the murder of Medgar Evers and the Birmingham Church Bombing. The song was released as a single, and it was boycotted in certain southern states. Simone’s legacy was on the airways, in the background telling everyone of the struggles every African-American endured, even if they did not want to learn. </p>
-          <p> Read more about </p>
-          <h2> Visit 's places: </h2>
-          <h2> See s events: </h2>
+      <div className="quote-page">
+        <div>
+          <h2 className="row-one-hund" style={{"textAlign": "justify"}}> "Activist work allows you to give back and to consider yourself not as a single individual who may have achieved whatever but to be a part of an ongoing historical movement." </h2>
+          <h2 style={{"textAlign": "right"}}> - Angela Davis </h2>
+          <h2 className="row-one-hund"> "Imagine we are linked not ranked." </h2>
+          <h2 style={{"textAlign": "right"}}> - Gloria Steinem </h2><br/>
         </div>
-          <div className="column">
-
-          </div>
-          <div className="column">
-            <div className="image-cropper">
-              <img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Nina_Simone_%281965%29.jpg/180px-Nina_Simone_%281965%29.jpg" alt="{person.name}"/>
-            </div>
-          </div>
-          <div className="column">
-          <br/>
-          <h2> Tell your friends about: </h2>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
-           <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
-          </div>
+        <div className="row">
+          <p className="block" style={{"textAlign": "justify", "lineHeight": "125%"}}> This project looks at those histories that don't make it to the national history school books. Moreover, it rejects the idea of a singular genius. There is nothing like "singular genius" - world's greatest achievements come from efforts of whole networks of friends, family members and even strangers who support "geniuses". And anyway, how much further we would get if we collaborated more often? Exploring this project, try to cherish not only the amazing folks but also their friendships, relationships and collaborations. Think about your circle. We are all connected. We all can make a difference. </p>
         </div>
       </div>
     )}

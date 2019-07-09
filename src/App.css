@@ -170,6 +170,10 @@ ul, li {
   float: right;
 }
 
+.block {
+  display: block;
+}
+
 .center{
   margin: auto;
   margin-right: 19.5%;
@@ -306,11 +310,28 @@ a:hover {
 }
 
 .bio-fake {
+  font-size: 150%;
   display: grid;
   grid-template-columns: 75% 5% 20%;
   padding: 0rem;
   width: 80%;
   height: 100%;
+}
+
+.quote-page {
+  font-size: 150%;
+  padding: 0rem;
+  width: 80%;
+  height: 100%;
+}
+
+.row-one-hund {
+  width: 100%;
+}
+
+
+.column-wide {
+  grid-column: 1 / span 3;
 }
 
 .image-cropper {
