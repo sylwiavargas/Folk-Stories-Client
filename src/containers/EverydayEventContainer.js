@@ -127,58 +127,43 @@ class EverydayEventContainer extends Component {
 
 
   render() {
-    console.log(this.state.loading)
     const evs = this.props.events;
     const efs = this.props.featuredEvents;
     const month = this.props.match.params.id.substring(0,1)
     const day = this.props.match.params.id.substring(1)
-     // console.log(!this.props.events > 0)
-
-    // console.log("State", this.state)
-    // console.log("USER TYPES", this.props.user.currentUser.types)
-    //
-    // if(efs && efs.length > 0) {
-    //   console.log("this is the efs:", efs)
-    // } else {
-    //   console.log("no efs")
-    // }
-
-    // if (evs) {
-    //   // console.log(this.props.events[0].event)
-    //   console.log(this.props.events)
-    // }
 
     return (
       <div>
-      <div>
-      <Spring config={config.default}
-        from={{ opacity: 0.6, marginLeft: -10 }}
-        to={{ opacity: 1, marginLeft: 50 }}
-        >
-        {props => (
-          <div style={props}>
-          <h1> Here's what happened on {month}/{day} :</h1>
-          </div>
-        )}
-      </Spring>
-      <button onClick={this.handleAll} className="notbutton left"> All </button>
-      <button onClick={this.handleWomen} className="notbutton left"> Women </button>
-      <button onClick={this.handleQueer} className="notbutton left"> Queer </button><br/><br/><br/><br/>
-      </div>
-      {this.state.loading === false ?
-      <ul>
-      {efs && efs.length > 0 ?
-        efs.map((event, index) =>
-          <Fragment key={index}>
-           <h2> {event.event.year_era_id}: {event.event.title_eng} </h2>
-           {event.event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
-           <p> {event.event.description_eng} </p>
-           <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
-             </a> </p>
-           <p> <strong> Related people: </strong> {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name} </Link>})} </p>
-           <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
-            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
-           </Fragment>
+        <div>
+          <Spring config={config.default}
+            from={{ opacity: 0.6, marginLeft: -10 }}
+            to={{ opacity: 1, marginLeft: 50 }}
+            >
+            {props => (
+              <div style={props}>
+              <h1> Here's what happened on {month}/{day} :</h1>
+              </div>
+            )}
+          </Spring>
+          <button onClick={this.handleAll} className="notbutton left"> All </button>
+          <button onClick={this.handleWomen} className="notbutton left"> Women </button>
+          <button onClick={this.handleQueer} className="notbutton left"> Queer </button><br/><br/><br/><br/>
+        </div>
+
+        {this.state.loading === false ?
+          <ul>
+          {efs && efs.length > 0 ?
+            efs.map((event, index) =>
+              <Fragment key={index}>
+                <h2> {event.event.year_era_id}: {event.event.title_eng} </h2>
+                {event.event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
+                <p> {event.event.description_eng} </p>
+                <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
+                </a> </p>
+                <p> <strong> Related people: </strong> {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name} </Link>})} </p>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
+                <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
+              </Fragment>
          )
         : evs !== undefined && evs.length > 0 ?
           <Trail

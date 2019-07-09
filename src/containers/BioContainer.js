@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link, Switch, Route } from 'react-router-dom'
 import Person from '../components/Person';
+import Quote from '../components/Quote';
 import Force from '../components/Force.js';
 
 class BioContainer extends Component {
 
   state ={
     show: false,
-    showBio: false
+    showBio: false,
+    loading: true
   }
 
   getPeeps = () => {
@@ -16,14 +18,18 @@ class BioContainer extends Component {
       .then(res => res.json())
       .then(people => this.props.savePeople(people))
       .then(this.setState({
-        showBio: true,
         show: true,
+        loading: false
       }))
     }
 
   featurePeep = () => {
       let id = this.props.person.n
       this.props.history.push(`/bios/${id}`)
+  }
+
+  componentDidMount(){
+    this.getPeeps();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -40,38 +46,38 @@ class BioContainer extends Component {
 
     return(
       <div className="App">
-      <div className="force">
-      <Force/>
-      </div>
-
-      {
-        path.includes("/:id") ?
-        <Person />
-        :
-        this.state.show === false ?
-          <div className="bio">
-          <Link onClick={() => {this.getPeeps()}} className="notbutton dramatic"> Show People </Link>
-          </div>
-          : <div className="main">
-            <h1> Here are the folks: </h1>
-            <ul>
-              {this.props.people.length > 0
-                ? this.props.people.map((person, index) => {
-                  return <li key={index}> <Link to={`/bios/${person.id}`}>{person.name}</Link></li>
-                })
-                : <p> loading </p>
-              }
-            </ul>
-            <h1> Here's how they relate: </h1>
-            <div style={{"border": "2px solid black", "backgroundImage": "linear-gradient(300deg, #c16ecf 0%,  #2376ae  100%)"}}>
-            <Force/>
+        {
+          this.state.show === false
+          ?
+            <>
+            <Link onClick={() => {this.getPeeps()}} className="notbutton dramatic"> Show the Folks </Link>
+            </>
+          :
+          <>
+          <div className="wrapper-bio">
+            <div className="footer-bio force">
+              <Force/>
             </div>
+          <div className="content-bio">
+            <Quote/>
           </div>
-      }
-      </div>
-    )
-  }
+            <div className="sidebar-bio">
+            <h2> Choose a folk: </h2>
+                {this.props.people.length > 0
+                  ? this.props.people.map((person, index) => {
+                    return <li key={index}> <Link to={`/bios/${person.id}`}>{person.name}</Link></li>
+                  })
+                  : <p> loading </p>
+                }<br/>
+            </div>
+            <div className="header-second-bio">
 
+             </div>
+            </div>
+          </>
+        }
+    </div>
+)}
 }
 
 const mapStateToProps = state => {

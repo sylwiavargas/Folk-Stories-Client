@@ -7,16 +7,6 @@ const API2 = "http://localhost:3000/api/v1/bios"
 
 class ContributeContainer extends Component {
 
-  // getEvents = () => {
-  //   fetch(`http://localhost:3000/api/v1/events`)
-  //     .then(res => res.json())
-  //     .then(events => this.props.saveEvents(events))
-  //   }
-  //
-  // componentDidMount(){
-  //   this.getEvents();
-  // }
-
   handleSubmitEvent = (e)=> {
     e.preventDefault();
     let title_eng = e.target.title_eng.value
@@ -66,20 +56,20 @@ class ContributeContainer extends Component {
   render() {
     return (
       <div className="formtable">
-        <div class="column">
+        <div class="column teal">
           <h1> Add a new event: </h1>
           <form onSubmit={(e) => this.handleSubmitEvent(e)}>
-            <input placeholder="Title" type="text" name="title_eng"/><br/><br/>
-            <input placeholder="Description" type="text" name="description_eng"/><br/><br/>
+            <input placeholder="Title" type="text" name="title_eng" className="bold"/><br/><br/>
+            <input className="textarea"  placeholder="Description" type="textarea" name="description_eng"/><br/><br/>
             <input placeholder="Date (MMDDYYY)" type="text" name="mmddyyy"/><br/> <br/><br/>
             <button className="notbutton left">Submit</button>
           </form>
         </div>
-        <div class="column">
+        <div class="column yellow">
           <h1> Add a new bio: </h1>
           <form onSubmit={(e) => this.handleSubmitPeep(e)}>
-            <input placeholder="Name" type="text" name="name"/><br/><br/>
-            <input placeholder="Bio" type="text" name="bio_eng"/><br/><br/>
+            <input placeholder="Name" type="text" name="name" className="bold"/><br/><br/>
+            <input placeholder="Bio" type="textarea" name="bio_eng" className="textarea"/><br/><br/>
             <input placeholder="Year of birth" type="text" name="birth"/><br/><br/>
             <input placeholder="Year of death" type="text" name="death"/><br/><br/> <br/>
             <button className="notbutton left">Submit</button>

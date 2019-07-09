@@ -48,14 +48,14 @@ class Force extends Component {
     //   return this.props.savePerson(this.props.connections.find((connection) => connection.person_one.name === nodeId || connection.person_two.name === nodeId
     // ))}
 
-    const onClickNode = (nodeId) => {
-      const node = nodes.find((node) => node.id === nodeId)
-      return this.props.savePerson(node)
-    };
-
-    const updateState = function(node){
-
-    }
+    // const onClickNode = (nodeId) => {
+    //   const node = nodes.find((node) => node.id === nodeId)
+    //   return this.props.savePerson(node)
+    // };
+    //
+    // const updateState = function(node){
+    //
+    // }
 
         //
         // console.log("NODES", nodes)
@@ -85,14 +85,11 @@ class Force extends Component {
 
     // console.log(data)
 
-
-      // the graph configuration, you only need to pass down properties
-      // that you want to override, otherwise default ones will be used
       const myConfig = {
           nodeHighlightBehavior: true,
           automaticRearrangeAfterDropNode: true,
           width: 1000,
-          height: 500,
+          height: 450,
           maxZoom: 5,
           minZoom: 0.1,
           "d3": {
@@ -139,16 +136,19 @@ class Force extends Component {
 
       // graph event callbacks
       const onClickGraph = function() {
-          window.alert(`Clicked the graph background`);
+          window.alert(`Legend:
+            red: romantic relationships
+            purple: friendhips
+            yellow: collaborations `);
       };
 
       // const onDoubleClickNode = function(nodeId) {
       //     window.alert(`Double clicked node ${nodeId}`);
       // };
-
-      const onRightClickNode = function(event, nodeId) {
-          window.alert(`Right clicked node ${nodeId}`);
-      };
+      //
+      // const onRightClickNode = function(event, nodeId) {
+      //     window.alert(`Right clicked node ${nodeId}`);
+      // };
       //
       // const onMouseOverNode = function(nodeId) {
       //     window.alert(`Mouse over node ${nodeId}`);
@@ -157,14 +157,14 @@ class Force extends Component {
       // const onMouseOutNode = function(nodeId) {
       //     window.alert(`Mouse out node ${nodeId}`);
       // };
-
-      const onClickLink = function(source, target, label) {
-          window.alert(`Clicked link between ${source} and ${target} - their relationship was ${label}`);
-      };
-
-      const onRightClickLink = function(event, source, target) {
-          window.alert(`Right clicked link between ${source} and ${target}`);
-      };
+      //
+      // const onClickLink = function(source, target, label) {
+      //     window.alert(`Clicked link between ${source} and ${target} - their relationship was ${label}`);
+      // };
+      //
+      // const onRightClickLink = function(event, source, target) {
+      //     window.alert(`Right clicked link between ${source} and ${target}`);
+      // };
       //
       // const onMouseOverLink = function(source, target) {
       //     window.alert(`Mouse over in link between ${source} and ${target}`);
@@ -179,11 +179,11 @@ class Force extends Component {
           id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
           data={data}
           config={myConfig}
-          onClickNode={onClickNode}
-          onRightClickNode={onRightClickNode}
+          // onClickNode={onClickNode}
+          // onRightClickNode={onRightClickNode}
           onClickGraph={onClickGraph}
-          onClickLink={onClickLink}
-          onRightClickLink={onRightClickLink}
+          // onClickLink={onClickLink}
+          // onRightClickLink={onRightClickLink}
 
       />
       </div>

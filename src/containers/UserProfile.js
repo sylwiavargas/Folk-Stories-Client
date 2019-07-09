@@ -71,32 +71,35 @@ class UserProfile extends Component {
     // console.log(this.props.user, "STATE", this.state)
     return (
       <div className="main">
-      <div>
-      {this.state.change === true ?
-        <div> <h1> Changes have been implemented! </h1> </div>
-      :
-       null
-      }
-      </div>
-      <h1> This is you: </h1>
-      <form onSubmit={(e) => this.submitEvent(e)}>
-        <input onChange={this.formInput} type="text" name="name" value={this.state.name} />
-        <input onChange={this.formInput} type="text" name="email" value={this.state.email} />
-        <input onChange={this.formInput} type="text" name="zip" value={this.state.zip} />
-        <button>Submit</button>
-      </form>
-      <br/>
-      <h1> Fed up with us already? </h1>
-        <button onClick={() => this.deleteProfile()}> DELETE YOUR PROFILE</button>
-      <br/>
-      <br/>
-      <br/>
-      ---------------------------------<br/>
-      <button onClick={() => this.togglePopup()}> Test Popup</button>
+        <div>
+          {this.state.change === true ?
+            <div> <h1> Changes have been implemented! </h1> </div>
+          :
+           null
+          }
+        </div>
+        <div className="formtable ">
+          <div class="column teal ">
+            <h1> Wanna edit your profile? </h1>
+            <form onSubmit={(e) => this.submitEvent(e)}>
+              <input onChange={this.formInput} type="text" name="name" value={this.state.name} />
+              <input onChange={this.formInput} type="text" name="email" value={this.state.email} />
+              <input onChange={this.formInput} type="text" name="zip" value={this.state.zip} /><br/><br/>
+              <button className="notbutton center">Submit</button>
+            </form>
+          </div>
+          <div className="column yellow middle">
+            <h1> Fed up with us already? </h1>
+            <button className="notbutton center delete" onClick={() => this.deleteProfile()}> DELETE YOUR PROFILE</button>
+          </div>
+        </div>
       </div>
   )}
 
 }
+
+
+      // <button onClick={() => this.togglePopup()}> Test Popup</button>
 
 const mapStateToProps = state => {
   return {
