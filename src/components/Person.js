@@ -36,6 +36,7 @@ class Person extends Component {
 
     if (person) {
       first_name = person.name.split(" ")[0]
+      console.log(person.pps)
     }
 
     return(
@@ -55,8 +56,8 @@ class Person extends Component {
             <p> {person.bio_eng} </p>
             <p> Read more about {person.name} at <a href = {person.read_more_eng} target="_blank" rel="noopener noreferrer"> { person.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]} </a> </p>
             <h2> Visit {first_name}'s places: </h2>
-            { person.places && person.places > 0 ?
-              person.places.map((place, index) => <li key={index}>{place.name_eng}</li>)
+            { person.pps && person.pps.length > 0 ?
+              person.pps.map((pp, index) => <li key={index} style={{"list-style-type": "square"}}><strong>{pp.place.name_eng}:</strong> {pp.description_eng}<br/><br/></li>)
               :
               <div>
               <p> No places yet!
@@ -64,7 +65,7 @@ class Person extends Component {
               </div>
             }
             <h2> See {first_name}'s events: </h2>
-            { person.events && person.events > 0 ?
+            { person.events && person.events.length > 0 ?
                 person.events.map((event, index) => <li key={index}>{event.year_era_id}: <Link to={`/events/${event.id}`}> {event.title_eng}</Link>  </li>)
               :
               <div>
