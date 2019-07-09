@@ -7,7 +7,8 @@ import Force from '../components/Force.js';
 class BioContainer extends Component {
 
   state ={
-    show: false
+    show: false,
+    showBio: false
   }
 
   getPeeps = () => {
@@ -15,12 +16,28 @@ class BioContainer extends Component {
       .then(res => res.json())
       .then(people => this.props.savePeople(people))
       .then(this.setState({
-        show: true
+        showBio: true,
+        show: true,
       }))
     }
 
+  featurePeep = () => {
+      let id = this.props.person.n
+      this.props.history.push(`/bios/${id}`)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.person !== this.props.person) {
+      this.setState({
+        show: true
+      })
+      this.featurePeep()
+    }
+  }
+
   render() {
     const path = this.props.match.path
+
     return(
       <div className="App">
       <div className="force">

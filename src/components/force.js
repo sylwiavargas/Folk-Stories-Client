@@ -16,23 +16,11 @@ class Force extends Component {
       .then(connections => this.props.saveConnections(connections))
     }
 
+
+
   componentDidMount(){
       this.getConnections()
     }
-
-
-    // console.log(this.state)
-    // // let data;
-    // let first_folks;
-    // let second_folks;
-    //   if (this.props.connections && this.props.connections.length > 0) {
-    //     this.props.connections.map((connection) => {this.setState( prevState => ({
-    //           nodes:[...prevState.nodes, connection.first_person]
-    //       }))
-    //   })
-    // } else {
-    //   return null
-    // }
 
   render() {
     const nodes = [];
@@ -46,37 +34,56 @@ class Force extends Component {
       } if (connection.relationship === "friendship") {
         return "e8a217"
       }}
-      nodes.push({id: connection.person_one.name}, {id: connection.person_two.name})
+      nodes.push({id: connection.person_one.name, n: connection.person_one.id}, {id: connection.person_two.name, n: connection.person_two.id })
       link.push({source: connection.person_one.name, target: connection.person_two.name, color: co})
       links.push(link)
     } )
 
+    // const findPeep = (nodeId) => {
+    //   const node = nodes.find((node) => node.id))
+    //
+    //   return console.log(node)}
 
-        console.log("NODES", nodes)
-        console.log("LINK", link)
-        console.log("LINKS", links)
+    // const findPeep = (nodeId) => {
+    //   return this.props.savePerson(this.props.connections.find((connection) => connection.person_one.name === nodeId || connection.person_two.name === nodeId
+    // ))}
+
+    const onClickNode = (nodeId) => {
+      const node = nodes.find((node) => node.id === nodeId)
+      return this.props.savePerson(node)
+    };
+
+    const updateState = function(node){
+
+    }
+
+        //
+        // console.log("NODES", nodes)
+        // console.log("LINK", link)
+        // console.log("LINKS", links)
+        console.log(this.props)
 
 
     const data = {
-        nodes: [{ id: 'Eleanor Roosevelt' }, { id: 'Amelia Earhart' }, { id: 'Susan Sontag' }, { id: 'Annie Leibovitz'}, { id: 'Lorena Hickok'}, { id: 'Nina Simone'}, { id: 'Lorraine Hansberry'}, { id: 'Miriam Makeba'}, { id: 'Gloria Steinem'}, { id: 'Wilma Mankiller'}, { id: 'Martha Graham'}, { id: 'Hellen Keller'}, { id: 'Helen Tamiris'}, { id: 'Dorothy Pitnam Hughes'}, { id: 'Angela Davis'}, { id: 'Doris Humpray'}, { id: 'Katherine Dunham'}, { id: 'Marsha P. Johnson'}, { id: 'Storme DeLarverie'}, { id: 'Maria Skłodowska-Curie'}, { id: 'Kazimiera Bujwidowa'}],
+        nodes: [{ id: 'Eleanor Roosevelt', n: 1 }, { id: 'Amelia Earhart' }, { id: 'Susan Sontag' }, { id: 'Annie Leibovitz'}, { id: 'Lorena Hickok'}, { id: 'Nina Simone'}, { id: 'Lorraine Hansberry'}, { id: 'Miriam Makeba'}, { id: 'Gloria Steinem'}, { id: 'Wilma Mankiller'}, { id: 'Martha Graham'}, { id: 'Hellen Keller'}, { id: 'Helen Tamiris'}, { id: 'Dorothy Pitnam Hughes'}, { id: 'Angela Davis'}, { id: 'Doris Humpray'}, { id: 'Katherine Dunham'}, { id: 'Marsha P. Johnson'}, { id: 'Storme DeLarverie'}, { id: 'Maria Skłodowska-Curie'}, { id: 'Kazimiera Bujwidowa'}],
         links: [
-          { source: 'Eleanor Roosevelt', target: 'Amelia Earhart', color: "5c17e8"},
-          {source: 'Eleanor Roosevelt', target: 'Lorena Hickok'},
-          {source: 'Susan Sontag', target: 'Annie Leibovitz' },
-          {source: 'Nina Simone', target: 'Lorraine Hansberry', color: "e8a217" },
-          {source: 'Nina Simone', target: 'Miriam Makeba' },
-          {source: 'Gloria Steinem', target: 'Wilma Mankiller'},
-          {source: 'Gloria Steinem', target: 'Angela Davis' },
-          {source: 'Gloria Steinem', target: 'Dorothy Pitnam Hughes' },
-          {source: 'Martha Graham', target: 'Hellen Keller' },
-          {source: 'Martha Graham', target: 'Doris Humpray' },
-          {source: 'Martha Graham', target: 'Helen Tamiris' },
-          {source: 'Martha Graham', target: 'Katherine Dunham' },
-          {source: 'Marsha P. Johnson', target: 'Storme DeLarverie' },
-          {source: 'Maria Skłodowska-Curie', target: 'Kazimiera Bujwidowa' },
+          { source: 'Eleanor Roosevelt', target: 'Amelia Earhart', color: "red"},
+          {source: 'Eleanor Roosevelt', target: 'Lorena Hickok', color: "red" },
+          {source: 'Susan Sontag', target: 'Annie Leibovitz', color: "red" },
+          {source: 'Nina Simone', target: 'Lorraine Hansberry', color: "5c17e8" },
+          {source: 'Nina Simone', target: 'Miriam Makeba', color: "5c17e8"  },
+          {source: 'Gloria Steinem', target: 'Wilma Mankiller', color: "5c17e8" },
+          {source: 'Gloria Steinem', target: 'Angela Davis', color: "5c17e8"  },
+          {source: 'Gloria Steinem', target: 'Dorothy Pitnam Hughes', color: "e8a217" },
+          {source: 'Martha Graham', target: 'Hellen Keller', color: "5c17e8"  },
+          {source: 'Martha Graham', target: 'Doris Humpray', color: "5c17e8"  },
+          {source: 'Martha Graham', target: 'Helen Tamiris', color: "5c17e8"  },
+          {source: 'Martha Graham', target: 'Katherine Dunham', color: "5c17e8"  },
+          {source: 'Marsha P. Johnson', target: 'Storme DeLarverie', color: "5c17e8"  },
+          {source: 'Maria Skłodowska-Curie', target: 'Kazimiera Bujwidowa', color: "5c17e8"  },
     ]};
 
-    console.log(data)
+    // console.log(data)
 
 
       // the graph configuration, you only need to pass down properties
@@ -86,7 +93,7 @@ class Force extends Component {
           automaticRearrangeAfterDropNode: true,
           width: 1000,
           height: 500,
-          maxZoom: 0.2,
+          maxZoom: 5,
           minZoom: 0.1,
           "d3": {
             "manyBody.strength": -30,
@@ -120,24 +127,19 @@ class Force extends Component {
               renderLabel: true,
           },
           link: {
-              color: "red",
               fontColor: "black",
               fontSize: 11,
-              highlightColor: "red",
               "mouseCursor": "pointer",
               labelProperty: "label",
               renderLabel: true,
-
+              highlightStrokeColor: "#2376ae",
+              highlightColor: "SAME"
           }
       };
 
       // graph event callbacks
       const onClickGraph = function() {
           window.alert(`Clicked the graph background`);
-      };
-
-      const onClickNode = function(nodeId) {
-          window.alert(`Clicked node ${nodeId}`);
       };
 
       // const onDoubleClickNode = function(nodeId) {
@@ -205,6 +207,9 @@ const mapDispatchToProps = dispatch => {
   return {
     saveConnections: (connections) => {
       dispatch({type: 'SAVE_CONNECTIONS', payload: connections})
+    },
+    savePerson: (person) => {
+      dispatch({type: 'SAVE_PERSON', payload: person})
     }
   }
 }

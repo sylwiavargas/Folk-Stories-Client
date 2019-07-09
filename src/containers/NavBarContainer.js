@@ -64,7 +64,7 @@ class NavBarContainer extends Component {
     return (
       <div>
         <nav className="header">
-        <img src={hamburger} className="hamburger inline" alt="menu" onClick={this.toggleClass} tabindex="0" onKeyPress={this.handleKeyPress}/>
+        <img src={hamburger} className="hamburger inline" alt="menu" onClick={this.toggleClass} tabIndex="0" onKeyPress={this.handleKeyPress}/>
        {
           localStorage.token ?
               <>
