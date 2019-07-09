@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import {Spring,config} from 'react-spring/renderprops'
-import moment from 'moment';
+// import moment from 'moment';
 // import psl from 'psl';
 import facebook from '../img/facebook.png';
 import twitter from '../img/twitter.svg';

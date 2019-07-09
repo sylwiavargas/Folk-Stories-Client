@@ -49,10 +49,7 @@ class Person extends Component {
           <div className="column">
             <h1> {person.name} </h1>
             {person.quote_eng === " " ?
-            <div>
-            <p> Nothing here yet! </p>
-            <p> Would you like to <Link to={`/contribute`} style={{"color": "#2376ae"}}><strong>contribute?</strong></Link></p>
-            </div>
+            null
              :
             <h2> "{person.quote_eng}" </h2>}
             <p> {person.bio_eng} </p>

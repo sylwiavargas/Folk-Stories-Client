@@ -40,7 +40,6 @@ class Force extends Component {
     const onClickNode = (nodeId) => {
       const person = this.props.people.find((person) => person.name === nodeId )
       return this.props.savePerson(person)
-      console.log("force sent it")
     };
 
     const data = {

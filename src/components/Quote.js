@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import Loading from './Loading';
-import { Link } from 'react-router-dom';
-import facebook from '../img/facebook.png';
-import twitter from '../img/twitter.svg';
-import logo from '../assets/images/logo.png'
 
 
 class Quote extends Component {

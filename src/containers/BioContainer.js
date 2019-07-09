@@ -39,7 +39,6 @@ class BioContainer extends Component {
   }
 
   render() {
-    const path = this.props.match.path
 
     return(
       <div className="App">
