@@ -70,9 +70,8 @@ class NavBarContainer extends Component {
               <>
                <Link onClick={this.signOut} className="notbutton inline">Sign out</Link>
                <ul className={navbarClass.join(' ')} id="js-menu">
-                  <li><NavLink exact activeClassName="active" to="/" className="navlink">Today</NavLink></li>
+                   <li><NavLink activeClassName="active" to="/dates" className="navlink">Events</NavLink></li>
                   <li><NavLink activeClassName="active" to="/bios" className="navlink">Bios</NavLink></li>
-                  <li><NavLink activeClassName="active" to="/dates" className="navlink">Events</NavLink></li>
                   <li><NavLink activeClassName="active" to="/contribute" className="navlink">Contribute!</NavLink></li>
                   <li><NavLink activeClassName="active" to="/you" className="navlink">You</NavLink></li>
                </ul>

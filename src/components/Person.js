@@ -49,17 +49,31 @@ class Person extends Component {
           <div className="column">
             <h1> {person.name} </h1>
             {person.quote_eng === " " ?
-            null :
+            <div>
+            <p> Nothing here yet! </p>
+            <p> Would you like to <Link to={`/contribute`} style={{"color": "#2376ae"}}><strong>contribute?</strong></Link></p>
+            </div>
+             :
             <h2> "{person.quote_eng}" </h2>}
             <p> {person.bio_eng} </p>
             <p> Read more about {person.name} at <a href = {person.read_more_eng} target="_blank" rel="noopener noreferrer"> { person.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]} </a> </p>
             <h2> Visit {first_name}'s places: </h2>
-            {
+            { person.places && person.places > 0 ?
               person.places.map((place, index) => <li key={index}>{place.name_eng}</li>)
+              :
+              <div>
+              <p> No places yet!
+              <Link to={`/contribute`} style={{"color": "#2376ae"}}><strong> Please contribute.</strong></Link></p>
+              </div>
             }
             <h2> See {first_name}'s events: </h2>
-            {
-              person.events.map((event, index) => <li key={index}>{event.year_era_id}: <Link to={`/events/${event.id}`}> {event.title_eng}</Link>  </li>)
+            { person.events && person.events > 0 ?
+                person.events.map((event, index) => <li key={index}>{event.year_era_id}: <Link to={`/events/${event.id}`}> {event.title_eng}</Link>  </li>)
+              :
+              <div>
+              <p> No events relating to {first_name} yet.
+              <Link to={`/contribute`} style={{"color": "#2376ae"}}><strong> Please contribute.</strong></Link></p>
+              </div>
             }
           </div>
           <div className="column">
@@ -72,7 +86,7 @@ class Person extends Component {
           </div>
           <div className="column">
           <br/>
-          <h2> Tell your friends about: </h2>
+          <h2> Tell your friends about {first_name}: </h2>
           <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
           </div>
