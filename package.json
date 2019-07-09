@@ -22,6 +22,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-spring": "^8.0.25",
+    "reactjs-popup": "^1.4.1",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6"
   },

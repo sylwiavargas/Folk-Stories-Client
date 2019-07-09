@@ -21,7 +21,9 @@ class Event extends Component {
   }
 
   getEvent = () => {
-    const num = this.props.match.params.id
+    // const num = this.props.match.params.id
+    // const num = 1
+    const num = this.props.eventId
     fetch(API + `/${num}`)
       .then(res => res.json())
       .then(e => this.props.saveEvents(e))
@@ -40,6 +42,7 @@ class Event extends Component {
   }
 
   render() {
+    // console.log(this.props.eventId)
     // console.log(this.context.router)
     // // console.log("STATE", this.state)
     // // console.log("PROPS", this.props.events)
@@ -72,9 +75,6 @@ class Event extends Component {
                 </> : null} <p> <strong> Share with friends: </strong></p>
                 <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
                 <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a><br/></p>
-                <>
-                <img src={arrow} className="sharing" alt="go back" onClick={this.props.history.goBack} tabIndex="0"/>
-                </>
                 </li>
 
           })
@@ -85,6 +85,11 @@ class Event extends Component {
     </div>
     )}
 }
+
+// line 76
+// <>
+// <img src={arrow} className="sharing" alt="go back" onClick={this.props.history.goBack} tabIndex="0"/>
+// </>
 
 
 const mapStateToProps = state => {

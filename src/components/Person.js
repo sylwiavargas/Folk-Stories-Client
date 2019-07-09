@@ -5,12 +5,21 @@ import { Link } from 'react-router-dom';
 import facebook from '../img/facebook.png';
 import twitter from '../img/twitter.svg';
 import Force from './Force.js';
+import Popup from "reactjs-popup";
+import Event from './Event.js';
+
 
 
 class Person extends Component {
 
   state = {
-    loading: true
+    loading: true,
+  }
+
+  togglePopup = () => {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
   }
 
   getPeep = () => {
@@ -66,7 +75,15 @@ class Person extends Component {
             }
             <h2> See {first_name}'s events: </h2>
             { person.events && person.events.length > 0 ?
-                person.events.map((event, index) => <li key={index}>{event.year_era_id}: <Link to={`/events/${event.id}`}> {event.title_eng}</Link>  </li>)
+                person.events.map((event, index) => <li key={index}>{event.year_era_id}:
+                <Popup trigger={ <button> {event.title_eng} </button>} position="top center">
+                  <div className="modal">
+                    <div className="modal-card">
+                      <Event eventId={event.id}/>
+                    </div>
+                  </div>
+                </Popup>
+                  </li>)
               :
               <div>
               <p> No events relating to {first_name} yet.

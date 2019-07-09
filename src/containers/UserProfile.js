@@ -9,7 +9,6 @@ class UserProfile extends Component {
     name: this.props.user.name,
     email: this.props.user.email,
     zip: this.props.user.zip,
-    showPopup: false,
     change: false,
   }
 
@@ -17,12 +16,6 @@ class UserProfile extends Component {
     this.setState({
       [event.target.name]:event.target.value
     })
-  }
-
-  togglePopup = () => {
-    this.setState({
-      showPopup: !this.state.showPopup
-    });
   }
 
   submitEvent = event => {
@@ -96,9 +89,6 @@ class UserProfile extends Component {
   )}
 
 }
-
-
-      // <button onClick={() => this.togglePopup()}> Test Popup</button>
 
 const mapStateToProps = state => {
   return {

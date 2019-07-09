@@ -576,3 +576,14 @@ a:hover {
     margin: 0;
   }
 }
+
+.modal{
+  width: 1000px;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+}
+
+.modal-card{
+  width: 80%;
+}
