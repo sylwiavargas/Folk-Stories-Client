@@ -48,6 +48,12 @@ class Person extends Component {
       console.log(person.pps)
     }
 
+    const backgrounds = ["gradient-five", "gradient-four", "gradient-three", "gradient-two", "gradient-one"]
+    const pickOne = () => backgrounds[Math.floor(Math.random()*backgrounds.length)]
+
+    const backgroundsChanging = ["gradient-five-mouseon", "gradient-four-mouseon", "gradient-three-mouseon", "gradient-two-mouseon", "gradient-one-mouseon"]
+    const pickTwo = () => backgroundsChanging[Math.floor(Math.random()*backgrounds.length)]
+
     return(
       !person ?
       <div className="App">
@@ -75,15 +81,15 @@ class Person extends Component {
             }
             <h2> See {first_name}'s events: </h2>
             { person.events && person.events.length > 0 ?
-                person.events.map((event, index) => <li key={index}>{event.year_era_id}:
-                <Popup trigger={ <button> {event.title_eng} </button>} position="top center">
+                person.events.map((event, index) => <li key={index}>
+                <Popup trigger={ <button className={` notbutton ${pickOne()} ${pickTwo()}`}> {event.year_era_id}: {event.title_eng} </button>} position="top center">
                   <div className="modal">
                     <div className="modal-card">
                       <Event eventId={event.id}/>
                     </div>
                   </div>
                 </Popup>
-                  </li>)
+                  <br/><br/><br/></li>)
               :
               <div>
               <p> No events relating to {first_name} yet.
