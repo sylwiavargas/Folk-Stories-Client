@@ -60,7 +60,7 @@ class Force extends Component {
             "manyBody.strength": -50,
             "simulation.alpha": 0.95,
             "simulation.tick": 100,
-            "alphaTarget": 0.95,
+            "alphaTarget": 0.99,
             "gravity": -100,
             "linkLength": 120,
             "linkStrength": 1,
