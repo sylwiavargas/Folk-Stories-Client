@@ -8,8 +8,6 @@ import Force from './Force.js';
 import Popup from "reactjs-popup";
 import Event from './Event.js';
 
-
-
 class Person extends Component {
 
   state = {
