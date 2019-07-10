@@ -10,7 +10,8 @@ const rootReducer = () => combineReducers({
   user: userReducer,
   people: peopleReducer,
   events: eventReducer,
-  dates: dateReducer
+  dates: dateReducer,
+  places: placeReducer
 });
 
 export default rootReducer;
