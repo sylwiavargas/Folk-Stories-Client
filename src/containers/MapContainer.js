@@ -124,7 +124,7 @@ export class MapContainer extends Component {
         <>
           <Map
              google={this.props.google}
-             zoom={12}
+             zoom={13}
              style={mapStyles}
              initialCenter={this.state.currentLocation}
            >
@@ -136,11 +136,13 @@ export class MapContainer extends Component {
               onClose={this.onClose}
             >
               <div>
-                <h4>{place.name}</h4>
+                <h3>{place.name}</h3>
                 <p> {place.desc}</p>
                 <h4>Related person:</h4>
-                <p> {place.personName} </p>
-                <img src={place.personPic} alt={place.personName} />
+                <p className="inline"><a href={`/bios/${place.personId}`}> &nbsp; {place.personName} </a></p>
+                <div className="image-cropper-mini inline left">
+                  <a href={`/bios/${place.personId}`}><img src={place.personPic} alt={place.personName} /></a>
+                </div>
               </div>
             </InfoWindow>
           </Map>
@@ -150,6 +152,9 @@ export class MapContainer extends Component {
     );
   }
 }
+
+// <Link to={`/bios/${person.id}`}  key={index}> <img src = {person.picture} alt={person.name}/></Link>
+// </div>
 
 // name={place.place_name}
 // desc={place.desc}

@@ -4,6 +4,7 @@ import { NavLink, Link, withRouter } from 'react-router-dom'
 
 import '../App.css'
 import hamburger from '../assets/images/hamburger.png'
+import MapContainer from './MapContainer'
 
 
 class NavBarContainer extends Component {
@@ -72,6 +73,7 @@ class NavBarContainer extends Component {
                <ul className={navbarClass.join(' ')} id="js-menu">
                    <li><NavLink activeClassName="active" to="/dates" className="navlink">Events</NavLink></li>
                   <li><NavLink activeClassName="active" to="/bios" className="navlink">Bios</NavLink></li>
+                  <li><NavLink activeClassName="active" to="/places" className="navlink">Places</NavLink></li>
                   <li><NavLink activeClassName="active" to="/contribute" className="navlink">Contribute!</NavLink></li>
                   <li><NavLink activeClassName="active" to="/you" className="navlink">You</NavLink></li>
                </ul>
@@ -81,9 +83,9 @@ class NavBarContainer extends Component {
                 <Link onClick={this.loginRoute} className="notbutton inline">Login</Link>
                 <Link onClick={this.signupRoute} className="notbutton inline">SignUp</Link>
                     <ul className={navbarClass.join(' ')}>
-                      <br/><li><NavLink activeClassName="active" to="/" className="navlink">Today</NavLink></li>
-                      <li><NavLink activeClassName="active" to="/bios" className="navlink">Bios</NavLink></li>
                       <li><NavLink activeClassName="active" to="/dates" className="navlink">Events</NavLink></li>
+                      <li><NavLink activeClassName="active" to="/bios" className="navlink">Bios</NavLink></li>
+                      <li><NavLink activeClassName="active" to="/places" className="navlink">Places</NavLink></li>
                     </ul>
                   </>
         }
