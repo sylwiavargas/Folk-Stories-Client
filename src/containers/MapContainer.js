@@ -9,8 +9,10 @@ import Event from '../components/Event.js';
 const mapStyles = {
   map: {
     position: 'absolute',
-    width: '50%',
-    height: '60%',
+    "margin-top": '1%',
+    "margin-left": '6%',
+    width: '80%',
+    height: '80%',
     border: 'solid 2px black',
   }
 

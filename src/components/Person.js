@@ -4,9 +4,9 @@ import Loading from './Loading';
 import { Link } from 'react-router-dom';
 import facebook from '../img/facebook.png';
 import twitter from '../img/twitter.svg';
-import Force from './Force.js';
 import Popup from "reactjs-popup";
-import Event from './Event.js';
+import Event from './Event';
+import Force from './Force';
 
 class Person extends Component {
 
