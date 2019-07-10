@@ -36,9 +36,28 @@ export class MapContainer extends Component {
     fetch(`http://localhost:3000/api/v1/pps`)
       .then(res => res.json())
       .then(pps => this.props.savePps(pps))
-    }
+    .then(() => this.savePlacesToState())
+  }
 
-
+  savePlacesToState = () => {
+    let places = [];
+    this.props.pps.map((pp) =>
+      places.push(
+        {ppId: pp.id,
+        desc: pp.description_eng,
+        lat: pp.place.latitude,
+        lng: pp.place.longitude,
+        place_name: pp.place.name_eng,
+        personId: pp.person.id,
+        person_name: pp.person.name,
+        personPic: pp.person.picture
+        })
+    )
+    this.setState({
+      places: places
+    })
+    // console.log("here's your array", places)
+  }
 
   componentDidMount(){
     this.getPps()
@@ -53,7 +72,7 @@ export class MapContainer extends Component {
           });
         });
       }
-    console.log("I am async-updating the location!")
+    // console.log("I am async-updating the location!")
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -74,40 +93,69 @@ export class MapContainer extends Component {
 
   displayMarkers = () => {
     return this.state.places.map((place, index) => {
-      return <Marker key={index} id={index} position={{
+      return <Marker key={index} id={place.personId} position={{
        lat: place.lat,
        lng: place.lng
      }}
      onClick={this.onMarkerClick}
-     name={'Kenyatta International Convention Centre'}
+     name={place.place_name}
+     desc={place.desc}
+     personName={place.person_name}
+     personId={place.personId}
+     personPic={place.personPic}
      />
     })
   }
 
   render() {
     const style = Object.assign({}, mapStyles.map);
-    console.log("PROPS", this.props)
-    console.log("LOCATION", this.state.currentLocation)
+    // console.log("PPS - redux", this.props.pps)
+    // console.log("Places - state", this.state.places)
+    console.log("Marker", this.state.activeMarker)
+    // console.log("Place", this.state.selectedPlace)
+    // console.log("PROPS", this.props)
+    // console.log("LOCATION", this.state.currentLocation)
+    const place = this.state.selectedPlace
+    // console.log("Place", place)
 
     return (
       <div style={style}>
       {this.state.currentLocation.lat !== null ?
         <>
-      <Map
-         google={this.props.google}
-         zoom={12}
-         style={mapStyles}
-         initialCenter={this.state.currentLocation}
-       >
-         {this.displayMarkers()}
-       </Map>
+          <Map
+             google={this.props.google}
+             zoom={12}
+             style={mapStyles}
+             initialCenter={this.state.currentLocation}
+           >
+           {this.displayMarkers()}
+
+           <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+              onClose={this.onClose}
+            >
+              <div>
+                <h4>{place.name}</h4>
+                <p> {place.desc}</p>
+                <h4>Related person:</h4>
+                <p> {place.personName} </p>
+                <img src={place.personPic} alt={place.personName} />
+              </div>
+            </InfoWindow>
+          </Map>
        </>
-       : <Loading/>}
+      : <Loading/>}
       </div>
     );
   }
 }
 
+// name={place.place_name}
+// desc={place.desc}
+// personName={place.person_name}
+// personId={place.personId}
+// personPic={place.personPic}
 
 const mapStateToProps = state => {
   return {
