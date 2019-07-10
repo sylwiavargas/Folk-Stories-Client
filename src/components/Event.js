@@ -42,11 +42,6 @@ class Event extends Component {
   }
 
   render() {
-    // console.log(this.props.eventId)
-    // console.log(this.context.router)
-    // // console.log("STATE", this.state)
-    // // console.log("PROPS", this.props.events)
-    // // console.log("LENGTH", this.props.events.length)
     const backgrounds = ["gradient-five", "gradient-four", "gradient-three", "gradient-two", "gradient-one"]
     const pickOne = () => backgrounds[Math.floor(Math.random()*backgrounds.length)]
     console.log(this.props.events)
@@ -80,17 +75,12 @@ class Event extends Component {
           })
         : null
         }
+        <button onClick={this.props.close} className={` notbutton ${pickOne()}`}> close me </button>
         </div>
       : <Loading /> }
     </div>
     )}
 }
-
-// line 76
-// <>
-// <img src={arrow} className="sharing" alt="go back" onClick={this.props.history.goBack} tabIndex="0"/>
-// </>
-
 
 const mapStateToProps = state => {
   return {
@@ -108,24 +98,3 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
   mapStateToProps, mapDispatchToProps)(Event);
-//
-// nested routing: https://codeburst.io/getting-started-with-react-router-5c978f70df91
-//
-// !event ?
-// <div className="App">
-//   <Loading />
-// </div>
-// :
-// <div className="App">
-//   <NavBarContainer />
-//   <div className="main">
-//     <h1> {event.title_eng} </h1>
-//     <h2> See people related to this event: </h2>
-//     <ul>
-//     {
-//       event.people.map((person, index) => <li key={index}> {person.name_eng} </li>)
-//     }
-//     </ul>
-//   </div>
-//   <Footer />
-// </div>

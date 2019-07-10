@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import Loading from '../components/Loading'
+import { connect} from 'react-redux';
+import Loading from '../components/Loading';
+import Popup from "reactjs-popup";
+import Event from '../components/Event.js';
 
 
 const mapStyles = {
@@ -29,7 +32,16 @@ export class MapContainer extends Component {
       }
   };
 
+  getPps = () => {
+    fetch(`http://localhost:3000/api/v1/pps`)
+      .then(res => res.json())
+      .then(pps => this.props.savePps(pps))
+    }
+
+
+
   componentDidMount(){
+    this.getPps()
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
           const coords = pos.coords;
@@ -43,31 +55,6 @@ export class MapContainer extends Component {
       }
     console.log("I am async-updating the location!")
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //     if (prevState.currentLocation !== this.state.currentLocation) {
-  //       console.log("changed location!", this.state.currentLocation)
-  //       this.recenterMap();
-  //     }
-  // }
-
-  // recenterMap() {
-  //   const map = this.map;
-  //   const current = this.state.currentLocation;
-  //
-  //   const google = this.props.google;
-  //   const maps = google.maps;
-  //
-  //   if (map) {
-  //     console.log(current.lat, current.lng)
-  //    let center = new maps.LatLng(current.lat, current.lng);
-  //    map.panTo(center);
-  //
-  //  } else {
-  //    console.log("nope, not recentering")
-  //  }
-  //
-  // }
 
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -91,20 +78,16 @@ export class MapContainer extends Component {
        lat: place.lat,
        lng: place.lng
      }}
-     onClick={() => console.log("You clicked me!")} />
+     onClick={this.onMarkerClick}
+     name={'Kenyatta International Convention Centre'}
+     />
     })
   }
 
   render() {
     const style = Object.assign({}, mapStyles.map);
-    // console.log("STATE", this.state)
-    // console.log("PROPS", this.props)
+    console.log("PROPS", this.props)
     console.log("LOCATION", this.state.currentLocation)
-    // console.log("this map", this.map)
-
-    // setTimeout(console.log("map here!", this.map), 5000)
-
-    
 
     return (
       <div style={style}>
@@ -126,6 +109,31 @@ export class MapContainer extends Component {
 }
 
 
-export default GoogleApiWrapper({
+const mapStateToProps = state => {
+  return {
+    places: state.places.places,
+    place: state.places.place,
+    pps: state.places.pps,
+    user: state.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    savePlaces: (places) => {
+      dispatch({type: 'SAVE_PLACES', payload: places})
+    },
+    savePlace: (place) => {
+      dispatch({type: "SAVE_PLACE", payload: place})
+    },
+    savePps: (pps) => {
+      dispatch({type: 'SAVE_PPS', payload: pps})
+    }
+  }
+}
+
+
+export default connect(
+  mapStateToProps, mapDispatchToProps)(GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_API_KEY
-})(MapContainer);
+})(MapContainer));

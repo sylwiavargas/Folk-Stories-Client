@@ -82,12 +82,13 @@ class Person extends Component {
             <h2> See {first_name}'s events: </h2>
             { person.events && person.events.length > 0 ?
                 person.events.map((event, index) => <li key={index}>
-                <Popup trigger={ <button className={` notbutton ${pickOne()} ${pickTwo()}`}> {event.year_era_id}: {event.title_eng} </button>} position="top center">
-                  <div className="modal">
+                <Popup
+                  trigger={ <button className={` notbutton ${pickOne()} ${pickTwo()}`}> {event.year_era_id}: {event.title_eng} </button>}
+                  position="top center">
+                    { close =>(
                     <div className="modal-card">
-                      <Event eventId={event.id}/>
-                    </div>
-                  </div>
+                      <Event eventId={event.id} close={close}/>
+                    </div>)}
                 </Popup>
                   <br/><br/><br/></li>)
               :
