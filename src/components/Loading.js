@@ -25,7 +25,7 @@ export default class Loading extends Component {
           color: 'white',
         }}
         onClick={() => this.forceUpdate()}>
-        "LOADING..."<br/>
+        <h1> LOADING...</h1><br/><br/> <br/>
         <svg width="180" viewBox="0 0 23 23">
           <Gradient id="gradient-dashoffset" />
           <g

@@ -77,18 +77,18 @@ class Person extends Component {
               <Link to={`/contribute`} style={{"color": "#2376ae"}}><strong> Please contribute.</strong></Link></p>
               </div>
             }
-            <h2> See {first_name}'s events: </h2>
+            <h2> See {first_name}'s events: </h2><br/>
             { person.events && person.events.length > 0 ?
                 person.events.map((event, index) => <li key={index}>
                 <Popup
                   trigger={ <button className={` notbutton ${pickOne()} ${pickTwo()}`}> {event.year_era_id}: {event.title_eng} </button>}
                   position="top center">
                     { close =>(
-                    <div className="modal-card">
+                    <div className="modal-card" style={{"width": "1000px"}}>
                       <Event eventId={event.id} close={close}/>
                     </div>)}
                 </Popup>
-                  <br/><br/><br/></li>)
+                  <br/></li>)
               :
               <div>
               <p> No events relating to {first_name} yet.

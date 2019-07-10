@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import { Map, Polyline, Polygon, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import { connect} from 'react-redux';
 import Loading from '../components/Loading';
 import Popup from "reactjs-popup";
 import Event from '../components/Event.js';
+import arrow from '../img/arrow.png'
 
 
 const mapStyles = {
@@ -12,7 +13,7 @@ const mapStyles = {
     "margin-top": '1%',
     "margin-left": '6%',
     width: '80%',
-    height: '80%',
+    height: '70%',
     border: 'solid 2px black',
   }
 
@@ -24,10 +25,8 @@ export class MapContainer extends Component {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
-    places:[
-      {lat: 40.702500, lng: -73.921830},
-      {lat: 40.708850, lng: -74.007870}
-    ],
+    places:[],
+    strollOn: false,
     currentLocation: {
         lat: null,
         lng: null,
@@ -109,19 +108,46 @@ export class MapContainer extends Component {
     })
   }
 
+  strollOnToggle =() => {
+    this.setState({
+      strollOn: !this.state.strollOn
+    })
+  }
+
+  // icon={place.personPic}
+  // https://developers.google.com/maps/documentation/javascript/reference/#Marker
+  // https://tomchentw.github.io/react-google-maps/#marker
+
   render() {
     const style = Object.assign({}, mapStyles.map);
     // console.log("PPS - redux", this.props.pps)
     // console.log("Places - state", this.state.places)
-    console.log("Marker", this.state.activeMarker)
+    console.log("Stroll", this.state.strollOn)
     // console.log("Place", this.state.selectedPlace)
     // console.log("PROPS", this.props)
     // console.log("LOCATION", this.state.currentLocation)
     const place = this.state.selectedPlace
     // console.log("Place", place)
+    const folkWalks = [
+      {lat: 40.773871, lng: -73.983178},
+      {lat: 40.8194, lng: -73.95},
+      {lat: 40.708850, lng: -74.007871},
+      {lat: 40.701100, lng: -74.007870},
+      {lat: 40.708850, lng: -74.007870},
+      {lat: 40.736881, lng: -74.008499},
+      {lat: 40.733210, lng: -74.003020},
+      {lat: 40.733210, lng: -74.003020},
+    ];
+    console.log(folkWalks)
 
     return (
-      <div style={style}>
+      <div>
+      <div className="stroll">
+      <h1 style={{"textAlign": "center"}}> HAVE A STROLL WITH US: </h1>
+
+      <button className="notbutton teal center" onClick={this.strollOnToggle} style={{"display": "block"}}> map a stroll </button><br/>
+      </div>
+      <div className="map" style={style}>
       {this.state.currentLocation.lat !== null ?
         <>
           <Map
@@ -131,25 +157,32 @@ export class MapContainer extends Component {
              initialCenter={this.state.currentLocation}
            >
            {this.displayMarkers()}
-
+           {this.state.strollOn === true ?
+             <Polygon
+               paths={folkWalks}
+               strokeColor="#0000FF"
+               strokeOpacity={0.8}
+               strokeWeight={2} />
+            : null }
            <InfoWindow
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}
               onClose={this.onClose}
             >
-              <div>
-                <h3>{place.name}</h3>
-                <p> {place.desc}</p>
-                <h4>Related person:</h4>
-                <p className="inline"><a href={`/bios/${place.personId}`}> &nbsp; {place.personName} </a></p>
-                <div className="image-cropper-mini inline left">
-                  <a href={`/bios/${place.personId}`}><img src={place.personPic} alt={place.personName} /></a>
+              <div style={{"border": "black 1px solid"}}>
+                <h2 className="infoWindow">{place.name}</h2>
+                <p className="infoWindow"> {place.desc}</p>
+                <h4 className="infoWindow">Related person:</h4>
+                <p className="infoWindow inline"><a href={`/bios/${place.personId}`}> &nbsp; {place.personName} </a></p>
+                <div className="image-cropper-mini-iw inline left">
+                  <a href={`/bios/${place.personId}`} ><img src={place.personPic} alt={place.personName} /></a>
                 </div>
               </div>
             </InfoWindow>
           </Map>
        </>
       : <Loading/>}
+      </div>
       </div>
     );
   }

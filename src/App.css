@@ -505,8 +505,8 @@ a:hover {
   border: 2px solid black;
   width: 130px;
   height: 100px;
-  left: 74%;
-  top: 53%;
+  left: 76%;
+  top: 43%;
   z-index: 3;
 }
 
@@ -578,7 +578,7 @@ a:hover {
 }
 
 .modal{
-  width: 1000px;
+  min-width: 2000px;
   border-bottom: 1px solid gray;
   font-size: 18px;
   text-align: center;
@@ -586,4 +586,35 @@ a:hover {
 
 .modal-card{
   width: 80%;
+}
+
+.infoWindow {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.image-cropper-mini-iw {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.image-cropper-mini-iw img {
+  width: 100%;
+  height: auto;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.map img {
+
+}
+
+
+.stroll button {
+  width: 300px;
+  float: none;
+  margin-right: 38%;
 }
