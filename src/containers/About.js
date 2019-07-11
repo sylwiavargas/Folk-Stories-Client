@@ -33,13 +33,15 @@ class About extends Component {
         <li> Learning Redux under pressure was not fun. </li>
       </div>
 
-      <div className="sidebar-about" style={{"fontSize": "35px"}}><br/><br/><br/><br/>
+      <div className="sidebar-about" style={{"fontSize": "30px"}}><br/><br/><br/><br/>
       <strong> NUMBERS:</strong><br/><br/>
+      <li><strong> 1,113 </strong> seed data lines</li>
+      <li><strong> 183 </strong> git commits</li>
+      <li><strong> 18 </strong> days of work</li>
       <li><strong> 46 </strong> cups of coffee</li>
       <li><strong> 102 </strong> hours of sleep</li>
-      <li><strong> 113 </strong> major bugs squished</li>
-      <li><strong> 4 </strong> bugs to be squished</li>
-      <li><strong> 1113 </strong> lines of seed data</li>
+      <li><strong> 113 </strong> bugs squished</li>
+      <li><strong> 4 </strong> bugs remained</li>
       </div>
       <div className="content-about">
         <h1 style={{"textAlign": "center"}}>These are the models of the project:</h1><br/>
