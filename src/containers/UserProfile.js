@@ -56,7 +56,10 @@ class UserProfile extends Component {
     const id = this.props.user.id
     fetch(`http://localhost:3000/api/v1/users/${id}` , {
         method: 'DELETE',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.token}`
+        },
         body: JSON.stringify({id: id})
       })
       .then(res => res.text())

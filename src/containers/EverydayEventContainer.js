@@ -169,9 +169,9 @@ class EverydayEventContainer extends Component {
               <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
               </a> </p>
               : null}
-              {event.event.people ?
+              {event.event.people && event.event.people.length > 0 ?
                 <>
-                  <strong className=""> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
+                  <strong className=""> Related  people: </strong><br/> <br/> {event.event.people.map((person, index) => {
                   return (<>
                   <div className="image-cropper-mini inline margin">
                   <Link to={`/bios/${person.id}`}  key={index}> <img src = {person.picture} alt={person.name}/></Link>
@@ -200,7 +200,7 @@ class EverydayEventContainer extends Component {
                {event.event.read_more_eng && event.event.read_more_eng !== null && event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
                <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
                </a> </p> : null}
-               {event.event.people ?
+               {event.event.people && event.event.people.length > 0 ?
                  <>
                    <strong className=""> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
                    return (<>

@@ -2,40 +2,37 @@ import React, { Component } from 'react';
 import { Graph } from 'react-d3-graph';
 import { connect} from 'react-redux';
 
-class Force extends Component {
+class Models extends Component {
 
-  componentDidMount(){
-      this.getConnections()
-    }
 
-// blue - non-join,
-// yellow - main,
+// rgba(255, 255, 255, 0.33) - non-join,
+// #d9c60f - main,
 // red - joint
 
   render() {
     const nodes = [
-      {id: "years", color: "blue"},
-      {id: "year_eras", color: "yellow"},
-      {id: "eras", color: "blue"},
-      {id: "events", color: "yellow"},
-      {id: "event_places", color: "blue"},
-      {id: "places", color: "blue"},
-      {id: "places_people", color: "yellow"},
-      {id: "event_people", color: "blue"},
-      {id: "countries_people", color: "blue"},
-      {id: "countries", color: "blue"},
-      {id: "continents", color: "blue"},
-      {id: "days", color: "blue"},
-      {id: "month_days", color: "yellow"},
-      {id: "months", color: "yellow"},
-      {id: "event_types", color: "yellow"},
-      {id: "people", color: "yellow"},
-      {id: "countries", color: "blue"},
-      {id: "connections", color: "yellow"},
-      {id: "types", color: "blue"},
-      {id: "types_subscriptions", color: "yellow"},
-      {id: "subscriptions", color: "blue"},
-      {id: "users", color: "yellow"},
+      {id: "years", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "year_eras", color: "#d9c60f"},
+      {id: "eras", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "events", color: "#d9c60f", gravity: -500, size: 500},
+      {id: "event_places", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "places", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "places_people", color: "#d9c60f"},
+      {id: "event_people", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "countries_people", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "countries", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "continents", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "days", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "month_days", color: "#d9c60f"},
+      {id: "months", color: "#d9c60f"},
+      {id: "event_types", color: "#d9c60f"},
+      {id: "people", color: "#d9c60f"},
+      {id: "countries", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "connections", color: "#d9c60f"},
+      {id: "types", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "types_subscriptions", color: "#d9c60f"},
+      {id: "subscriptions", color: "rgba(255, 255, 255, 0.33)"},
+      {id: "users", color: "#d9c60f"},
   ];
     const links = [
       {target: "countries", source: "continents"},
@@ -59,18 +56,10 @@ class Force extends Component {
       {target: "event_people", source: "people"},
       {target: "countries", source: "people"},
       {target: "connections", source: "people"},
-      {target: "people_places", source: "people"},
-    ];
+      {target: "places_people", source: "people"},
+      {target: "countries_people", source: "people"},
 
-        //
-        // console.log("NODES", nodes)
-        // console.log("LINKS", links)
-        // console.log(this.props)
-    //
-    // const onClickNode = (nodeId) => {
-    //   const person = this.props.people.find((person) => person.name === nodeId )
-    //   return this.props.savePerson(person)
-    // };
+    ];
 
     const data = {
         nodes: nodes,
@@ -122,34 +111,24 @@ class Force extends Component {
               "mouseCursor": "pointer",
               labelProperty: "label",
               renderLabel: true,
-              highlightStrokeColor: "#2376ae",
+              highlightStrokeColor: "rgba(255, 255, 255, 0.33)",
               highlightColor: "SAME"
           }
-      };
-
-      // graph event callbacks
-      const onClickGraph = function() {
-          window.alert(`Legend:
-            red: romantic relationships
-            purple: friendhips
-            yellow: collaborations `);
       };
 
     return (
       <div>
       { data && data.nodes && data.nodes.length > 0 ?
         <>
-      <Legend />
+        <div className="legend-mini">
+        <h2> Legend: </h2>
+        <p style={{"color": "#d9c60f"}} className="inline"><strong> ----- </strong></p> I fetch data directly from these models <br/>
+        <p style={{"color": "rgba(255, 255, 255, 0.33)"}} className="inline"><strong> ----- </strong></p> data waiting to be used<br/>
+        </div>
       <Graph
-          id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
+          id="graph-id"
           data={data}
           config={myConfig}
-          onClickNode={onClickNode}
-          // onRightClickNode={onRightClickNode}
-          onClickGraph={onClickGraph}
-          // onClickLink={onClickLink}
-          // onRightClickLink={onRightClickLink}
-
       />
       </>
       : null}
@@ -160,27 +139,4 @@ class Force extends Component {
 
 }
 
-
-
-const mapStateToProps = state => {
-  return {
-    people: state.people.people,
-    person: state.people.person,
-    connections: state.people.connections
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    saveConnections: (connections) => {
-      dispatch({type: 'SAVE_CONNECTIONS', payload: connections})
-    },
-    savePerson: (person) => {
-      dispatch({type: 'SAVE_PERSON', payload: person})
-    }
-  }
-}
-
-
-export default connect(
-  mapStateToProps, mapDispatchToProps)(Force)
+export default (Models)

@@ -157,7 +157,7 @@ class MonthContainer extends Component {
     render() {
 
       const propsMonth = this.props.events.events
-      // debugger
+
       return (
         <div>
         { this.state.loading === false ?
@@ -177,19 +177,11 @@ class MonthContainer extends Component {
           </div>
           <div className="month-wrapper">
           <div className="month">
-          { propsMonth[0].events && propsMonth[0].events.length > 0 ?
+          {
             propsMonth[0].events.map((e) =>
-            <li key={e.id}>
-            <Popup trigger={
-              <button className={` notbutton left`} style={{"textAlign": "left"}}> {e.year_era_id}: {e.title_eng} </button>}
-              position="center center">
-              { close =>(
-              <div className="modal-card" style={{"width": "1000px"}}>
-                <Event eventId={e.id} close={close}/>
-              </div>)}
-          </Popup></li>
-          )
-          : null}
+                <li key={e.id}><strong>{e.year_era_id}: </strong> <Link to={`/events/${e.id}`}  key={e.id} arget="_blank" rel="noopener noreferrer">  {e.title_eng} </Link> <br/>
+                </li>
+          )}
           </div>
           </div>
           </>

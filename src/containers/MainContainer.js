@@ -15,6 +15,8 @@ import SignUpForm from '../components/SignUpForm'
 import LoginForm from '../components/LoginForm'
 import DatesPage from './DatesPage'
 import MapContainer from './MapContainer'
+import About from './About'
+
 
 import '../App.css';
 
@@ -68,6 +70,7 @@ class MainContainer extends Component {
       <Route exact path="/events/:id" component={Event} />
       <Route exact path="/you" component={UserProfile} />
       <Route exact path="/signUp" component={SignUpForm} formInput={this.formInput}/>
+      <Route exact path="/about" component={About}/>
       <Route exact path="/login" component={LoginForm} />
       <Route component={Notfound} />
            </Switch>
