@@ -13,7 +13,7 @@ const mapStyles = {
     "margin-top": '1%',
     "margin-left": '6%',
     width: '80%',
-    height: '70%',
+    height: '62%',
     border: 'solid 2px black',
   }
 

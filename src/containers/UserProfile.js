@@ -3,6 +3,11 @@ import { connect} from 'react-redux';
 
 class UserProfile extends Component {
 
+  goBack = () => {
+    localStorage.removeItem('token')
+    this.props.history.push('/')
+  }
+
   state={
     id: this.props.id,
     username: this.props.username,
@@ -57,6 +62,7 @@ class UserProfile extends Component {
         body: JSON.stringify({id: id})
       })
       .then(res => res.text())
+      .then(this.goBack())
     }
 
   render() {

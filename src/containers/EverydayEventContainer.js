@@ -167,8 +167,10 @@ class EverydayEventContainer extends Component {
               <p className="inline "><strong>Event category:</strong>
               {event.event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
               <p> {event.event.description_eng} </p>
+              {event.event.read_more_eng && event.event.read_more_eng !== null && event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
               <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
               </a> </p>
+              : null}
               {event.event.people ?
                 <>
                   <strong className=""> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
@@ -197,8 +199,9 @@ class EverydayEventContainer extends Component {
                <p className="inline "><strong>Event category:</strong>
                {event.event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
                <p> {event.event.description_eng} </p>
+               {event.event.read_more_eng && event.event.read_more_eng !== null && event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
                <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
-               </a> </p>
+               </a> </p> : null}
                {event.event.people ?
                  <>
                    <strong className=""> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {

@@ -3,7 +3,6 @@ import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import {Spring,config} from 'react-spring/renderprops'
 import moment from 'moment';
-// import psl from 'psl';
 import facebook from '../img/facebook.png';
 import twitter from '../img/twitter.svg';
 
@@ -13,27 +12,22 @@ class TodayEventContainer extends Component {
     queer: false,
     women: false,
     allEvents: true,
-    // userEvents: []
   }
 
   getEvents = () => {
     const today = moment().format('MD')
     const datesapi = `http://localhost:3000/api/v1/dates/${today}`
     fetch(datesapi)
-    // fetch(`http://localhost:3000/api/v1/events`)
       .then(res => res.json())
       .then(events => {
         this.props.saveEvents(events)
-        // this.handleUserTypes(events)
       })
       // .then(console.log("fetch done"))
-      // .then(this.handleUserTypes())
     // debugger
     }
 
   componentDidMount(){
     this.getEvents();
-    // this.handleUserTypes()
   }
 
   handleAll = () => {
@@ -148,9 +142,11 @@ class TodayEventContainer extends Component {
           <p className="inline "><strong>Event category:</strong>
           {event.event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
           <p> {event.event.description_eng} </p>
+          {event.event.read_more_eng && event.event.read_more_eng !== null && event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
           <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
           </a> </p>
-          {event.event.people ?
+          : null}
+          {event.event.people && event.event.people.length > 0 ?
             <>
               <strong className=""> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
               return (<>
@@ -178,9 +174,11 @@ class TodayEventContainer extends Component {
           <p className="inline "><strong>Event category:</strong>
           {event.event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
           <p> {event.event.description_eng} </p>
+          {event.event.read_more_eng && event.event.read_more_eng !== null && event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
           <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
           </a> </p>
-          {event.event.people ?
+          : null}
+          {event.event.people && event.event.people.length > 0 ?
             <>
               <strong className=""> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
               return (<>
