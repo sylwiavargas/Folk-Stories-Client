@@ -329,6 +329,7 @@ a:hover {
   height: 100%;
 }
 
+
 .bio-fake {
   font-size: 150%;
   display: grid;
@@ -536,19 +537,47 @@ a:hover {
   z-index: 3;
 }
 
-.legend-mini{
+
+.legend-models{
   position: absolute;
   background-color: gray;
   padding-left: 0.5%;
   font-size: 90%;
   line-height: 20%;
   border: 2px solid black;
-  width: 130px;
-  height: 100px;
+  width: 135px;
+  height: 140px;
   left: 76%;
-  top: 43%;
+  top: 140%;
   z-index: 3;
 }
+
+.wrapper-about {
+  width: 80%;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 70% 30%;
+  margin-left: 12.5%;
+  font-size: 100%;
+}
+
+.content-about li {
+  list-style-type: square;
+}
+
+  .content-about {
+    grid-column: 1;
+    text-align: justify;
+    padding-right: 5%;
+    line-height: 150%;
+  }
+
+  .footer-about, .header-abour {
+    grid-column: 1 / span 2;
+    height: 400px;
+  }
+
+
 
 .wrapper-bio {
   width: 80%;
@@ -592,6 +621,7 @@ a:hover {
   .content-bio {
     grid-column: 1;
   }
+
 
   .footer-bio, .header-bio {
     grid-column: 1 / span 2;
@@ -657,4 +687,9 @@ a:hover {
   width: 300px;
   float: none;
   margin-right: 38%;
+}
+
+.popup-overlay {
+  background-color: black;
+  opacity: 0.6;
 }

@@ -120,10 +120,10 @@ class Models extends Component {
       <div>
       { data && data.nodes && data.nodes.length > 0 ?
         <>
-        <div className="legend-mini">
-        <h2> Legend: </h2>
-        <p style={{"color": "#d9c60f"}} className="inline"><strong> ----- </strong></p> I fetch data directly from these models <br/>
-        <p style={{"color": "rgba(255, 255, 255, 0.33)"}} className="inline"><strong> ----- </strong></p> data waiting to be used<br/>
+        <div className="legend-models">
+        <h2> Legend: </h2><br/><br/>
+        <p style={{"color": "#d9c60f"}} className="inline"><strong> ----- </strong></p> Data in use <br/>
+        <p style={{"color": "rgba(255, 255, 255, 0.33)"}} className="inline"><strong> ----- </strong></p> Data to be used<br/>
         </div>
       <Graph
           id="graph-id"
