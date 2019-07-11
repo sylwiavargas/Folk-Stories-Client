@@ -63,7 +63,7 @@ class EverydayEventContainer extends Component {
       allEvents: true,
       queer: false,
       women: false
-    // }, () => console.log("inside handleAll after setState", this.props.events))
+    }, () => console.log("inside handleAll after setState", this.props.events))
 
     this.props.selectAll(featuredEvents)
   }
