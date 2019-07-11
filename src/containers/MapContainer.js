@@ -114,15 +114,9 @@ export class MapContainer extends Component {
     })
   }
 
-  // icon={place.personPic}
-  // https://developers.google.com/maps/documentation/javascript/reference/#Marker
-  // https://tomchentw.github.io/react-google-maps/#marker
-
   render() {
     const style = Object.assign({}, mapStyles.map);
-    // console.log("PPS - redux", this.props.pps)
-    // console.log("Places - state", this.state.places)
-    console.log("Stroll", this.state.strollOn)
+    // console.log("Stroll", this.state.strollOn)
     // console.log("Place", this.state.selectedPlace)
     // console.log("PROPS", this.props)
     // console.log("LOCATION", this.state.currentLocation)
@@ -138,7 +132,7 @@ export class MapContainer extends Component {
       {lat: 40.733210, lng: -74.003020},
       {lat: 40.733210, lng: -74.003020},
     ];
-    console.log(folkWalks)
+    // console.log(folkWalks)
 
     return (
       <div>
@@ -187,15 +181,6 @@ export class MapContainer extends Component {
     );
   }
 }
-
-// <Link to={`/bios/${person.id}`}  key={index}> <img src = {person.picture} alt={person.name}/></Link>
-// </div>
-
-// name={place.place_name}
-// desc={place.desc}
-// personName={place.person_name}
-// personId={place.personId}
-// personPic={place.personPic}
 
 const mapStateToProps = state => {
   return {

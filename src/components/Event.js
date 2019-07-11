@@ -44,7 +44,6 @@ class Event extends Component {
   render() {
     const backgrounds = ["gradient-five", "gradient-four", "gradient-three", "gradient-two", "gradient-one"]
     const pickOne = () => backgrounds[Math.floor(Math.random()*backgrounds.length)]
-    console.log(this.props.events)
 
     return(
       <div className={` event-wrapper ${pickOne()}`}>

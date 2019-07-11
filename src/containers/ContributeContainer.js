@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-// import { Link } from 'react-router-dom';
 
 const API = "http://localhost:3000/api/v1/events"
 const API2 = "http://localhost:3000/api/v1/bios"
@@ -97,23 +96,6 @@ class ContributeContainer extends Component {
     )}
 
   }
-      // <ul>
-      // <h1> Today's events: </h1>
-      // {this.props.events !== undefined && this.props.events > 0  ?
-      //   this.props.events.map((event, index) => {
-      //     return <li key={index}>
-      //     <h2> {event.title_eng} </h2>
-      //     <p> {event.description_eng} </p>
-      //     <a href={event.read_more_eng} target="_blank" rel="noopener noreferrer"> Read more </a>
-      //     {event.people ?
-      //     <p> <strong> Related people: </strong>  {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})}
-      //     </p> : null}
-      //     </li>
-      //   })
-      // : null
-      // }
-      // </ul>
-
 
 const mapStateToProps = state => {
   return {

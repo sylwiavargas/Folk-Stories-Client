@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import {Spring,config} from 'react-spring/renderprops'
+import Popup from "reactjs-popup";
+import Event from '../components/Event';
+
+
 class MonthContainer extends Component {
 
     state = {
@@ -33,7 +37,7 @@ class MonthContainer extends Component {
           this.setState({
             loading: false
           })
-        console.log("prevProps", prevProps.events.events , "Thisprops", this.props.events.events )
+        // console.log("prevProps", prevProps.events.events , "Thisprops", this.props.events.events )
         }
     }
 
@@ -174,8 +178,16 @@ class MonthContainer extends Component {
           <div className="month-wrapper">
           <div className="month">
           {
-            propsMonth[0].events.map((e) => <li key={e.id}><strong>{e.year_era_id}: </strong> <Link to={`/events/${e.id}`}  key={e.id} arget="_blank" rel="noopener noreferrer">  {e.title_eng} </Link> <br/></li>)
-
+            propsMonth[0].events.map((e) =>
+            <Popup trigger={
+                <li key={e.id}><strong>{e.year_era_id}: </strong> <Link to={`/events/${e.id}`}  key={e.id} arget="_blank" rel="noopener noreferrer">  {e.title_eng} </Link> <br/></li>}
+              position="top center">
+              { close =>(
+              <div className="modal-card" style={{"width": "1000px"}}>
+                <Event eventId={e.id} close={close}/>
+              </div>)}
+          </Popup>
+          )
           }
           </div>
           </div>
@@ -185,62 +197,6 @@ class MonthContainer extends Component {
           </div>
     )}
   }
-
-
-  // DELETED now
-  //         <div>
-          // <Spring config={config.default}
-          //   from={{ opacity: 0.6, marginLeft: -10 }}
-          //   to={{ opacity: 1, marginLeft: 50 }}
-          //   >
-          //   {props => (
-          //     <div style={props}>
-          //     <h1> Here's what happened in {this.state.month}:</h1>
-          //     </div>
-          //   )}
-          // </Spring>
-          // <button onClick={this.handleAll}> All </button>
-          // <button onClick={this.handleWomen}> Women </button>
-          // <button onClick={this.handleQueer}> Queer </button>
-          // </div>
-          // <ul>
-          // {efs && efs.length > 0 ?
-          //   efs.map((event, index) =>
-          //     <Fragment key={index}>
-          //      <h2> {event.event.year_era_id}: {event.event.title_eng} </h2>
-          //      {event.event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
-          //      <p> {event.event.description_eng} </p>
-          //      <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
-          //        </a> </p>
-          //      <p> <strong> Related people: </strong> {event.event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name} </Link>})} </p>
-          //      <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
-          //       <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
-          //      </Fragment>
-          //    )
-          //   : propsMonth !== undefined && propsMonth.length > 0 ?
-          //     <Trail
-          //      items={evs}
-          //      keys={event => event.id}
-          //      from={{ marginLeft: -20, opacity: 0 }}
-          //      to={{ marginLeft: 20, opacity: 1 }}
-          //    >
-          //      {event => props => (
-          //        <div style={props}>
-          //        <h2> {event.year_era_id}: {event.title_eng} </h2>
-          //        <p> {event.description_eng} </p>
-          //        <p> Read more about this event at <a href={event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
-          //          </a> </p>
-          //        <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name} </Link>})} </p>
-          //        <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
-          //         <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
-          //        </div>
-          //      )}
-          //    </Trail>
-          // :
-          //   null
-          // }
-          // </ul>
-
 
 
   const mapStateToProps = state => {
@@ -271,24 +227,3 @@ class MonthContainer extends Component {
 
 export default connect(
   mapStateToProps, mapDispatchToProps)(MonthContainer);
-
-// nested routing: https://codeburst.io/getting-started-with-react-router-5c978f70df91
-//
-// <div>
-//   <h1>Users</h1>
-//   <strong>select a person</strong>
-//   <ul>
-//     <li>
-//       <Link to="/users/1">User 1 </Link>
-//     </li>
-//     <li>
-//       <Link to="/users/2">User 2 </Link>
-//     </li>
-//     <li>
-//       <Link to="/users/3">User 3 </Link>
-//     </li>
-//   </ul>
-//   <Route path="/users/:id" component={User} />
-// </div>
-
-// const Person = ({ match }) => <p>{match.params.id}</p>

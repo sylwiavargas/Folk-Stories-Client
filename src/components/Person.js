@@ -14,12 +14,6 @@ class Person extends Component {
     loading: true,
   }
 
-  togglePopup = () => {
-    this.setState({
-      showPopup: !this.state.showPopup
-    });
-  }
-
   getPeep = () => {
     const num = this.props.match.params.id
     fetch(`http://localhost:3000/api/v1/bios/${num}`)
@@ -43,7 +37,6 @@ class Person extends Component {
 
     if (person) {
       first_name = person.name.split(" ")[0]
-      console.log(person.pps)
     }
 
     const backgrounds = ["gradient-five", "gradient-four", "gradient-three", "gradient-two", "gradient-one"]

@@ -18,18 +18,3 @@ class Footer extends Component {
 
 
 export default Footer;
-
-// <AccessibilityContainer>
-//   dark={dark}
-//   sizeUp={sizeUp}
-//   fontReadable={fontReadable}
-//   changeSetting={changeSetting}
-// /><br/>
-//
-// <NavigationButtonsContainer
-//   logged={logged}
-//   caseStudies={caseStudies}
-//   changeSetting={changeSetting}
-// />
-
-        // <button onclick={`/users/${this.props.currentUser.id}`}>Profile</button>

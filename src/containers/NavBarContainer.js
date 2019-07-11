@@ -109,18 +109,3 @@ const mapDispatchToProps = dispatch => {
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(NavBarContainer)
 )
-
-// <AccessibilityContainer>
-//   dark={dark}
-//   sizeUp={sizeUp}
-//   fontReadable={fontReadable}
-//   changeSetting={changeSetting}
-// /><br/>
-//
-// <NavigationButtonsContainer
-//   logged={logged}
-//   caseStudies={caseStudies}
-//   changeSetting={changeSetting}
-// />
-
-        // <button onclick={`/users/${this.props.currentUser.id}`}>Profile</button>

@@ -4,15 +4,6 @@ import { NavLink } from 'react-router-dom';
 
 class Calendar extends Component {
 
-  // getDates = () => {
-  //   fetch(API)
-  //     .then(res => res.json())
-  //     .then(e => this.props.saveDates(e))
-  // }
-  //
-  // componentDidMount(){
-  //   this.getDates()
-  // }
 
   render() {
 
@@ -55,24 +46,3 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
   mapStateToProps, mapDispatchToProps)(Calendar);
-//
-// nested routing: https://codeburst.io/getting-started-with-react-router-5c978f70df91
-//
-// !event ?
-// <div className="App">
-//   <Loading />
-// </div>
-// :
-// <div className="App">
-//   <NavBarContainer />
-//   <div className="main">
-//     <h1> {event.title_eng} </h1>
-//     <h2> See people related to this event: </h2>
-//     <ul>
-//     {
-//       event.people.map((person, index) => <li key={index}> {person.name_eng} </li>)
-//     }
-//     </ul>
-//   </div>
-//   <Footer />
-// </div>

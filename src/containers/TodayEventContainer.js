@@ -105,14 +105,6 @@ class TodayEventContainer extends Component {
     const backgrounds = ["gradient-five", "gradient-four", "gradient-three", "gradient-two", "gradient-one"]
     const pickOne = () => backgrounds[Math.floor(Math.random()*backgrounds.length)]
 
-    // console.log("State", this.state)
-    // console.log("USER TYPES", this.props.user.currentUser.types)
-
-    // if (evs) {
-    //   // console.log(this.props.events[0].event)
-    //   console.log(this.props.events)
-    // }
-
     return (
       <div>
       <div>
@@ -208,33 +200,6 @@ class TodayEventContainer extends Component {
 
 }
 
-// DELETED now
-// handleUserTypes = () => {
-//   const userTypes = this.props.user.currentUser.types;
-//   return (this.props.events !== undefined && this.props.events.length > 0 ?
-//     userTypes.forEach(
-//       (type) => {
-//        return (type.name_eng === "Women" ?
-//           this.handleWomen()
-//         : type.name_eng === "Queer" ?
-//           console.log(this)
-//           // this.handleQueer()
-//
-//         :
-//           console.log("nothing has been done"))
-//         }
-//     )
-//   : null)
-//   }
-
-
-// {event.types.map((type) => <p key={type.id}><strong>Event category:</strong> {type.name_eng.toLowerCase()}</p>)}
-//
-// <a href={event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> Read more </a>
-
-// <p> <strong> Related people: </strong> {event.people.map((person, index) => {return <Link to={`/bios/${person.id}`}  key={index}>{person.name}</Link>})} </p>
-// <a href="https://www.facebook.com/sharer/sharer.php?u=gentrification-map.firebaseapp.com/" target="_blank" rel="noopener noreferrer"> <img src={facebook} className="sharing" alt="Share on Facebook"/></a>
-// <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgentrification-map.firebaseapp.com%2F&text=HappenedToday&hashtags=history,social" target="_blank" rel="noopener noreferrer"> <img src={twitter} className="sharing" alt="Share on Twitter"/></a>
 const mapStateToProps = state => {
   return {
     events: state.events.events[0],

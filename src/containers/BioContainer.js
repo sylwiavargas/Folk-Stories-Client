@@ -101,24 +101,3 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
   mapStateToProps, mapDispatchToProps)(BioContainer);
-
-// nested routing: https://codeburst.io/getting-started-with-react-router-5c978f70df91
-//
-// <div>
-//   <h1>Users</h1>
-//   <strong>select a person</strong>
-//   <ul>
-//     <li>
-//       <Link to="/users/1">User 1 </Link>
-//     </li>
-//     <li>
-//       <Link to="/users/2">User 2 </Link>
-//     </li>
-//     <li>
-//       <Link to="/users/3">User 3 </Link>
-//     </li>
-//   </ul>
-//   <Route path="/users/:id" component={User} />
-// </div>
-
-// const Person = ({ match }) => <p>{match.params.id}</p>
