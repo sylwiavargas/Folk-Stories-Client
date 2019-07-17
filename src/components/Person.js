@@ -4,7 +4,7 @@ import Loading from './Loading';
 import { Link } from 'react-router-dom';
 import facebook from '../img/facebook.png';
 import twitter from '../img/twitter.svg';
-// import Popup from "reactjs-popup";
+import Popup from "reactjs-popup";
 import Event from './Event';
 import Force from './Force';
 
