@@ -8,16 +8,24 @@ Explore: [Backend repo] (https://github.com/sylwiavargas/Folk-Stories-API)
 ### Snapshots
 
 Events page:
+
 ![](main.gif)
 
+
 D3 visualization of connections + nested components/routes:
+
 ![](bio.gif)
 
+
 Google API, geolocalization, stroll calculation:
+
 ![](maps.gif)
 
+
 Spring animation:
+
 ![](goo.gif)
+
 
 ### Tech used:
 - React+Redux front-end,
