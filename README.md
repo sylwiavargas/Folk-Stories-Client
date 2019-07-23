@@ -41,6 +41,7 @@ Spring animation:
 - JWT, 
 - Facebook API,
 - Twitter API
+
 ... and over 1,000 lines of seed data written with the intention to create a public Today in History JSON API
 
 ### A more comprehensive readme is coming!
