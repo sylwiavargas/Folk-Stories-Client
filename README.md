@@ -19,7 +19,7 @@ Google API, geolocalization, stroll calculation:
 Spring animation:
 ![](goo.gif)
 
-Technologies used:
+### Tech used:
 - React+Redux front-end,
 - Ruby on Rails back-end,
 - Postgres database,
