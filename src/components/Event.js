@@ -35,6 +35,7 @@ class Event extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.events !== this.props.events) {
+      // console.log(this.props.events)
       this.setState({
         loading: false
       })
@@ -82,6 +83,7 @@ class Event extends Component {
 }
 
 const mapStateToProps = state => {
+  // debugger
   return {
     events: state.events.events
   }

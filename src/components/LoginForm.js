@@ -23,9 +23,9 @@ class LoginForm extends Component {
     })
     .then(res => res.json())
     .then(response => {
-      if (response.errors){
-        const errors = response.errors.split ('')
-        alert(errors)
+      if (response.error){
+        const error = response.error
+        alert(error)
       } else {
         localStorage.setItem("token", response.jwt)
         this.props.login(response.user)

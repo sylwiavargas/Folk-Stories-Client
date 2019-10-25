@@ -22,6 +22,7 @@ class App extends Component {
       })
       .then(res => res.json())
       .then(response => {
+        // debugger
         if (response.errors){
           localStorage.removeItem('token')
           alert(response.errors)
@@ -36,7 +37,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div className="App">
       <NavBarContainer/>

@@ -67,7 +67,7 @@ class UserProfile extends Component {
     }
 
   render() {
-    return (
+   return (
       <div className="main">
         <div>
           {this.state.change === true ?
