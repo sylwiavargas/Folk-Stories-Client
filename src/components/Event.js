@@ -21,8 +21,6 @@ class Event extends Component {
   }
 
   getEvent = () => {
-    // const num = this.props.match.params.id
-    // const num = 1
     const num = this.props.eventId
     fetch(API + `/${num}`)
       .then(res => res.json())
