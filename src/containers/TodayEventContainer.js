@@ -17,17 +17,17 @@ class TodayEventContainer extends Component {
   getEvents = () => {
     const today = moment().format('MD')
     const datesapi = `http://localhost:3000/api/v1/dates/${today}`
+
     fetch(datesapi)
       .then(res => res.json())
       .then(events => {
         this.props.saveEvents(events)
       })
-      // .then(console.log("fetch done"))
-    // debugger
+
     }
 
   componentDidMount(){
-    this.getEvents();
+    this.getEvents()
   }
 
   handleAll = () => {
@@ -44,9 +44,7 @@ class TodayEventContainer extends Component {
   handleWomen = () => {
     let womenEvents = [];
     womenEvents = this.props.events.filter((event) => {
-      // console.log(event.event.types)
-      // if event.types includes an object with id = 1
-      return event.event.types.map(typeObj => typeObj.id).includes(1)
+      return event.types.map(typeObj => typeObj.id).includes(1)
     })
     if (this.state.women === false) {
       womenEvents.forEach((e) => this.props.selectCategory(e))
@@ -63,10 +61,9 @@ class TodayEventContainer extends Component {
   }}
 
   handleQueer = () => {
-    // debugger
     let queerEvents = [];
       queerEvents = this.props.events.filter((event) => {
-      return event.event.types.map(typeObj => typeObj.id).includes(2)
+      return event.types.map(typeObj => typeObj.id).includes(2)
     })
     if (this.state.queer === false) {
       queerEvents.forEach((e) => this.props.selectCategory(e))
@@ -84,7 +81,6 @@ class TodayEventContainer extends Component {
 
   handleUserTypes = (events) => {
     const userTypes = this.props.user.currentUser.types;
-    // let userEvents = [];
 
     userTypes.forEach((type) => {
          type.name_eng === "Women" ?
@@ -97,6 +93,12 @@ class TodayEventContainer extends Component {
       )
     }
 
+// 1. more than one subscription possible
+// 2. mark what is the default
+// 3. double-clicking on a filter should not double the events
+// 4. unclicking a filter should delete the events that have this category but not the ones that have other category as well
+// 5. if you select a filter and change a date, it should show the new events of that category
+
 
   render() {
     const evs = this.props.events;
@@ -104,7 +106,7 @@ class TodayEventContainer extends Component {
 
     const backgrounds = ["gradient-five", "gradient-four", "gradient-three", "gradient-two", "gradient-one"]
     const pickOne = () => backgrounds[Math.floor(Math.random()*backgrounds.length)]
-
+    // console.log(this.props.user.currentUser)
     return (
       <div>
       <div>
@@ -130,17 +132,17 @@ class TodayEventContainer extends Component {
         <Fragment key={index}>
         <div className={`event-wrapper-scaled ${pickOne()}`}>
         <div className="event-scaled">
-          <h2> {event.event.year_era_id}: {event.event.title_eng} </h2>
+          <h2> {event.year_era_id}: {event.title_eng} </h2>
           <p className="inline "><strong>Event category:</strong>
-          {event.event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
-          <p> {event.event.description_eng} </p>
-          {event.event.read_more_eng && event.event.read_more_eng !== null && event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
-          <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
+          {event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
+          <p> {event.description_eng} </p>
+          {event.read_more_eng && event.read_more_eng !== null && event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
+          <p> Read more about this event at <a href={event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
           </a> </p>
           : null}
-          {event.event.people && event.event.people.length > 0 ?
+          {event.people && event.people.length > 0 ?
             <>
-              <strong className=""> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
+              <strong className=""> Related people: </strong><br/> <br/> {event.people.map((person, index) => {
               return (<>
               <div className="image-cropper-mini inline margin">
               <Link to={`/bios/${person.id}`}  key={index}> <img src = {person.picture} alt={person.name}/></Link>
@@ -162,17 +164,17 @@ class TodayEventContainer extends Component {
         <Fragment key={index}>
         <div className={`event-wrapper-scaled ${pickOne()}`}>
         <div className="event-scaled">
-          <h2> {event.event.year_era_id}: {event.event.title_eng} </h2>
+          <h2> {event.year_era_id}: {event.title_eng} </h2>
           <p className="inline "><strong>Event category:</strong>
-          {event.event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
-          <p> {event.event.description_eng} </p>
-          {event.event.read_more_eng && event.event.read_more_eng !== null && event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
-          <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
+          {event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
+          <p> {event.description_eng} </p>
+          {event.read_more_eng && event.read_more_eng !== null && event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
+          <p> Read more about this event at <a href={event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
           </a> </p>
           : null}
-          {event.event.people && event.event.people.length > 0 ?
+          {event.people && event.people.length > 0 ?
             <>
-              <strong className=""> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
+              <strong className=""> Related people: </strong><br/> <br/> {event.people.map((person, index) => {
               return (<>
               <div className="image-cropper-mini inline margin">
               <Link to={`/bios/${person.id}`}  key={index}> <img src = {person.picture} alt={person.name}/></Link>

@@ -105,7 +105,7 @@ class MonthContainer extends Component {
     handleWomen = () => {
       let womenEvents = [];
       womenEvents = this.props.events.filter((event) => {
-        return event.event.types.map(typeObj => typeObj.id).includes(1)
+        return event.types.map(typeObj => typeObj.id).includes(1)
       })
       if (this.state.women === false) {
         womenEvents.forEach((e) => this.props.selectCategory(e))
@@ -124,7 +124,7 @@ class MonthContainer extends Component {
     handleQueer = () => {
       let queerEvents = [];
         queerEvents = this.props.events.filter((event) => {
-        return event.event.types.map(typeObj => typeObj.id).includes(2)
+        return event.types.map(typeObj => typeObj.id).includes(2)
       })
       if (this.state.queer === false) {
         queerEvents.forEach((e) => this.props.selectCategory(e))

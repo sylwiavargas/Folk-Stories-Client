@@ -45,22 +45,23 @@ class Event extends Component {
   render() {
     const backgrounds = ["gradient-five", "gradient-four", "gradient-three", "gradient-two", "gradient-one"]
     const pickOne = () => backgrounds[Math.floor(Math.random()*backgrounds.length)]
-
+    console.log(this.props.events)
     return(
       <div className={` event-wrapper ${pickOne()}`}>
       { this.state.loading === false ?
         <div className="event">
         {this.props.events !== undefined && this.props.events.length > 0 ?
           this.props.events.map((event, index) => {
+            console.log("EVENT ", event)
             return <li style={{"padding": "5%"}} key={index}>
-            <h2> {event.event.month_id}/{event.event.day_id}/{event.event.year_era_id}: {event.event.title_eng}</h2>
-            <p> {event.event.description_eng} </p>
-            <p> Read more at <a href = {event.event.read_more_eng} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]} </a> </p>
+            <h2> {event.month_id}/{event.day_id}/{event.year_era_id}: {event.title_eng}</h2>
+            <p> {event.description_eng} </p>
+            {/* <p> Read more at <a href = {event.read_more_eng} target="_blank" rel="noopener noreferrer"> { event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]} </a> </p> */}
 
             <p>
-            {event.event.people ?
+            {event.people ?
               <>
-                <strong> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
+                <strong> Related people: </strong><br/> <br/> {event.people.map((person, index) => {
                 return (<>
                 <div className="image-cropper-mini inline margin">
                 <Link to={`/bios/${person.id}`}  key={index}> <img src = {person.picture} alt={person.name}/></Link>

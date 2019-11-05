@@ -71,9 +71,9 @@ class EverydayEventContainer extends Component {
   handleWomen = () => {
     let womenEvents = [];
     womenEvents = this.props.events.filter((event) => {
-      // console.log(event.event.types)
+      // console.log(event.types)
       // if event.types includes an object with id = 1
-      return event.event.types.map(typeObj => typeObj.id).includes(1)
+      return event.types.map(typeObj => typeObj.id).includes(1)
     })
     if (this.state.women === false) {
       womenEvents.forEach((e) => this.props.selectCategory(e))
@@ -93,7 +93,7 @@ class EverydayEventContainer extends Component {
     // debugger
     let queerEvents = [];
       queerEvents = this.props.events.filter((event) => {
-      return event.event.types.map(typeObj => typeObj.id).includes(2)
+      return event.types.map(typeObj => typeObj.id).includes(2)
     })
     if (this.state.queer === false) {
       queerEvents.forEach((e) => this.props.selectCategory(e))
@@ -161,17 +161,17 @@ class EverydayEventContainer extends Component {
             <Fragment key={index}>
             <div className={`event-wrapper-scaled ${pickOne()}`}>
             <div className="event-scaled">
-              <h2> {event.event.year_era_id}: {event.event.title_eng} </h2>
+              <h2> {event.year_era_id}: {event.title_eng} </h2>
               <p className="inline "><strong>Event category:</strong>
-              {event.event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
-              <p> {event.event.description_eng} </p>
-              {event.event.read_more_eng && event.event.read_more_eng !== null && event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
-              <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
+              {event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
+              <p> {event.description_eng} </p>
+              {event.read_more_eng && event.read_more_eng !== null && event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
+              <p> Read more about this event at <a href={event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
               </a> </p>
               : null}
-              {event.event.people && event.event.people.length > 0 ?
+              {event.people && event.people.length > 0 ?
                 <>
-                  <strong className=""> Related  people: </strong><br/> <br/> {event.event.people.map((person, index) => {
+                  <strong className=""> Related  people: </strong><br/> <br/> {event.people.map((person, index) => {
                   return (<>
                   <div className="image-cropper-mini inline margin">
                   <Link to={`/bios/${person.id}`}  key={index}> <img src = {person.picture} alt={person.name}/></Link>
@@ -193,16 +193,16 @@ class EverydayEventContainer extends Component {
              <Fragment key={index}>
              <div className={`event-wrapper-scaled ${pickOne()}`}>
              <div className="event-scaled">
-               <h2> {event.event.year_era_id}: {event.event.title_eng} </h2>
+               <h2> {event.year_era_id}: {event.title_eng} </h2>
                <p className="inline "><strong>Event category:</strong>
-               {event.event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
-               <p> {event.event.description_eng} </p>
-               {event.event.read_more_eng && event.event.read_more_eng !== null && event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
-               <p> Read more about this event at <a href={event.event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
+               {event.types.map((type) => <> &nbsp;  {type.name_eng.toLowerCase()} </>)}</p>
+               <p> {event.description_eng} </p>
+               {event.read_more_eng && event.read_more_eng !== null && event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) !== null ?
+               <p> Read more about this event at <a href={event.read_more_eng.toString()} target="_blank" rel="noopener noreferrer"> { event.read_more_eng.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]}
                </a> </p> : null}
-               {event.event.people && event.event.people.length > 0 ?
+               {event.people && event.people.length > 0 ?
                  <>
-                   <strong className=""> Related people: </strong><br/> <br/> {event.event.people.map((person, index) => {
+                   <strong className=""> Related people: </strong><br/> <br/> {event.people.map((person, index) => {
                    return (<>
                    <div className="image-cropper-mini inline margin">
                    <Link to={`/bios/${person.id}`}  key={index}> <img src = {person.picture} alt={person.name}/></Link>
