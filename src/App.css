@@ -166,6 +166,10 @@ ul, li {
   margin: 2px;
 }
 
+.right-margin{
+  margin-right: 100px;
+}
+
 .dramatic {
   height: 100px;
   width: 1000px;

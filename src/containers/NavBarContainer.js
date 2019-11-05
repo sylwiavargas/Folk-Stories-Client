@@ -69,7 +69,7 @@ class NavBarContainer extends Component {
        {
           localStorage.token ?
               <>
-               <Link onClick={this.signOut} className="notbutton inline">Sign out</Link>
+               <Link onClick={this.signOut} className="notbutton inline right-margin">Sign out</Link>
                <ul className={navbarClass.join(' ')} id="js-menu">
                    <li><NavLink activeClassName="active" to="/dates" className="navlink">Events</NavLink></li>
                   <li><NavLink activeClassName="active" to="/bios" className="navlink">Bios</NavLink></li>
@@ -80,8 +80,8 @@ class NavBarContainer extends Component {
                </>
             :
                 <>
-                <Link onClick={this.loginRoute} className="notbutton inline">Login</Link>
-                <Link onClick={this.signupRoute} className="notbutton inline">SignUp</Link>
+                <Link onClick={this.loginRoute} className="notbutton inline right-margin">Login</Link>
+                <Link onClick={this.signupRoute} className="notbutton inline right-margin">SignUp</Link>
                     <ul className={navbarClass.join(' ')}>
                       <li><NavLink activeClassName="active" to="/dates" className="navlink">Events</NavLink></li>
                       <li><NavLink activeClassName="active" to="/bios" className="navlink">Bios</NavLink></li>
