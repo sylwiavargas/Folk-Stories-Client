@@ -10,9 +10,9 @@ import Force from './Force';
 
 class Person extends Component {
 
-  state = {
-    loading: true,
-  }
+//   state = {
+//     loading: true,
+//   }
 
   getPeep = () => {
     const num = this.props.match.params.id
