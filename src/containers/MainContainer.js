@@ -3,10 +3,9 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect} from 'react-redux';
 
-import TodayEventContainer from './TodayEventContainer'; //commented it out to test
+// import TodayEventContainer from './TodayEventContainer'; //commented it out to test
 import BioContainer from './BioContainer'
 import UserProfile from './UserProfile'
-import Person from '../components/Person'
 import Event from '../components/Event'
 import ContributeContainer from './ContributeContainer'
 import Notfound from '../components/notfound'
@@ -72,7 +71,7 @@ class MainContainer extends Component {
       <Route exact path="/signUp" component={SignUpForm} formInput={this.formInput}/>
       <Route exact path="/about" component={About}/>
       <Route exact path="/login" component={LoginForm} />
-      <Route component={Notfound} />
+      /
            </Switch>
       }
       </div>
