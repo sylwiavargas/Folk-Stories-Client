@@ -1,9 +1,9 @@
 
 ## FOLK STORIES - project description
-Folk Stories offers a daily dose of empowerment in the form of stories, bios and places connected to the histories that did not make it to the school text books such as queer and women’s history. 
+Folk Stories offers a daily dose of empowerment in the form of stories, bios and places connected to the histories that did not make it to the school text books such as lgbtqiap and women’s history. 
 
 
-Explore: [Backend repo] (https://github.com/sylwiavargas/Folk-Stories-API)
+Explore: [Backend repo](https://github.com/sylwiavargas/Folk-Stories-API)
 
 ### Snapshots
 
